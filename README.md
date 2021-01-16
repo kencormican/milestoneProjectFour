@@ -136,6 +136,44 @@ Ask Num | Scenario                                                              
 # Design
 
 
+## Wireframes
+
+### Desktop Balsamiq Mockups
+
+#### Landing and About Pages
+<img src="/wireframes/desktopView1.jpg" style="margin: 0;">
+
+#### Contact and Register Pages
+<img src="/wireframes/desktopView2.jpg" style="margin: 0;">
+
+#### Login and Password Reset Pages
+<img src="/wireframes/desktopView3.jpg" style="margin: 0;">
+
+#### Profile and Product Pages
+<img src="/wireframes/desktopView4.jpg" style="margin: 0;">
+
+#### Product Detail and Shopping Bag Pages
+<img src="/wireframes/desktopView5.jpg" style="margin: 0;">
+
+#### Checkout and Checkout Success Pages
+<img src="/wireframes/desktopView6.jpg" style="margin: 0;">
+
+#### Manage Categories and Add Category Pages
+<img src="/wireframes/desktopView7.jpg" style="margin: 0;">
+
+#### Add Product and Edit Product Pages
+<img src="/wireframes/desktopView8.jpg" style="margin: 0;">
+
+#### Admin Product and Admin Product Detail Pages
+<img src="/wireframes/desktopView9.jpg" style="margin: 0;">
+
+
+***
+
+
+[Back to Contents](#table-of-contents)
+
+
 ## Database Structure
 
 <div align="center">
