@@ -26,6 +26,13 @@
 * [Requirements](#requirements)
 * [User Stories](#user-stories)
 * [Design](#design)
+* [Preparation](#preparation)
+* [Colour Scheme](#colour-scheme)
+* [Typography](#typography)
+* [Imagery](#imagery)
+* [Responsive Elements](#responsive-elements)
+* [Interactive Elements](#interactive-elements)
+* [Authentication](#authentications)
 * [Wireframes](#wireframes)
 </details>
 
@@ -135,37 +142,103 @@ Ask Num | Scenario                                                              
 
 # Design
 
+## Preparation
+- As part of the preparation for this project I visited  several winter sports ecommerce sites reviewing site structure, theme and content, to gauge how best to approach the design and planning stages. These sites included but were not limited to [Blue Tomatoe](https://www.blue-tomato.com/en-IE/), [Dare2B](https://www.dare2b.ie/) & [53 Degrees North](https://www.53degreesnorth.ie/activity/skiing.html). 
+
+## Colour Scheme
+-   I felt that a basic light blue theme contrasted against a white background was both aesthetically pleasing and reflected the outdoor winter sports nature of this ecommerce site. 
+-   Additional Colour is to be introduced via the poster and images/urls associated with the individual products.
+-	Re the Landing Page , I've decided use a Hero image that immediately communicates the nature of the site and enhances the existing colour the,.
+
+## Typography
+-   I've decided to use The Segoe UI family of fonts as defaults with Roboto and Sans Serif acting as the fallback alternatives.
+-   They happen to be my preffered fonts given the crisp, basic styling.
+-   I've decided to use both Font Awesome icons to highlight functionality and make the site more intuitive.
+-	I'll use CSS to customise Bootstrap defaults further. These will include but will not be limited to various degrees of text-shadowing, font-sizes and text decoration
+-	Finally, The plan is to use a combination of CSS transforms, python and Jinga methods to alter text capitalisation at various points within the project.
+
+## Imagery
+-   The intention is to use Bootstrap card-image components in conjunction with the product image urls to provide a central point of focus for the website. I also intend on using standard Bootstrap card elements, and icons styled with the sites light blue theme to provide secondary points of focus.
+-	As described above the Landing Page Hero image is intended to both, enhance the site's theme, and immediately communicate its purpose.
+-	Time permitting I also intend on creating a default poster, derived from ski related imagery, to be used in the event an admin user fails to select an image during the product creation process. 
+-   This poster will be used to populate all empty proudct card-image elements, thereby maintaining consistency of UX across the site.
+
+[Back to Contents](#table-of-contents)
+
+## Navigation
+-   Having reviewed several online ski shops it appears to be convention to allow the end user to filter based on gender and age aswell as product type. Snow/Skiwear is categorised not only by product type but whether it's targetting Men, Women or Children.  
+There are several approaches to achieving this on the production sites, however, I've decided to use a three layer tabbed nav menu on desktop views and a two layer collapsible sidenav menu on mobile/tablet views.  
+In maintaining this convention, it is hoped that it will make the site more intuitive for end users.
+- In addion to the above I've also used an collapsible search box on mobile/tabled view and a fixed top nav search on desktop views.  
+- Finally, in an attempt to, again enhance UX, I've seperated site admin and product related elements into there own menus.
+
+## Responsive Elements
+-   Placeholder
+
+## Interactive Elements
+-   Placeholder
+
+## Authentication
+-	Placeholder
+
+***
+
+[Back to Contents](#table-of-contents)
 
 ## Wireframes
+
+### Mobile Balsamiq Mockups
+
+#### Landing, About, Registration & Login Pages
+
+<img src="/assets/wireframes/mobileView1.jpg" style="margin: 0;">
+
+#### Product, Category & Checkout Pages
+
+<img src="/assets/wireframes/mobileView2.jpg" style="margin: 0;">
+
+### Tablet Balsamiq Mockups
+
+#### Landing & Registration Pages
+
+<img src="/assets/wireframes/tabletView1.jpg" style="margin: 0;">
+
+#### Login, About & Category Pages
+
+<img src="/assets/wireframes/tabletView2.jpg" style="margin: 0;">
+
+#### Product & Checkout Pages
+
+<img src="/assets/wireframes/tabletView3.jpg" style="margin: 0;">
 
 ### Desktop Balsamiq Mockups
 
 #### Landing and About Pages
-<img src="/wireframes/desktopView1.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView1.jpg" style="margin: 0;">
 
 #### Contact and Register Pages
-<img src="/wireframes/desktopView2.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView2.jpg" style="margin: 0;">
 
 #### Login and Password Reset Pages
-<img src="/wireframes/desktopView3.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView3.jpg" style="margin: 0;">
 
 #### Profile and Product Pages
-<img src="/wireframes/desktopView4.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView4.jpg" style="margin: 0;">
 
 #### Product Detail and Shopping Bag Pages
-<img src="/wireframes/desktopView5.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView5.jpg" style="margin: 0;">
 
 #### Checkout and Checkout Success Pages
-<img src="/wireframes/desktopView6.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView6.jpg" style="margin: 0;">
 
 #### Manage Categories and Add Category Pages
-<img src="/wireframes/desktopView7.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView7.jpg" style="margin: 0;">
 
 #### Add Product and Edit Product Pages
-<img src="/wireframes/desktopView8.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView8.jpg" style="margin: 0;">
 
 #### Admin Product and Admin Product Detail Pages
-<img src="/wireframes/desktopView9.jpg" style="margin: 0;">
+<img src="/assets/wireframes/desktopView9.jpg" style="margin: 0;">
 
 
 ***
