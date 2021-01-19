@@ -2,13 +2,14 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
 
     <!-- Required meta tags -->
     {% block meta %}
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% endblock %}
 
     {% block extra_meta %}
@@ -16,62 +17,129 @@
 
     <!-- Bootstrap CSS -->
     {% block corecss %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-        crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
-    
+
     {% block corejs %}
     <!-- Font Awesome kit -->
     <script src="https://kit.fontawesome.com/a32a7e84cd.js" crossorigin="anonymous"></script>
-    
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
 
     {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
 
-    <title>Off Piste Skishop {% block extra_title %}{% endblock %}</title>
- 
-</head>
-  <body>
+    <title>Off Piste | Skishop {% block extra_title %}{% endblock %}</title>
 
-    <header class="container-fluid fixed-top"></header>
-        <div id="delivery-banner" class="row text-center bg-blue">
-            <div class="col-4 col-lg text-white">
-                <h4 class="logo-font my-1">We Deliver!</h4>                
-            </div>       
-            <div class="col-4 col-lg text-white">
-                <h4 class="logo-font my-1">Free delivery from €{{ free_shipping_threshold }}!</h4>                
+</head>
+
+<body>
+
+    <header class="container-fluid fixed-top">
+        <div id="delivery-banner" class="row d-none d-lg-flex text-center text-uppercase bg-blue">
+            <div class="col-4 text-white">
+                <h4 class="logo-font my-1">We Deliver!</h4>
             </div>
-            <div class="col-4 col-lg text-white">
-                <h4 class="logo-font my-1">40 Day Returns Policy!</h4>                
-            </div>                   
+            <div class="col-4 text-white">
+                <h4 class="logo-font my-1">Free delivery from €{{ free_shipping_threshold }}!</h4>
+            </div>
+            <div class="col-4  text-white">
+                <h4 class="logo-font my-1">40 Day Returns Policy!</h4>
+            </div>
         </div>
 
+        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+            <div class="col-12">
+                <ul class="list-inline small text-center text-lg-right my-0 text-uppercase">
+                    {% if request.user.is_authenticated %}    
+                        <li class="list-inline-item">
+                            <a class="nav-link admin-nav py-1" href="{% url 'account_logout' %}">Sign Out</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="nav-link admin-nav py-1" href="#">My Profile</a>
+                        </li>    
+                        {% if request.user.is_superuser %}    
+                            <li class="list-inline-item ">
+                                <a class="nav-link admin-nav py-1" href="#">Manage Categories</a>
+                            </li>
+                            <li class="list-inline-item ">
+                                <a class="nav-link admin-nav py-1 navbar-light" href="#">Add Product</a>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="list-inline-item ">
+                            <a class="nav-link admin-nav py-1 " href="{% url 'account_login' %}">Sign In</a>
+                        </li>
+                        <li class="list-inline-item ">
+                            <a class="nav-link admin-nav py-1" href="{% url 'account_signup' %}">Create Account</a>
+                        </li>
+                    {% endif %}
+                    <li class="list-inline-item ">
+                        <a class="nav-link admin-nav py-1" href="#">About</a>
+                    </li>
+                    <li class="list-inline-item ">
+                        <a class="nav-link admin-nav py-1" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <h2 class="logo-font text-uppercase my-0"><strong>Off Piste</strong> Skishop</h2>
+                </a>
+            </div>
+            <form class="searchbar col-12 col-lg-4 my-auto py-1 py-lg-0" method="GET" action="">
+                <div class="input-group w-100">
+                    <input class="form-control search_input" type="text" name="q" placeholder="Search this store ...">
+                    <div class="input-group-append">
+                        <button class="form-control btn search_icon" type="submit">
+                                <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                    <li class="list-inline-item">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-blue{% endif %} nav-link" href="">
+                            <div class="text-center">
+                                <div><i class="fas fa-suitcase fa-lg"></i></div>
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                        ${{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        $0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
     {% if messages %}
-        <div class="message-container"></div>
+    <div class="message-container"></div>
     {% endif %}
 
     {% block page_header %}
@@ -84,5 +152,6 @@
     {% endblock %}
 
 
-  </body>
+</body>
+
 </html>

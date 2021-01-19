@@ -10,6 +10,17 @@ body {
     font-family: 'Roboto';
 }
 
+/* Typography */
+
+.text-blue {
+    color: dodgerblue !important;
+}
+
+
+.text-lightgrey {
+    color: lightgrey !important;
+}
+
 
 .bg-blue {
     background-color: dodgerblue;
@@ -17,4 +28,56 @@ body {
 
 .bg-black {
     background-color: black;
+}
+
+
+/* Navbar  */
+
+/* Searchbox */
+
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    background-color: lightgrey;
+    border-radius: 20px;
+    padding: 0;
+}
+
+.searchbar:hover {
+    border: solid 1px;
+    border-color: dodgerblue;
+    transition: width 0.1s linear;
+}
+.search_input{
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    outline: 0;
+    background: none;
+    width: 0;
+    transition: width 0.1s linear;
+}
+
+.searchbar:hover > .search_input{
+    caret-color:dodgerblue;
+    transition: width 0.1s linear;
+}
+
+.searchbar:hover > .search_icon{
+    background: dodgerblue;
+    color: white;
+}
+
+.search_icon{
+    border-radius: 50%;
+    color:dodgerblue;
+    text-decoration:none;
+}
+
+.admin-nav  {
+    color: lightgrey;
+}
+
+.admin-nav:hover {
+    color: dodgerblue;
 }
