@@ -105,6 +105,7 @@
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font text-uppercase my-0"><strong>Off Piste</strong> Skishop</h2>
+                    <!-- <h5 class"">Freedom is Fresh Powder!</h5> -->
                 </a>
             </div>
             <form class="searchbar col-12 col-lg-4 my-auto py-1 py-lg-0" method="GET" action="">
@@ -142,11 +143,14 @@
     <div class="message-container"></div>
     {% endif %}
 
+    
     {% block page_header %}
     {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
 
     {% block postloadjs %}
     {% endblock %}

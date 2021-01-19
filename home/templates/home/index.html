@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
 <div class="container h-100">    
     <div class="row h-100">
-        <div class="col-8 offset-4 my-auto text-right">
-            <h1 class=" logo-font text-white ">
+        <div class="col-12 col-lg-8 offset-lg-4 text-center text-lg-right my-auto ">
+            
+            <h2 class="display-4 logo-font text-white ">
                 Welcome to OFF PISTE Skishop
-            </h1>
-            <h2 class=" logo-font text-white">
-                Freedom is Fresh Powder
             </h2>
-        </div>
-        <div class="col-4 offset-6 bg-black">
-            <h3 class="text-white text-right">
-                Shop Now
+            <h3 class="logo-font text-white">
+                Freedom is Fresh Powder!
             </h3>
+        </div>
+        <div class="col-8 offset-2 col-lg-4 offset-lg-8">
+        <div class="card card-shopnow text-center text-white bg-transparent">
+            <div class="card-body text-uppercase">
+                <h4 class="card-title">Shop Now!</h4>
+                <a href="#" class="btn btn-shopnow rounded-0 text-white border-white">MEN</a>
+                <a href="#" class="btn btn-shopnow rounded-0 text-white border-white">WOMEN</a>
+                <a href="#" class="btn btn-shopnow rounded-0 text-white border-white">KIDS</a>       
+            </div>
+        </div>
         </div>
     </div>
 </div>

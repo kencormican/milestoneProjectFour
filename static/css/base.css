@@ -22,6 +22,8 @@ body {
 }
 
 
+/* background color */
+
 .bg-blue {
     background-color: dodgerblue;
 }
@@ -29,6 +31,8 @@ body {
 .bg-black {
     background-color: black;
 }
+
+
 
 
 /* Navbar  */
@@ -80,4 +84,40 @@ body {
 
 .admin-nav:hover {
     color: dodgerblue;
+}
+
+/* Homepage */
+
+.card-shopnow {
+    max-height: 120px !important;
+    background-color: rgba(14, 0, 0, 0.500) !important;
+}
+
+.btn-shopnow:hover {
+    background-color: orange;
+}
+
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
 }
