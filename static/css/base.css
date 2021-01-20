@@ -21,6 +21,15 @@ body {
     color: lightgrey !important;
 }
 
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
 
 /* background color */
 
@@ -35,48 +44,8 @@ body {
 
 
 
-/* Navbar  */
+/* Top Navbar  */
 
-/* Searchbox */
-
-.searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
-    background-color: rgba(30, 144, 255, 0.2);
-    border-radius: 20px;
-    padding: 0;
-}
-
-.searchbar:hover {
-    border: solid 1px;
-    border-color: dodgerblue;
-    transition: width 0.1s linear;
-}
-.search_input{
-    color: white;
-    border: 0;
-    border-radius: 20px;
-    outline: 0;
-    background: none;
-    width: 0;
-    transition: width 0.1s linear;
-}
-
-.searchbar:hover > .search_input{
-    caret-color:dodgerblue;
-    transition: width 0.1s linear;
-}
-
-.searchbar:hover > .search_icon{
-    background: dodgerblue;
-    color: white;
-}
-
-.search_icon{
-    border-radius: 50%;
-    color:dodgerblue;
-    text-decoration:none;
-}
 
 .admin-nav  {
     color: lightgrey;
@@ -85,6 +54,93 @@ body {
 .admin-nav:hover {
     color: dodgerblue;
 }
+
+
+/* Desktop Searchbox */
+
+.desktop-searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    background-color: rgba(30, 144, 255, 0.2);
+    border-radius: 20px;
+    padding: 0;
+}
+
+.desktop-searchbar:hover {
+    border: solid 1px;
+    border-color: dodgerblue;
+    transition: width 0.1s linear;
+}
+
+.desktop-search-input{
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    outline: 0;
+    background: none;
+    width: 0;
+    transition: width 1.5s linear;
+}
+
+
+.desktop-searchbar:hover > .desktop-search-icon{
+    background: dodgerblue;
+    color: white;
+}
+
+.desktop-search-icon{
+    border-radius: 50%;
+    color:dodgerblue;
+    text-decoration:none;
+}
+
+
+/* Mobile Search */
+
+#btn-mob-search {
+    margin-top: 4px !important;
+    background-color: dodgerblue;
+    color: white;
+    transition: width 1.5s linear;
+}
+
+#btn-mob-search:hover {
+    background-color: white;
+    color: dodgerblue;
+    transition: width 1.5s linear;
+}
+
+/* Mobile Searchbox */
+
+.mob-searchbar{
+    margin-bottom: 2px;
+    margin-top: 2px;
+    background-color: rgba(243, 247, 250, 0.5);
+    border-radius: 30px;
+    padding: 0;
+}
+
+.mob-searchbar:hover {
+    background-color: rgba(243, 247, 250, 0.8);
+    transition: width 0.1s linear;
+}
+
+.mob-search-input{
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    outline: 0;
+    background: none;
+    width: 0;
+    transition: width 1.5s linear;
+}
+
+.mob-search-icon{
+    border-radius: 50%;
+    color:dodgerblue;
+    text-decoration:none;
+}
+
 
 /* Tab Menu */
 
@@ -98,6 +154,7 @@ body {
 
 .card-shopnow {
     max-height: 120px !important;
+    max-width: 320px !important;
     background-color: rgba(14, 0, 0, 0.500) !important;
 }
 
