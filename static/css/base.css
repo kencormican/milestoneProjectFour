@@ -1,3 +1,9 @@
+/* .navbar-expand-lg {
+ margin-left: 0 !important;
+ padding-left: 0 !important;
+
+} */
+
 html {
     height: 100%;
 }
@@ -5,9 +11,13 @@ html {
 body {
     background: url('/media/landingPage.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 217px);
     color: #555;
     font-family: 'Roboto';
+}
+
+.home-wrapper {
+    padding-top: 200px;
 }
 
 /* Typography */
@@ -28,6 +38,11 @@ body {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
+}
+
+
+.callout-font {
+    margin-bottom: 80px !important;
 }
 
 
@@ -54,6 +69,9 @@ body {
 .admin-nav:hover {
     color: dodgerblue;
 }
+
+
+
 
 
 /* Desktop Searchbox */
@@ -183,6 +201,12 @@ body {
     }
 
     .header-container {
-        padding-top: 217px;
+        padding-top: 180px;
+    }
+
+    .mainnav-font {
+        
+        color: white !important;
+        background-color: dodgerblue !important;
     }
 }
