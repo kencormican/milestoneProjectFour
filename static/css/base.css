@@ -16,9 +16,23 @@ body {
     font-family: 'Roboto';
 }
 
-.home-wrapper {
-    padding-top: 200px;
+.header-container {
+        padding-top: 140px;
+    }
+
+
+/* Page Overlay for secondary templates */
+
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
 }
+
 
 /* Typography */
 
@@ -39,12 +53,6 @@ body {
     height: 1.5rem;
     width: 1.5rem;
 }
-
-
-.callout-font {
-    margin-bottom: 80px !important;
-}
-
 
 /* background color */
 
@@ -168,18 +176,6 @@ body {
     border-color: dodgerblue;
 }
 
-/* Homepage */
-
-.card-shopnow {
-    max-height: 120px !important;
-    max-width: 320px !important;
-    background-color: rgba(14, 0, 0, 0.500) !important;
-}
-
-.btn-shopnow:hover {
-    background-color: orange;
-}
-
 
 /* -------------------------------- Media Queries */
 
@@ -200,10 +196,10 @@ body {
         z-index: 1030;
     }
 
-    .header-container {
-        padding-top: 180px;
+.header-container {
+        padding-top: 203px;
     }
-
+    
     .mainnav-font {
         
         color: white !important;

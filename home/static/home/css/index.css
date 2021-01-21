@@ -1,0 +1,32 @@
+/* Homepage */
+
+
+.home-wrapper {
+    padding-top: 100px;
+}
+
+.card-shopnow {
+    max-height: 120px !important;
+    max-width: 320px !important;
+    background-color: rgba(14, 0, 0, 0.500) !important;
+}
+
+.btn-shopnow:hover {
+    background-color: orange;
+}
+
+
+.callout-font {
+    margin-bottom: 80px !important;
+}
+
+
+/* callout only on medium and up */
+@media (min-width: 992px) {
+
+.home-wrapper {
+    padding-top: 200px;
+}
+
+
+}
