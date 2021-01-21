@@ -1,8 +1,3 @@
-/* .navbar-expand-lg {
- margin-left: 0 !important;
- padding-left: 0 !important;
-
-} */
 
 html {
     height: 100%;
@@ -65,8 +60,6 @@ body {
 }
 
 
-
-
 /* Top Navbar  */
 
 
@@ -79,9 +72,6 @@ body {
 }
 
 
-
-
-
 /* Desktop Searchbox */
 
 .desktop-searchbar{
@@ -91,6 +81,15 @@ body {
     border-radius: 20px;
     padding: 0;
 }
+
+.desktop-searchbar input::placeholder {
+    color: #6c757d;
+}
+
+.desktop-searchbar p {
+    color: #aab7c4;
+}
+
 
 .desktop-searchbar:hover {
     border: solid 1px;
@@ -138,7 +137,7 @@ body {
 
 /* Mobile Searchbox */
 
-.mob-searchbar{
+.mob-searchbar {
     margin-bottom: 2px;
     margin-top: 2px;
     background-color: rgba(243, 247, 250, 0.5);
@@ -150,6 +149,15 @@ body {
     background-color: rgba(243, 247, 250, 0.8);
     transition: width 0.1s linear;
 }
+
+.mob-searchbar input::placeholder {
+    color: #6c757d;
+}
+
+.mob-searchbar p {
+    color: #aab7c4;
+}
+
 
 .mob-search-input{
     color: white;
@@ -206,3 +214,78 @@ body {
         background-color: dodgerblue !important;
     }
 }
+
+/* Allauth form formatting */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem; /* mt-4 */
+    color: #aab7c4; /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+    border-color: dodgerblue;
+    border-radius: 5px;
+}
+
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #6c757d;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 5px ;
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: #fff;
+    background-color: blue;
+    border-color: blue;
+}
+
+.allauth-form-inner-content button:focus {
+    border-color: lightblue !important;
+    outline: none !important;
+}
+
+.allauth-form-inner-content a {
+	color: #17a2b8; /* text-info */
+}
+
+
+.btn-outline-blue {
+    background: white;
+    color: dodgerblue !important; /* use important to override link colors for <a> elements */
+    border: 1px solid dodgerblue;
+}
+
+.btn-outline-blue:hover,
+.btn-outline-blue:active,
+.btn-outline-blue:focus {
+    background: dodgerblue;
+    color: white !important;
+}
+
