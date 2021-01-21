@@ -1,0 +1,80 @@
+#profile-update-form p {
+    margin-top: 1.5rem; 
+    color: #aab7c4;
+}
+
+#profile-update-form input {
+    border-color: dodgerblue;
+    border-radius: 5px;
+}
+
+
+#profile-update-form input::placeholder {
+    color: #6c757d;
+}
+
+
+.btn-blue {
+    background: dodgerblue;
+    color: white !important; /* use important to override link colors for <a> elements */
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+}
+
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue:focus {
+    background: blue;
+    border-color: blue;
+    color: white !important;
+}
+
+
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #6c757d;
+}
+
+#id_default_country option:first-child {
+    color: #aab7c4;
+}
+
+
+/* #profile-update-form input{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: white;
+    background-clip: padding-box;
+    border: 1px solid dodgerblue;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+} */
+
+
+
+/* rgb(232, 240, 254); bg colour*/
+
+/* #profile-update-form .form-control {
+    color: #000;
+    
+}
+
+#profile-update-form input::placeholder {
+    color: #aab7c4;
+}
+
+
+#profile-update-form input{
+    border-color: dodgerblue;
+    border-radius: 5px;
+} */
+
+/* .profile-update-form-inner-content {
+
+     border-color: dodgerblue !important;
+    border-radius: 50%;
+} */

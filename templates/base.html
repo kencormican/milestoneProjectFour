@@ -76,7 +76,7 @@
                             <a class="nav-link admin-nav py-1" href="{% url 'account_logout' %}">Sign Out</a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="nav-link admin-nav py-1" href="#">My Profile</a>
+                            <a class="nav-link admin-nav py-1" href="{% url 'profile' %}">My Profile</a>
                         </li>    
                         {% if request.user.is_superuser %}    
                             <li class="list-inline-item ">

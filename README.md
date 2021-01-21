@@ -41,7 +41,7 @@
 
 ## Demo
 
-[View the live project here.](TBC)
+[View the live project here.](https://kjc-off-piste-skishop.herokuapp.com/)
 
 
 --------
