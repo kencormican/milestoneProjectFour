@@ -16,7 +16,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -77,7 +77,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # project apps
-    'home'
+    'home',
+    'profiles',
+    # other dependencies
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -91,6 +94,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kjc_off_piste_skishop.urls'
+
+# Load crispy forms Bootstrap 4 template pack
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -108,6 +115,12 @@ TEMPLATES = [
                 # required for all auth
                 'django.contrib.auth.context_processors.auth',
             ],
+            # make crispy forms available to all templates
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
+
         },
     },
 ]
@@ -164,8 +177,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
@@ -176,6 +187,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
