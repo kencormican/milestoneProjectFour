@@ -273,6 +273,7 @@ body {
 	color: #17a2b8; /* text-info */
 }
 
+/* Customised Button Themes */
 
 .btn-outline-blue {
     background: white;
@@ -284,6 +285,21 @@ body {
 .btn-outline-blue:active,
 .btn-outline-blue:focus {
     background: dodgerblue;
+    color: white !important;
+}
+
+.btn-blue {
+    background: dodgerblue;
+    color: white !important; 
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+}
+
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue:focus {
+    background: blue;
+    border-color: blue;
     color: white !important;
 }
 

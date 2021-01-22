@@ -80,7 +80,7 @@
                         </li>    
                         {% if request.user.is_superuser %}    
                             <li class="list-inline-item ">
-                                <a class="nav-link admin-nav py-1" href="#">Manage Categories</a>
+                                <a class="nav-link admin-nav py-1" href="{% url 'categories' %}">Manage Categories</a>
                             </li>
                             <li class="list-inline-item ">
                                 <a class="nav-link admin-nav py-1 navbar-light" href="#">Add Product</a>
@@ -162,7 +162,7 @@
                 </button>
             </div>
 
-            <nav class="navbar navbar-expand-lg navbar-light w-100 py-0">
+            <nav class="navbar navbar-expand-lg navbar-light w-100 p-0">
                 <button class="navbar-toggler btn-light" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -357,10 +357,10 @@ message                 | models.TextField(null=False, blank=False)             
 # Testing
 
 ## Bugs Found
-- Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.
+- Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help fo mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
 - Had difficulty getting Travis CI to integrate with repo.  Was a bit of a noob when it came to using Travis but with support from Stephen in Tutor team I found that the issue related settings config for development environment. Resolution to problem was changing the logic around database if else statement.
-- Wanted to use Heroku deployment with staticfiles as part of ongoing testing for solution and as fall back in the event time ran short on submission.  Initially had difficulty getting css static files to load but used whitenoise and modification of settings.py middleware & statict sttorage to resolve same.  Unfortuantely still having difficulty with allauth components.
-- On Profile and Contact form templates have noted that I cannot apply margin or padding to columns or rows.  Likely being overwritten by Bootstrap defaults or custom css from another element. Still investigating.
+- Wanted to use Heroku deployment with staticfiles as part of ongoing testing for solution and as fall back in the event time ran short on submission.  Initially had difficulty getting css static files to load but used whitenoise and modification of settings.py middleware & statict storage to resolve same.  Unfortuantely still having difficulty with allauth components.
+- On Profile and Contact form templates noted that I cannot apply margin or padding to columns or rows.  Used flexbox css to resolve spacing issue on contact details. Margin and padding problems related to incorrect use of Bootstrap helper classes.
 
 ***
     

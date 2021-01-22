@@ -1,4 +1,4 @@
-<li class="list-inline-item dropdown">
+<li class="list-inline-item dropdown m-0">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="site-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-info fa-lg"></i></div>
@@ -11,7 +11,7 @@
 
     </div>
 </li>
-<li class="list-inline-item dropdown">
+<li class="list-inline-item dropdown m-0">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-user fa-lg"></i></div>
@@ -25,7 +25,7 @@
             <hr>
             {% if request.user.is_superuser %}
                 <a class="dropdown-item text-secondary" href="#">Manage Products</a>
-                <a class="dropdown-item text-secondary" href="#">Manage Categories</a>
+                <a class="dropdown-item text-secondary" href="{% url 'categories' %}">Manage Categories</a>
                 <a class="dropdown-item text-secondary" href="#">Add Product</a>
             {% endif %}
             {% else %}
@@ -34,7 +34,7 @@
         {% endif %}
     </div>
 </li>
-<li class="list-inline-item">
+<li class="list-inline-item m-0">
     <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-blue{% endif %} nav-link d-block d-lg-none" href="">
         <div class="text-center">
             <div><i class="fas fa-suitcase fa-lg"></i></div>
