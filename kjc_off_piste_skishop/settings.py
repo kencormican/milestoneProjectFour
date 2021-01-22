@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     'profiles',
     'about',
     'contact',
+    'categories',
     # other dependencies
     'crispy_forms'
 ]
