@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     # project apps
     'home',
     'profiles',
+    'about',
     # other dependencies
     'crispy_forms'
 ]
@@ -138,7 +139,7 @@ if "DATABASE_URL" in os.environ:
     DATABASES = {'default': dj_database_url.parse(
         os.environ.get('DATABASE_URL'))}
 else:
-    print("Database URL not found. Using SQLite instead")
+    print("Development Environment. Using SQLite")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

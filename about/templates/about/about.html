@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'about/css/about.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="overlay">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">About</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4 class="mb-4 text-blue">Freedom Is Fresh Powder!</h4>
+                <hr>
+                <p>
+                    Welcome to <strong>OFF PISTE!</strong>
+                </p>
+                <p>
+                    Over the past two decades Skiing and Snowboarding have become increasingly popular in Ireland.<br>
+                    Off-Piste is an Irish Owned, Irish operated Ski & Snowboard shop located in the heart of Swords, County Dublin. <br>
+                    The aim of this store is to provide the latest in high quality ski and snowboard wear at affordable prices.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
