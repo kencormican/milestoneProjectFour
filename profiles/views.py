@@ -20,6 +20,7 @@ def profile(request):
     template = 'profiles/profile.html'
     context = {
         'form': form,
+        'profile': profile,
     }
 
     return render(request, template, context)

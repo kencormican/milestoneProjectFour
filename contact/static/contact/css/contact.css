@@ -1,0 +1,31 @@
+#contact-style-input p {
+    margin-top: 1.5rem; 
+    color: #aab7c4;
+}
+
+#contact-style-input input {
+    border-color: dodgerblue;
+    border-radius: 5px;
+}
+
+
+#contact-style-input input::placeholder {
+    color: #6c757d;
+}
+
+
+.btn-blue {
+    background: dodgerblue;
+    color: white !important; 
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+}
+
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue:focus {
+    background: blue;
+    border-color: blue;
+    color: white !important;
+}
+
