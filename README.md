@@ -36,6 +36,24 @@
 * [Wireframes](#wireframes)
 </details>
 
+**<details><summary>Database Structure (Django Models)</summary>**
+
+* [Database Structure](#database-structure)
+* [User Profile Model](#user-profile-model)
+* [Main Category Model](#main-category-model)
+* [Subcategory Model](#subcategory-model)
+* [Product Model](#product-model)
+* [Order Model](#order-model)
+* [Order Line Items Model](#order-line-items-model)
+* [Contact Model](#contact-model)
+</details>
+
+**<details><summary>Testing</summary>**
+
+* [Testing](#testing)
+* [Bugs Found](#bugs-found)
+</details>
+
 ***
 
 
@@ -179,7 +197,7 @@ In maintaining this convention, it is hoped that it will make the site more intu
 -   Placeholder
 
 ## Authentication
--	Placeholder
+-	The Profiles app when used in conjunction with Django's inbuilt capabilities and the allauth package provide the site with the functionality to authenticate users, send confirmation emails, reset passwords etc via multiple allauth templates customised work within the sites theme and colour scheme. 
 
 ***
 
@@ -247,14 +265,14 @@ In maintaining this convention, it is hoped that it will make the site more intu
 [Back to Contents](#table-of-contents)
 
 
-## Database Structure
+# Database Structure
 
 <div align="center">
 
 </div>
 
 
-### User Profile Model
+## User Profile Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
 user    		        | models.OneToOneField(User, on_delete=models.CASCADE)                                                                                  |
@@ -266,40 +284,42 @@ default_county          | models.CharField(max_length=80, null=True, blank=True)
 default_country         | CountryField(blank_label='Country', null=True, blank=True)                                                                            |
 
 
-### Main Category Model
+## Main Category Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
 name                    | models.CharField(max_length=254)                                                                                                      |
 friendly_name           | models.CharField(max_length=254, null=True, blank=True)                                                                               |
 
-### Subcategory Model
+## Subcategory Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
 name                    | models.CharField(max_length=254)                                                                                                      |
 friendly_name           | models.CharField(max_length=254, null=True, blank=True)                                                                               |
 new                     | models.BooleanField(default=False, null=True, blank=True)                                                                             |
 
-### Product Model
+## Product Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
-main_category           | models.ForeignKey('Main Category', null=False, blank=False, on_delete=models.SET_NULL)				          						|
-sub_category            | models.ForeignKey('Sub Category', null=False, blank=False, on_delete=models.SET_NULL)    	                    						|
+main_category           | models.ForeignKey('MainCategory', null=False, blank=False, on_delete=models.SET_NULL)				             						|
+sub_category            | models.ForeignKey('SubCategory', null=False, blank=False, on_delete=models.SET_NULL)    	                    						|
 sku                     | models.CharField(max_length=254, null=True, blank=True)                                                                               |
 name                    | models.CharField(max_length=254)                                                                                                      |
-summary                 | models.TextField()                                                                                                                    |
-details                 | models.TextField()                                                                                                                    |
+quantity                | models.PositiveIntegerField(default=1, max_value=99, null=True, blank=True)                                                           |
 price                   | models.DecimalField(max_digits=6, decimal_places=2)                                                                                   |
 rating                  | models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)                                                            |
+summary                 | models.TextField(null=True, blank=True)                                                                                               |
+details                 | models.TextField(null=True, blank=True)                                                                                               |
 has_sizes               | models.BooleanField(default=False, null=True, blank=True)                                                                             |
 image_url_1             | models.URLField(max_length=1024, null=True, blank=True)                                                                               |
 image_1                 | models.ImageField(null=True, blank=True)                                                                                              |
 image_url_2             | models.URLField(max_length=1024, null=True, blank=True)                                                                               |
 image_2                 | models.ImageField(null=True, blank=True)                                                                                              |
 
-### Order Model
+## Order Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
 order_number	        | models.CharField(max_length=32, null=False, editable=False)                                                                           |
+user_profile            | models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')                               |
 full_name		        | models.CharField(max_length=50, null=False, blank=False)                                                                              |
 email   		        | models.EmailField(max_length=254, null=False, blank=False)                                                                            |
 phone_number            | models.CharField(max_length=20, null=True, blank=True)                                                                                |
@@ -314,6 +334,21 @@ order_total             | models.DecimalField(max_digits=10, decimal_places=2, n
 grand_total             | models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)                                                           |
 
 
+## Order Line Items Model
+Name			        |  Properties                                                                                                               		    |
+:--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
+order       	        | models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')                                 |
+product  		        | models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)                                                         |
+product_size	        | models.CharField(max_length=2, null=True, blank=True)                                                                                 |
+quantity                | models.IntegerField(null=False, blank=False, default=0)                                                                               |
+
+## Contact Model
+Name			        |  Properties                                                                                                               		    |
+:--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
+full_name		        | models.CharField(max_length=50, null=False, blank=False)                                                                              |
+email   		        | models.EmailField(max_length=254, null=False, blank=False)                                                                            |
+subject                 | models.CharField(max_length=80, null=True, blank=True)                                                                                |
+message                 | models.TextField(null=False, blank=False)                                                                                             |
 
 ***
     
