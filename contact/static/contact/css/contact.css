@@ -13,19 +13,17 @@
     color: #6c757d;
 }
 
+.contact-details-wrapper {
 
-.btn-blue {
-    background: dodgerblue;
-    color: white !important; 
-    border: 1px solid dodgerblue;
-    border-radius: 5px;
+    display:flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+
 }
+/* 
+#contact-header {
+    align-self: flex-start;
+    width:100%;
 
-.btn-blue:hover,
-.btn-blue:active,
-.btn-blue:focus {
-    background: blue;
-    border-color: blue;
-    color: white !important;
-}
-
+} */
