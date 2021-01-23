@@ -28,73 +28,61 @@
         </div>
         <div class="row">
             <div class="col s12 align-content-center">
-                <a href="#" class="btn btn-blue col-12 col-md-4 offset-md-4 mb-2 text-uppercase">Add Category</a>
+                <a href="{% url 'add_subcategory' %}" class="btn btn-blue col-12 col-md-4 offset-md-4 mb-2 text-uppercase">Add Category</a>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-12 col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <h6 class="col-6 card-title">Category Name</h6>
-                            <h6 class="col-6 card-title text-muted">Actual Name</h6>
-                            <h6 class="col-6 card-title">Friendly Name</h6>
-                            <h6 class="col-6 card-title text-muted">Friendly Name</h6>
-                        </div>
-                        <div class="row mt-2 p-2">                         
-                                                        
-                        <div class="col-12 col-md-6">
-                            <a class="btn btn-blue text-uppercase rounded w-100 my-1" href="">Edit</a>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1" href="">Delete</a>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <h6 class="col-6 card-title">Category Name</h6>
-                            <h6 class="col-6 card-title text-muted">Actual Name</h6>
-                            <h6 class="col-6 card-title">Friendly Name</h6>
-                            <h6 class="col-6 card-title text-muted">Friendly Name</h6>
-                        </div>
-                        <div class="row mt-2 p-2">                         
-                                                        
-                        <div class="col-12 col-md-6">
-                            <a class="btn btn-blue text-uppercase rounded w-100 my-1" href="">Edit</a>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1" href="">Delete</a>
-                        </div>
+        <div class="row mb-5">
+            {% for subcategory in subcategories %}
+                <div class="col-12 col-md-4 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <h6 class="col-6 card-title">Friendly Name</h6>
+                                <h6 class="col-6 card-title text-muted">{{ subcategory.friendly_name }}</h6>
+                                <h6 class="col-6 card-title">Database Name</h6>
+                                <h6 class="col-6 card-title text-muted">{{ subcategory.name }}</h6>
+                            </div>
+                            <div class="row mt-2 p-2">
+                                <div class="col-12 col-md-6">
+                                    <a class="btn btn-blue text-uppercase rounded w-100 my-1" href="{% url 'edit_subcategory' subcategory.id  %}">Edit</a>
+                                </div>
+                                <!-- Delete Modal trigger -->
+                                <div class="col-12 col-md-6">
+                                    <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1"  data-toggle="modal" data-target="#deleteModal" href="">Delete</a>
+                                </div>
+              
+                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">     
+                                                    <h4 class="text-danger">Warning <i class="fas fa-exclamation-circle"></i></h4>
+                                                </div>
+                                                <div class="modal-body">  
+                                                    <h6><strong>You are about to delete this category from the databse.</strong></h6>
+                                                </div>
+                                            <div class="modal-footer">
+                                                <a href="{% url 'categories'  %}" class="btn btn-blue text-uppercase">Cancel</a>
+                                                <a href="{% url 'delete_subcategory' subcategory.id  %}" class="btn btn-outline-blue text-uppercase ">Delete Title</a>
+                                            </div>                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <h6 class="col-6 card-title">Category Name</h6>
-                            <h6 class="col-6 card-title text-muted">Actual Name</h6>
-                            <h6 class="col-6 card-title">Friendly Name</h6>
-                            <h6 class="col-6 card-title text-muted">Friendly Name</h6>
-                        </div>
-                        <div class="row mt-2 p-2">                         
-                                                        
-                        <div class="col-12 col-md-6">
-                            <a class="btn btn-blue text-uppercase rounded w-100 my-1" href="">Edit</a>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1" href="">Delete</a>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
+
+
+{% block postloadjs %}
+{{ block.super }}
+    <!-- <script type="text/javascript">
+        $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+        })
+    </script> -->
+{% endblock %}
+

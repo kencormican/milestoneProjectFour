@@ -25,7 +25,7 @@ class Subcategory(models.Model):
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    new = models.BooleanField(default=False, null=True, blank=True)
+    new = models.BooleanField(default=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
