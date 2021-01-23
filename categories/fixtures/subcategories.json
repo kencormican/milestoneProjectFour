@@ -1,0 +1,164 @@
+[
+ {
+   "pk": 1,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "snowboards",
+      "friendly_name": "Snowboards",
+      "new": false
+   }
+},
+ {
+   "pk": 2,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "snowboard_boots",
+      "friendly_name": "Snowboard Boots",
+      "new": false
+   }
+},
+ {
+   "pk": 3,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "snowboard_bindings",
+      "friendly_name": "Snowboard Bindings",
+      "new": false
+   }
+},
+ {
+   "pk": 4,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "snowboard_bags",
+      "friendly_name": "Snowboard Bags",
+      "new": false
+   }
+},
+ {
+   "pk": 5,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "freeskis",
+      "friendly_name": "Freeskis",
+      "new": false
+   }
+},
+ {
+   "pk": 6,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "ski_boots",
+      "friendly_name": "Ski Boots",
+      "new": false
+   }
+},
+ {
+   "pk": 7,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "ski_bindings",
+      "friendly_name": "Ski Bindings",
+      "new": false
+   }
+},
+ {
+   "pk": 8,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "ski_poles",
+      "friendly_name": "Ski Poles",
+      "new": false
+   }
+},
+ {
+   "pk": 9,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "ski_bags",
+      "friendly_name": "Ski Bags",
+      "new": false
+   }
+},
+ {
+   "pk": 10,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "jackets",
+      "friendly_name": "Jackets",
+      "new": false
+   }
+},
+ {
+   "pk": 11,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "pants",
+      "friendly_name": "Pants",
+      "new": false
+   }
+},
+ {
+   "pk": 12,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "base_layer",
+      "friendly_name": "Base Layer",
+      "new": false
+   }
+},
+ {
+   "pk": 13,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "hats",
+      "friendly_name": "Hats",
+      "new": false
+   }
+},
+ {
+   "pk": 14,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "gloves",
+      "friendly_name": "Gloves",
+      "new": false
+   }
+},
+ {
+   "pk": 15,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "helmets",
+      "friendly_name": "Helmets",
+      "new": false
+   }
+},
+ {
+   "pk": 16,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "goggles",
+      "friendly_name": "Goggles",
+      "new": false
+   }
+},
+ {
+   "pk": 17,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "bags",
+      "friendly_name": "Bags",
+      "new": false
+   }
+},
+ {
+   "pk": 18,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "tools",
+      "friendly_name": "Tools",
+      "new": false
+   }
+}
+]
