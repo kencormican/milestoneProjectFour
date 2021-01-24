@@ -26,6 +26,7 @@
 * [Requirements](#requirements)
 * [User Stories](#user-stories)
 * [Design](#design)
+* [Scope](#scope)
 * [Preparation](#preparation)
 * [Colour Scheme](#colour-scheme)
 * [Typography](#typography)
@@ -162,6 +163,27 @@ Ask Num | Scenario                                                              
 
 ## Preparation
 - As part of the preparation for this project I visited  several winter sports ecommerce sites reviewing site structure, theme and content, to gauge how best to approach the design and planning stages. These sites included but were not limited to [Blue Tomatoe](https://www.blue-tomato.com/en-IE/), [Dare2B](https://www.dare2b.ie/) & [53 Degrees North](https://www.53degreesnorth.ie/activity/skiing.html). 
+
+## Scope
+- The intent from the outset of the scoping process was to attempt is to meet all user requirements and provide additional functionality where possible within the existing time constraints.
+- Given the extent of the deliverables and the very tight timelines (submission must be made by end of Jan'21), I thought it prudent to utilse the Tutorial code where possible without making my site a carbon copy of the 'Boutique Ado' example.
+- To that end I've decided to create ~8 Django Apps:
+* A home application used to render the store landing page styled to adhere to the overall site theme.
+* A contact application to provide providing a form that will allow end users to contact the store owner or site admin.
+* An about application to render site about details.  Note* I created this outside of the home application because, post submission, I intend on introducing additional functionality. The intent is to provide a site admin with a full set of CRUD capabilities for the about page.
+* A categories application that will provide a site admin with the CRUD capabilities associated with the product categories. This will be rendered to adhere to the site theme and be wired up to the products views, such that, new categories will be automatically added to a New Offers dropdown in the main-nav.  In addition to the Categories CRUD capbilities available in the application a set of 22 Categories (4 Main & 18 Subcategories) will be loaded via manually created JSON files and the Django fixtures feature.
+* A profiles application that will be wired up to the end users order history (time permiting) and utilising the allauth package to provide additional authenication, confirmation and user account functionality.  These templates will be customised to adhere the the winstersports site theme.
+* A Products app used to render site products & details. Admin users will have CRUD capabilities for all products.  
+Again per Category app items the initial set of products will be loaded via a manually created JSON file and the Django fixtures feature.  
+Note* as mentioned above, in an effort to use my limited time as effeciently as possible, much of the product code will be derived from the CI Tutorials.  So Thank you kindly in advance Chris!  
+I do, however, fully intend to customise the code, style it differently and provide additional functionaly where possible.  The intent, again time permitting, is to provide additional stock monitoring logic, and for the Detailed templates some carousel and tabbed views.
+* A Shopping Bag application will provide the end user with the ability to add, delete and manipulate bag items.  Again much of teh code will have to be derived from the Tutorials.
+* The Shopping bag app will be wired up to a Checkout application, which will use Stripe to provide a secure mechanism to make payments.  Time permitting I'll attempt to introduce webhooks and signal functionality to provide additional redundancy.
+* The plan is to wire all this up to AWS's S3 to provide static file storage but this may not be possible in the tight timeframe.  As a result I intend to provide a Heroku based deployment using the Whitenoise package as a fallback.
+* Re front end capabilties. I intend on creating uniquely styled base templates, navigation and and mobile views as a differentiator.  
+* Re backend capabilities I've decided to turn the tutorial developement sequency on it's head, deploying the site to Heroku as a first step.  This is followed by development of the Profiles, Homepage, About, Contact, Categories, Product, Bag & Checkout applications in that sequence.  The thought process here is that it will communicate, a decent understanding of the underlying coding mechanisms and how to tie Django applications together.
+
+[Back to Contents](#table-of-contents)
 
 ## Colour Scheme
 -   I felt that a basic light blue theme contrasted against a white background was both aesthetically pleasing and reflected the outdoor winter sports nature of this ecommerce site. 
@@ -362,14 +384,17 @@ message                 | models.TextField(null=False, blank=False)             
 - Wanted to use Heroku deployment with staticfiles as part of ongoing testing for solution and as fall back in the event time ran short on submission.  Initially had difficulty getting css static files to load but used whitenoise and modification of settings.py middleware & statict storage to resolve same.  Unfortuantely still having difficulty with allauth components.
 - On Profile and Contact form templates noted that I cannot apply margin or padding to columns or rows.  Used flexbox css to resolve spacing issue on contact details. Margin and padding problems related to incorrect use of Bootstrap helper classes.
 - After I introduced a modal confirmation window for the category delete opeartion I noted that the delete function was no longer deleting the appropriate category, rather the first category in the database. Problem was due to same modal id being data target and resolved through use of template logic to tag each modal with unique idenifier.
+- When first implementing toast messages I found that the toast was not rendering cleanly and none of the interfactive components worked. Used chrome DevTools to inspect console and found I was receiving error - "TypeError: $.toast is not a function" in jQuery?.  The ultimate resolution to the problem was to update the Bootstrap CDNs to v4.4.  I had previously been using v4.0 and toast are not supported on this release.
 
 ***
 
 ## Development Testing
 - During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
 Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
-- When testing the CRUD functionality for the categories app I found an issue with the delete view after introudcing a modal confirmation window.
+- When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
 the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
+- When wiring up toasts to the manage category crud functionality I decided to add in additional backend validation to prevent adding of category name if already exists in database. In addition to this I also set name field to readonly and validation against friendly name on edit category view.
+Toasts were tested against form validation for display, add, edit and delete operations.   
 
 
 [Back to Contents](#table-of-contents)
