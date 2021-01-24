@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'categories/css/categories.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -80,10 +79,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <!-- <script type="text/javascript">
-        $('#deleteModal').on('shown.bs.modal', function () {
-            $('#deleteModal').trigger('focus')
-        })
-    </script> -->
 {% endblock %}
 

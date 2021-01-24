@@ -131,6 +131,8 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 WSGI_APPLICATION = 'kjc_off_piste_skishop.wsgi.application'
 
 
