@@ -47,18 +47,19 @@
                                     <a class="btn btn-blue text-uppercase rounded w-100 my-1" href="{% url 'edit_subcategory' subcategory.id  %}">Edit</a>
                                 </div>
                                 <!-- Delete Modal trigger -->
+                                <!-- Template logic required to uniquely tag each modal id with subcategory id -->
                                 <div class="col-12 col-md-6">
-                                    <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1"  data-toggle="modal" data-target="#deleteModal" href="">Delete</a>
+                                    <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1"  data-toggle="modal"  href="#deleteModal{{subcategory.id}}">Delete</a>
                                 </div>
               
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal{{subcategory.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">     
                                                     <h4 class="text-danger">Warning <i class="fas fa-exclamation-circle"></i></h4>
                                                 </div>
                                                 <div class="modal-body">  
-                                                    <h6><strong>You are about to delete this category from the databse.</strong></h6>
+                                                    <h6><strong>You are about to delete the {{ subcategory.name }} category from the site database.</strong></h6>
                                                 </div>
                                             <div class="modal-footer">
                                                 <a href="{% url 'categories'  %}" class="btn btn-blue text-uppercase">Cancel</a>
@@ -80,8 +81,8 @@
 {% block postloadjs %}
 {{ block.super }}
     <!-- <script type="text/javascript">
-        $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
+        $('#deleteModal').on('shown.bs.modal', function () {
+            $('#deleteModal').trigger('focus')
         })
     </script> -->
 {% endblock %}
