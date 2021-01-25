@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
 
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -14,6 +15,7 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Profile updated successfully')
 
     form = UserProfileForm(instance=profile)
 
@@ -22,5 +24,7 @@ def profile(request):
         'form': form,
         'profile': profile,
     }
+    messages.info(request, ("""Update your profile details using the
+            form below"""))
 
     return render(request, template, context)
