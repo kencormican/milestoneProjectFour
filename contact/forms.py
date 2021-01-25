@@ -16,7 +16,7 @@ class ContactForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         placeholders = {
             'full_name': 'Full Name',
-            'email': 'Email Address', 
+            'email': 'Email Address',
             'subject': 'Subject',
             'message': 'Please Enter Message Here ...'
         }

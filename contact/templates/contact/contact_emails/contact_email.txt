@@ -1,0 +1,12 @@
+Off Piste Team!
+
+Please address this Customer Query within Two Working days.
+
+{{ cust_name }} has raised the following  query.
+From Email: {{cust_email}}
+Subject: {{ cust_subject}}
+Message: {{ cust_message}}
+
+Sincerely,
+
+Site Admin
