@@ -405,7 +405,11 @@ Also confirmed Boolean True attribute assigned correctly to new field upon creat
 - When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
 the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
 - When wiring up toasts to the manage category crud functionality I decided to add in additional backend validation to prevent adding of category name if already exists in database. In addition to this I also set name field to readonly and validation against friendly name on edit category view.
-Toasts were tested against form validation for display, add, edit and delete operations.   
+Toasts were tested against form validation for display, add, edit and delete operations.
+- Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  Knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
+- Contact app form submission was tested for both internal external comms to development console level the external email backend.
+I also validated insertion of appropriate variable details in conact and confirm email text templates.
+Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
 
 
 [Back to Contents](#table-of-contents)
