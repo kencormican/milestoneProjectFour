@@ -34,36 +34,38 @@ def add_subcategory(request):
             to dictionary before check"""
             input_standardised_to_dict = form.cleaned_data
             dict_input_name = input_standardised_to_dict.get('name')
-            dict_input_friendly_name = input_standardised_to_dict.get('friendly_name')
+            dict_input_friendly_name = input_standardised_to_dict.get(
+                'friendly_name')
             if Subcategory.objects.filter(name=dict_input_name).exists():
                 messages.warning(
-                    request, f"Category already exists. Please choose another"
-                    )
-            elif Subcategory.objects.filter(friendly_name=dict_input_friendly_name).exists():
+                    request, "Category already exists. Please choose another"
+                )
+            elif Subcategory.objects.filter(
+                    friendly_name=dict_input_friendly_name).exists():
                 if dict_input_friendly_name:
                     messages.warning(
-                        request, f"Friendly Name already exists. Please choose another"
-                        )
+                        request, """Friendly Name already exists.
+                        Please choose another"""
+                    )
                 else:
                     form.save()
                     messages.success(
-                    request, f"You've Successfully added a new Category"
+                        request, "You've Successfully added a new Category"
                     )
                     return redirect(reverse('categories'))
             else:
                 form.save()
                 messages.success(
-                request, f"You've Successfully added a new Category"
+                    request, "You've Successfully added a new Category"
                 )
                 return redirect(reverse('categories'))
         else:
             messages.error(
                 request, 'Failed to add category.'
-                )
+            )
     else:
         form = AddSubcategoryForm()
-        messages.info(request, f'You are adding a new category')
-
+        messages.info(request, 'You are adding a new category')
 
     template = 'categories/add_subcategory.html'
     context = {
@@ -83,28 +85,32 @@ def edit_subcategory(request, subcategory_id):
         also allowing friendly name to be updated with Null entry"""
         if form.is_valid():
             input_standardised_to_dict = form.cleaned_data
-            dict_input_friendly_name = input_standardised_to_dict.get('friendly_name')
-            if Subcategory.objects.filter(friendly_name=dict_input_friendly_name).exists():
+            dict_input_friendly_name = input_standardised_to_dict.get(
+                'friendly_name')
+            if Subcategory.objects.filter(
+                        friendly_name=dict_input_friendly_name).exists():
                 if dict_input_friendly_name:
                     messages.warning(
-                        request, f"{subcategory.friendly_name} already exists. Please choose another"
-                        )
+                        request, f""""{subcategory.friendly_name} already exists.
+                        Please choose another"""
+                    )
                 else:
                     form.save()
                     messages.success(
-                    request, f"You've Successfully updated {subcategory.name}"
+                        request, f"""You've Successfully
+                        updated {subcategory.name}"""
                     )
                     return redirect(reverse('categories'))
             else:
-                    form.save()
-                    messages.success(
+                form.save()
+                messages.success(
                     request, f"You've Successfully updated {subcategory.name}"
-                    )
-                    return redirect(reverse('categories'))
+                )
+                return redirect(reverse('categories'))
         else:
             messages.error(
                 request, 'Failed to update category.'
-                )
+            )
     else:
         form = EditSubcategoryForm(instance=subcategory)
         messages.info(request, f'You are editing {subcategory.name}')
