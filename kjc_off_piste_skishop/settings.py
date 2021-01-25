@@ -29,6 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # setup local development environment
 development = os.environ.get('DEVELOPMENT', False)
 
+# setup remote deployment
+production = os.environ.get('PRODUCTION', False)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
@@ -140,7 +143,7 @@ WSGI_APPLICATION = 'kjc_off_piste_skishop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if PRODUCTION:
+if production:
     DATABASES = {'default': dj_database_url.parse(
         os.environ.get('DATABASE_URL'))}
 
