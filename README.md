@@ -322,8 +322,8 @@ new                     | models.BooleanField(default=False, null=True, blank=Tr
 ## Product Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
-main_category           | models.ForeignKey('MainCategory', null=False, blank=False, on_delete=models.SET_NULL)				             						|
-sub_category            | models.ForeignKey('SubCategory', null=False, blank=False, on_delete=models.SET_NULL)    	                    						|
+category                | models.ForeignKey('categories.Category', null=False, blank=False, on_delete=models.SET_NULL)		             						|
+subcategory             | models.ForeignKey('categories.Subcategory', null=False, blank=False, on_delete=models.SET_NULL)    	         						|
 sku                     | models.CharField(max_length=254, null=True, blank=True)                                                                               |
 name                    | models.CharField(max_length=254)                                                                                                      |
 quantity                | models.PositiveIntegerField(default=1, max_value=99, null=True, blank=True)                                                           |
@@ -396,6 +396,9 @@ I then moved onto the heroku depoyment itself. Altering the logic around access 
 I tried multiple combinations and permutations of configurations in attempt to resolve the server error, I even went as far as deleting, readding and reinitialising the heroku app but to no avail. 
 During this time I also attempted to integrate the media data using suggestions I picked up from slack but to no avail.
 I'm now going to park this and return to developing the site again.......wasted far too much time on these issues.
+- Encountered a problem when trying to migrate Products models with categories models. Receiving following error.
+products.Product.category: (fields.E300) Field defines a relation with model 'Category', which is either not installed, or is abstract.
+Fix was found on Slack.  Even though the models were imported the foreignkey model name still needed to be prefixed with app name i.e. categories.Categort before the system would make the relationship.
 
 ***
 
