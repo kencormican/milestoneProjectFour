@@ -8,7 +8,7 @@ body {
     background-size: cover;
     height: calc(100vh - 217px);
     color: #555;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
 }
 
 .header-container {
