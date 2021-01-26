@@ -39,6 +39,7 @@ DEBUG = development
 
 if development:
     ALLOWED_HOSTS = ['localhost']
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 else:
     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
