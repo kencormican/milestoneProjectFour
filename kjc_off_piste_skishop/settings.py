@@ -33,7 +33,7 @@ development = os.environ.get('DEVELOPMENT', False)
 production = os.environ.get('PRODUCTION', False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = development
+DEBUG = production
 
 # django will only allow HTTP requests from domain names it trusts
 
