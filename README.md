@@ -322,8 +322,8 @@ new                     | models.BooleanField(default=False, null=True, blank=Tr
 ## Product Model
 Name			        |  Properties                                                                                                               		    |
 :--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
-category                | models.ForeignKey('categories.Category', null=False, blank=False, on_delete=models.SET_NULL)		             						|
-subcategory             | models.ForeignKey('categories.Subcategory', null=False, blank=False, on_delete=models.SET_NULL)    	         						|
+category                | models.ForeignKey('categories.Category', null=True, blank=True, on_delete=models.SET_NULL)		             						|
+subcategory             | models.ForeignKey('categories.Subcategory', null=True, blank=True, on_delete=models.SET_NULL)     	         						|
 sku                     | models.CharField(max_length=254, null=True, blank=True)                                                                               |
 name                    | models.CharField(max_length=254)                                                                                                      |
 quantity                | models.PositiveIntegerField(default=1, max_value=99, null=True, blank=True)                                                           |
@@ -399,6 +399,7 @@ I'm now going to park this and return to developing the site again.......wasted 
 - Encountered a problem when trying to migrate Products models with categories models. Receiving following error.
 products.Product.category: (fields.E300) Field defines a relation with model 'Category', which is either not installed, or is abstract.
 Fix was found on Slack.  Even though the models were imported the foreignkey model name still needed to be prefixed with app name i.e. categories.Categort before the system would make the relationship.
+- Had issue rendering no_image using {{ MEDIA_URL }} template prefix.  Resolve was to include "django.template.context_processors.media" in TEMPLATES object of settings.py 
 
 ***
 

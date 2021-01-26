@@ -1,22 +1,22 @@
 <div class="collapse navbar-collapse row" id="main-nav">
     <div class="col-12 d-lg-flex">
-        <ul class="nav nav-tabs w-auto mx-auto">
+        <ul class="nav nav-tabs w-auto mx-auto border-0">
             <li class="nav-item m-0">
-                <a class="nav-link font-weight-bold" href="{% url 'products' %}">ALL</a>
+                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}">ALL</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">MEN</a>
+                <a class="nav-link category-link" href="#">MEN</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link category-link" href="#">WOMEN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">WOMEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">KIDS</a>
+                <a class="nav-link category-link" href="#">KIDS</a>
             </li>
         </ul>
     </div>
-    <div class="col-12 mainnav-font bg-white d-lg-flex ">
-        <ul class="navbar-nav w-auto mx-auto ">
+    <div class="col-12 mainnav-font bg-white d-lg-flex">
+        <ul class="navbar-nav w-auto mx-auto tab-content">
             <li class="nav-item dropdown  ">
                 <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="all-products-link"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,3 +95,16 @@
         </ul>
     </div>
 </div>
+
+{% block postloadjs %}
+    <script type="text/javascript">
+        // allow tab toggling
+        $('.nav-tabs a').click(function(){
+            $(this).tab('show');
+        })
+        // $(".category-link").click(function () {
+        //     $(this).addClass("active");
+        //     $(this).siblings().removeClass("active");
+        // });
+    </script>
+{% endblock %}

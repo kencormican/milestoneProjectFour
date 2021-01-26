@@ -27,10 +27,10 @@ class Product(models.Model):
     details = models.TextField(null=True, blank=True)
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
 
-    image_url_1 = models.URLField(max_length=1024, null=True, blank=True)
-    image_1 = models.ImageField(null=True, blank=True)
-    image_url_2 = models.URLField(max_length=1024, null=True, blank=True)
-    image_2 = models.ImageField(null=True, blank=True)
+    image1_url = models.URLField(max_length=1024, null=True, blank=True)
+    image1 = models.ImageField(null=True, blank=True)
+    image2_url = models.URLField(max_length=1024, null=True, blank=True)
+    image2 = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name

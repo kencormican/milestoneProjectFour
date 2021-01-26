@@ -31,8 +31,18 @@ body {
 
 /* Typography */
 
+.text-gold {
+    color: palegoldenrod;
+}
+
+.text-metallic-gold {
+    color: #D4AF37;
+}
 .text-blue {
     color: dodgerblue !important;
+}
+.text-blueshark {
+    color: #6996AD !important;
 }
 
 

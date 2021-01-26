@@ -13,8 +13,13 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'subcategory',
         'name',
+        'price',
+        'quantity',
+        'image1',
+        'image2',
     )
 
+    # sort order by primary key
     ordering = ('pk',)
 
 
