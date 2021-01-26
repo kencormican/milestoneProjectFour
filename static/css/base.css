@@ -50,6 +50,15 @@ body {
     color: lightgrey !important;
 }
 
+
+/* Borders */
+
+.border-lightgrey {
+    border-color: lightgrey !important;
+}
+
+
+
 /* from Bulma */
 .icon {
     align-items: center;

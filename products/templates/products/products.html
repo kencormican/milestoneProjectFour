@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Products</h2>
+                <h2 class="logo-font mb-4 text-center text-md-left">Products</h2>
                 <hr>
             </div>
         </div>
@@ -32,27 +32,31 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
                                 {% if product.image1 %}
-                                    <a href="">
+                                    <a href="{% url 'product_detail' product.id %}">
                                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}{{ product.image1 }}" alt="{{ product.name }}">
                                     </a>
                                 {% elif product.image1_url %}
-                                    <a href="">
+                                    <a href="{% url 'product_detail' product.id %}">
                                         <img class="card-img-top img-fluid" src="{{ product.image1_url}}" alt="{{ product.name }}">
                                     </a>
                                 {% else %}
-                                    <a href="">
+                                    <a href="{% url 'product_detail' product.id %}">
                                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     </a>
                                 {% endif %}
                                 <div class="card-body pb-0 text-center">
-                                    <p class="mb-0 text-blueshark font-weight-bolder">{{ product.name }}</p>
+                                    <p class="mb-0 text-blueshark font-weight-bolder text-uppercase">{{ product.name }}</p>
                                 </div>
                                 <div class="card-footer bg-white pt-0 border-0 text-center">
                                     <div class="row">
                                         <div class="col">
                                             <p class="lead mb-0 text-center text-blue font-weight-bold">€{{ product.price }}</p>
                                             <div class="text-blueshark text-uppercase">
-                                                <small><strong>{{ product.quantity }}</strong> | Left In Stock </small>
+                                                {% if product.quantity > 0 %}
+                                                    <small><strong class="">{{ product.quantity }}</strong> | Left In Stock<br></small>
+                                                {% else %} 
+                                                    <small class="text-info">Out of Stock</small>                                    
+                                                {% endif %}  
                                             </div>
                                             {% if product.rating > 0 %}
                                                 <small class="text-blueshark">
