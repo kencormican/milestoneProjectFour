@@ -57,6 +57,10 @@ body {
     border-color: lightgrey !important;
 }
 
+.border-blue {
+    border-color: dodgerblue !important;
+    border-radius: 10px 10px 0 0;
+}
 
 
 /* from Bulma */
@@ -165,15 +169,20 @@ body {
 
 .mob-searchbar:hover {
     background-color: rgba(243, 247, 250, 0.8);
-    transition: width 0.1s linear;
+    /* transition: width 0.1s linear; */
 }
 
 .mob-searchbar input::placeholder {
     color: #6c757d;
+    /* margin: 0px !important;
+    padding: 0px !important; */
+    
 }
 
 .mob-searchbar p {
     color: #aab7c4;
+    /* margin: 0px !important
+    padding: 0px !important; */
 }
 
 
@@ -183,7 +192,11 @@ body {
     outline: 0;
     background: none;
     width: 0;
-    transition: width 1.5s linear;
+    height: 100%;
+    /* transition: width 1.5s linear; */
+    /* margin-bottom: 0px !important;
+    margin-top: 0px !important; */
+    /* padding: 1px !important; */
 }
 
 .mob-search-icon{
