@@ -22,5 +22,8 @@ class ProductAdmin(admin.ModelAdmin):
     # sort order by primary key
     ordering = ('pk',)
 
+    # added to facilitate searching of foreign key name
+    search_fields = ['category__name', 'subcategory__name']
+
 
 admin.site.register(Product, ProductAdmin)

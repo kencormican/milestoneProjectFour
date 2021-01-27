@@ -16,7 +16,7 @@
         </ul> -->
         <ul class="nav nav-tabs w-auto mx-auto border-0">
             <li class="nav-item ml-2">
-                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}" id="all-tab" >ALL</a>
+                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link category-link" href="{% url 'products' %}?category=men" id="men-tab">MEN</a>
@@ -26,6 +26,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link category-link" href="{% url 'products' %}?category=kids" id="kids-tab">KIDS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-link" href="{% url 'products' %}?category=generic" id="kids-tab">GENERIC</a>
             </li>
         </ul>
     </div>
@@ -37,10 +40,10 @@
                     <h6 class="mx-2 my-0">Filter Products</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="all-products-link">
-                    <a href="" class="dropdown-item text-secondary">By Price</a>
-                    <a href="" class="dropdown-item text-secondary">By Rating</a>
-                    <a href="" class="dropdown-item text-secondary">By Category</a>
-                    <a href="{% url 'products' %}" class="dropdown-item text-secondary">All Products</a>
+                    <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item text-secondary">By Price</a>
+                    <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item text-secondary">By Rating</a>
+                    <a href="{% url 'products' %}?sort=subcategory&direction=asc" class="dropdown-item text-secondary">By Category</a>
+                    <a href="{% url 'products' %}?category=men,women,kids,generic" class="dropdown-item text-secondary">All Products</a>
                 </div>
             </li>
 
@@ -54,6 +57,7 @@
                     <a href="{% url 'products' %}?subcategory=snowboard_boots" class="dropdown-item text-secondary">Snowboard Boots</a>
                     <a href="{% url 'products' %}?subcategory=snowboard_bindings" class="dropdown-item text-secondary">Snowboard Bindings</a>
                     <a href="{% url 'products' %}?subcategory=snowboard_bags" class="dropdown-item text-secondary">Snowboard Bags</a>
+                    <a href="{% url 'products' %}?subcategory=snowboards,snowboard_boots,snowboard_bindings,snowboard_bags" class="dropdown-item text-secondary">All Snowboarding</a>
                 </div>
             </li>
 
@@ -68,6 +72,7 @@
                     <a href="{% url 'products' %}?subcategory=ski_bindings" class="dropdown-item text-secondary">Ski Bindings</a>
                     <a href="{% url 'products' %}?subcategory=ski_poles" class="dropdown-item text-secondary">Ski Poles</a>
                     <a href="{% url 'products' %}?subcategory=ski_bags" class="dropdown-item text-secondary">Ski Bags</a>
+                    <a href="{% url 'products' %}?subcategory=freeskis,ski_boots,ski_bindings,ski_poles,ski_bags" class="dropdown-item text-secondary">All Freeski</a>
                 </div>
             </li>
 
@@ -82,6 +87,7 @@
                     <a href="{% url 'products' %}?subcategory=base_layer" class="dropdown-item text-secondary">Base Layer</a>
                     <a href="{% url 'products' %}?subcategory=hats" class="dropdown-item text-secondary">Hats</a>
                     <a href="{% url 'products' %}?subcategory=gloves" class="dropdown-item text-secondary">Gloves</a>
+                    <a href="{% url 'products' %}?subcategory=jackets,pants,base_layer,hats,gloves" class="dropdown-item text-secondary">All Ski Wear</a>
                 </div>
             </li>
 
@@ -95,6 +101,7 @@
                     <a href="{% url 'products' %}?subcategory=goggles" class="dropdown-item text-secondary">Goggles</a>
                     <a href="{% url 'products' %}?subcategory=bags" class="dropdown-item text-secondary">Bags</a>
                     <a href="{% url 'products' %}?subcategory=tools" class="dropdown-item text-secondary">Tools</a>
+                    <a href="{% url 'products' %}?subcategory=helmets,goggles,bags,tools" class="dropdown-item text-secondary">All Accessories</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

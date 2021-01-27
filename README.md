@@ -378,6 +378,22 @@ message                 | models.TextField(null=False, blank=False)             
 
 # Testing
 
+## Development Testing
+- During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
+Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
+- When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
+the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
+- When wiring up toasts to the manage category crud functionality I decided to add in additional backend validation to prevent adding of category name if already exists in database. In addition to this I also set name field to readonly and validation against friendly name on edit category view.
+Toasts were tested against form validation for display, add, edit and delete operations.
+- Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  Knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
+- Contact app form submission was tested for both internal external comms to development console level the external email backend.
+I also validated insertion of appropriate variable details in conact and confirm email text templates.
+Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
+- When testing the tabbed views I found it very difficult to develop the logic to approriately render the tabs with assoicated sub menu searches results while also highlighting the appropriate tab.  The plan is to complete the logic for all products and then move onto the Men, Women and Kids tab views.  At this point in time I think teh simplest way to approach it is to generate independent views and templates for the tob level categories.  
+- When testing the search functionality in the products view I found that none of the catergory names were being returned in results. When I initially added the logic to return same it responded with an error.  See Bugs for resolution to problem.
+
+***
+
 ## Bugs Found
 - Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help fo mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
 - Had difficulty getting Travis CI to integrate with repo.  Was a bit of a noob when it came to using Travis but with support from Stephen in Tutor team I found that the issue related settings config for development environment. Resolution to problem was changing the logic around database if else statement.
@@ -400,20 +416,11 @@ I'm now going to park this and return to developing the site again.......wasted 
 products.Product.category: (fields.E300) Field defines a relation with model 'Category', which is either not installed, or is abstract.
 Fix was found on Slack.  Even though the models were imported the foreignkey model name still needed to be prefixed with app name i.e. categories.Categort before the system would make the relationship.
 - Had issue rendering no_image using {{ MEDIA_URL }} template prefix.  Resolve was to include "django.template.context_processors.media" in TEMPLATES object of settings.py 
-
+- When adding search for subcategory name to products query function it produced following error:
+Related Field got invalid lookup: icontains
+I found through this [stackoverflow URL](https://stackoverflow.com/questions/11754877/troubleshooting-related-field-has-invalid-lookup-icontains) that this was because subcategory is a foreign key in teh products model.
+To resolve this I had to add the foreign key field with a search fields option, ```search_fields = ['subcategory__name']```, in the ProductAdmin model and explicity call out the name in query logic in the products view:
+```queries = Q(name__icontains=query) | Q(summary__icontains=query) | Q(subcategory__name__icontains=query)```
+    
 ***
-
-## Development Testing
-- During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
-Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
-- When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
-the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
-- When wiring up toasts to the manage category crud functionality I decided to add in additional backend validation to prevent adding of category name if already exists in database. In addition to this I also set name field to readonly and validation against friendly name on edit category view.
-Toasts were tested against form validation for display, add, edit and delete operations.
-- Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  Knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
-- Contact app form submission was tested for both internal external comms to development console level the external email backend.
-I also validated insertion of appropriate variable details in conact and confirm email text templates.
-Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
-
-
 [Back to Contents](#table-of-contents)

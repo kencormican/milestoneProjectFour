@@ -10,12 +10,14 @@ from categories.models import Category, Subcategory
 
 def products(request):
     """ This view renders the products pages and associated
-    filtering/seraching functionality. It will ultimately allow
+    filtering/searching functionality. It will ultimately allow
     editing and deletion of the products in by the admin"""
 
     query = None
     categories = None
     subcategories = None
+    sort = None
+    direction = None
 
     products = Product.objects.all()
 
@@ -23,6 +25,21 @@ def products(request):
         product.name = product.name.lower()
 
     if request.GET:
+
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+
+            # not using if sorkey == 'name'
+
+            if sortkey == 'subcategory':
+                sortkey = 'subcategory__name'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
@@ -41,14 +58,22 @@ def products(request):
                 return redirect(reverse('products'))
 
             # This provides the or operation against the search criteria
-            queries = Q(name__icontains=query) | Q(summary__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                summary__icontains=query) | Q(
+                category__name__icontains=query) | Q(
+                    subcategory__name__icontains=query)
             products = products.filter(queries)
-            messages.success(request, "Please see results of your search below!")
+            messages.success(
+                request, "Please see results of your search below!")
+
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'products': products,
         'search_term': query,
-        'subcategories': subcategories,
+        'current_categories': categories,
+        'current_subcategories': subcategories,
+        'current_sorting': current_sorting,
         }
 
     return render(request, 'products/products.html', context)

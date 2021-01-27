@@ -8,8 +8,8 @@ from categories.models import Category, Subcategory
 
 class Product(models.Model):
 
-    category = models.ForeignKey('categories.Category', null=True, blank=True, on_delete=models.SET_NULL)
-    subcategory = models.ForeignKey('categories.Subcategory', null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey('categories.Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='Category')
+    subcategory = models.ForeignKey('categories.Subcategory', null=True, blank=True, on_delete=models.SET_NULL, related_name='Subcategory')
     # product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     # category = models.ForeignKey('Category', null=False, blank=False, on_delete=models.CASCADE)
     # subcategory = models.ForeignKey('Subcategory', null=False, blank=False, on_delete=models.CASCADE)
@@ -32,5 +32,6 @@ class Product(models.Model):
     image2_url = models.URLField(max_length=1024, null=True, blank=True)
     image2 = models.ImageField(null=True, blank=True)
 
+    
     def __str__(self):
         return self.name
