@@ -102,7 +102,7 @@
                     <!-- <h5 class"">Freedom is Fresh Powder!</h5> -->
                 </a>
             </div>
-            <form class="desktop-searchbar col-12 col-lg-4 my-auto py-1 py-lg-0" method="GET" action="">
+            <form class="desktop-searchbar col-12 col-lg-4 my-auto py-1 py-lg-0" method="GET" action="{% url 'products' %}">
                 <div class="input-group w-100">
                     <input class="form-control desktop-search-input" type="text" name="q" placeholder="Search this store ...">
                     <div class="input-group-append">
@@ -140,9 +140,9 @@
                 </a>
             </div>
              <div class="d-lg-none col-12 my-auto px-2 text-left bg-blue collapse test-collapse">
-                <form class="form-inline mob-searchbar" method="GET" action="">
+                <form class="form-inline mob-searchbar" method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
-                        <input class="form-control mob-search-input" type="text" name="q" placeholder="Search this store ...">
+                        <input class="form-control mob-search-input my-auto my-0" type="text" name="q" placeholder="Search this store ...">
                         <button type="submit" class="btn btn-lg mob-search-icon float-right" id="btn-mob-search-toggled">
                             <i class="fas fa-search"></i>
                         </button>
@@ -156,7 +156,7 @@
             </div>
 
             <nav class="navbar navbar-expand-lg navbar-light w-100 p-0">
-                <button class="navbar-toggler btn-light" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler btn-light ml-2 " type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 

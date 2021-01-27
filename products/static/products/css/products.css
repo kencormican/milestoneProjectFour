@@ -1,0 +1,19 @@
+/* Change Carousel Indicators to circles */
+
+.carousel-indicators li {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+.product-tab-wrapper {
+    border-color: lightgrey;
+    border-radius: 10px;
+    /* padding: 0 0; */
+}
+
+.product-tab-content {
+    /* margin-left: 20px !important;
+    margin-right: 20px !important; */
+}
+
