@@ -1,17 +1,31 @@
 <div class="collapse navbar-collapse row" id="main-nav">
     <div class="col-12 d-lg-flex ml-2">
-        <ul class="nav nav-tabs w-auto mx-auto border-0">
+        <!-- <ul class="nav nav-tabs w-auto mx-auto border-0">
             <li class="nav-item ml-2">
-                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}">ALL</a>
+                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}" id="all-tab" data-toggle="tab" role="tab" aria-controls="all" aria-selected="true">ALL</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link category-link" href="#">MEN</a>
+                <a class="nav-link category-link" href="{% url 'products' %}?category=men" id="men-tab" data-toggle="tab" role="tab" aria-controls="men" aria-selected="false">MEN</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link category-link" href="#">WOMEN</a>
+                <a class="nav-link category-link" href="{% url 'products' %}?category=women"id="women-tab" data-toggle="tab" role="tab" aria-controls="women" aria-selected="false">WOMEN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link category-link" href="#">KIDS</a>
+                <a class="nav-link category-link" href="{% url 'products' %}?category=kids" id="kids-tab" data-toggle="tab" role="tab" aria-controls="kids" aria-selected="false">KIDS</a>
+            </li>
+        </ul> -->
+        <ul class="nav nav-tabs w-auto mx-auto border-0">
+            <li class="nav-item ml-2">
+                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}" id="all-tab" >ALL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-link" href="{% url 'products' %}?category=men" id="men-tab">MEN</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link category-link" href="{% url 'products' %}?category=women"id="women-tab">WOMEN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-link" href="{% url 'products' %}?category=kids" id="kids-tab">KIDS</a>
             </li>
         </ul>
     </div>
@@ -36,10 +50,10 @@
                     <h6 class="mx-2 my-0">Snowboard</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="snowboard-link">
-                    <a href="" class="dropdown-item text-secondary">Snowboards</a>
-                    <a href="" class="dropdown-item text-secondary">Snowboard Boots</a>
-                    <a href="" class="dropdown-item text-secondary">Snowboard Bindings</a>
-                    <a href="" class="dropdown-item text-secondary">Snowboard Bags</a>
+                    <a href="{% url 'products' %}?subcategory=snowboards" class="dropdown-item text-secondary">Snowboards</a>
+                    <a href="{% url 'products' %}?subcategory=snowboard_boots" class="dropdown-item text-secondary">Snowboard Boots</a>
+                    <a href="{% url 'products' %}?subcategory=snowboard_bindings" class="dropdown-item text-secondary">Snowboard Bindings</a>
+                    <a href="{% url 'products' %}?subcategory=snowboard_bags" class="dropdown-item text-secondary">Snowboard Bags</a>
                 </div>
             </li>
 
@@ -49,11 +63,11 @@
                     <h6 class="mx-2 my-0">Freeski</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="freeski-link">
-                    <a href="" class="dropdown-item text-secondary">Freeski</a>
-                    <a href="" class="dropdown-item text-secondary">Ski Boots</a>
-                    <a href="" class="dropdown-item text-secondary">Ski Bindings</a>
-                    <a href="" class="dropdown-item text-secondary">Ski Poles</a>
-                    <a href="" class="dropdown-item text-secondary">Ski Bags</a>
+                    <a href="{% url 'products' %}?subcategory=freeskis" class="dropdown-item text-secondary">Freeski</a>
+                    <a href="{% url 'products' %}?subcategory=ski_boots" class="dropdown-item text-secondary">Ski Boots</a>
+                    <a href="{% url 'products' %}?subcategory=ski_bindings" class="dropdown-item text-secondary">Ski Bindings</a>
+                    <a href="{% url 'products' %}?subcategory=ski_poles" class="dropdown-item text-secondary">Ski Poles</a>
+                    <a href="{% url 'products' %}?subcategory=ski_bags" class="dropdown-item text-secondary">Ski Bags</a>
                 </div>
             </li>
 
@@ -63,11 +77,11 @@
                     <h6 class="mx-2 my-0">Ski Wear</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="skiwear-link">
-                    <a href="" class="dropdown-item text-secondary">Jackets</a>
-                    <a href="" class="dropdown-item text-secondary">Pants</a>
-                    <a href="" class="dropdown-item text-secondary">Base Layer</a>
-                    <a href="" class="dropdown-item text-secondary">Hats</a>
-                    <a href="" class="dropdown-item text-secondary">Gloves</a>
+                    <a href="{% url 'products' %}?subcategory=jackets" class="dropdown-item text-secondary">Jackets</a>
+                    <a href="{% url 'products' %}?subcategory=pants" class="dropdown-item text-secondary">Pants</a>
+                    <a href="{% url 'products' %}?subcategory=base_layer" class="dropdown-item text-secondary">Base Layer</a>
+                    <a href="{% url 'products' %}?subcategory=hats" class="dropdown-item text-secondary">Hats</a>
+                    <a href="{% url 'products' %}?subcategory=gloves" class="dropdown-item text-secondary">Gloves</a>
                 </div>
             </li>
 
@@ -77,10 +91,10 @@
                     <h6 class="mx-2 my-0">Accessories</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="accessories-link">
-                    <a href="" class="dropdown-item text-secondary">Helmets</a>
-                    <a href="" class="dropdown-item text-secondary">Goggles</a>
-                    <a href="" class="dropdown-item text-secondary">Bags</a>
-                    <a href="" class="dropdown-item text-secondary">Tools</a>
+                    <a href="{% url 'products' %}?subcategory=helmets" class="dropdown-item text-secondary">Helmets</a>
+                    <a href="{% url 'products' %}?subcategory=goggles" class="dropdown-item text-secondary">Goggles</a>
+                    <a href="{% url 'products' %}?subcategory=bags" class="dropdown-item text-secondary">Bags</a>
+                    <a href="{% url 'products' %}?subcategory=tools" class="dropdown-item text-secondary">Tools</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -89,7 +103,8 @@
                     <h6 class="mx-2 my-0">New Offers</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="newcategories-link">
-                    <a href="" class="dropdown-item text-secondary">{{subcategory}}</a>
+                    <a href="" class="dropdown-item text-secondary">Test</a>
+                    <a href="" class="dropdown-item text-secondary">{{ subcategory.name }}</a>
                 </div>
             </li>
         </ul>
