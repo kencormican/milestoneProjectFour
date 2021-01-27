@@ -193,7 +193,7 @@ body {
     background: none;
     width: 0;
     height: 100%;
-    /* transition: width 1.5s linear; */
+    transition: width 0.5s linear;
     /* margin-bottom: 0px !important;
     margin-top: 0px !important; */
     /* padding: 1px !important; */

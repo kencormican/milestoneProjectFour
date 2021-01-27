@@ -133,12 +133,12 @@
         
         <div class="row bg-white">
             <!-- Mobile Top Nav -->
-            <div class="d-lg-none col-10 my-auto px-2 text-left bg-blue collapse show test-collapse">
+            <div class="d-lg-none col-10 my-auto px-2 text-left bg-blue collapse show mob-search-collapse">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link text-white pl-0 ">
                     <h2 class="logo-font text-uppercase my-0"><small><strong>Off Piste</strong> Skishop</small></h2>
                 </a>
             </div>
-             <div class="d-lg-none col-12 my-auto px-2 text-left bg-blue collapse test-collapse">
+             <div class="d-lg-none col-12 my-auto px-2 text-left bg-blue collapse mob-search-collapse">
                 <form class="form-inline mob-searchbar" method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
                         <input class="form-control mob-search-input my-auto my-0" type="text" name="q" placeholder="Search this store ...">
@@ -149,7 +149,7 @@
                 </form>
             </div>
             <div class="d-lg-none col-2 bg-blue px-2" >
-                <button class="btn btn-lg mob-search-icon float-right collapse show test-collapse" type="button" data-toggle="collapse" data-target=".test-collapse" id="btn-mob-search">
+                <button class="btn btn-lg mob-search-icon float-right collapse show mob-search-collapse" type="button" data-toggle="collapse" data-target=".mob-search-collapse" id="btn-mob-search">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
