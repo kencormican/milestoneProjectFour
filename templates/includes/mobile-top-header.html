@@ -24,9 +24,9 @@
             <a class="dropdown-item text-secondary"  href="{% url 'profile' %}">My Profile</a>
             <hr>
             {% if request.user.is_superuser %}
-                <a class="dropdown-item text-secondary" href="#">Manage Products</a>
                 <a class="dropdown-item text-secondary" href="{% url 'categories' %}">Manage Categories</a>
-                <a class="dropdown-item text-secondary" href="#">Add Product</a>
+                <a class="dropdown-item text-secondary" href="{% url 'add_subcategory' %}">Add Category</a>
+                <a class="dropdown-item text-secondary" href="{% url 'add_product' %}">Add Product</a>
             {% endif %}
             {% else %}
                 <a class="dropdown-item text-secondary" href="{% url 'account_login' %}">Sign In</a>

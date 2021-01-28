@@ -5,6 +5,8 @@ from django.db.models import Q
 from .models import Product
 from categories.models import Category, Subcategory
 
+from .forms import ProductForm
+
 
 # Create your views here.
 
@@ -74,7 +76,7 @@ def products(request):
         'current_categories': categories,
         'current_subcategories': subcategories,
         'current_sorting': current_sorting,
-        }
+    }
 
     return render(request, 'products/products.html', context)
 
@@ -93,3 +95,29 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+def add_product(request):
+    """ This view renders the add product template and allows
+    submission of the ProductForm when action is POST"""
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "You've Successfully added a New Product")
+            return redirect(reverse('products'))
+        else:
+            messages.error(
+                request, "Failed to add Product. Please check form is valid."
+            )
+    else:
+        form = ProductForm
+        messages.info(request, 'You are adding a new product')
+
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
