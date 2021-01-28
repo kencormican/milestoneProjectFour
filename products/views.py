@@ -13,7 +13,7 @@ from .forms import ProductForm
 def products(request):
     """ This view renders the products pages and associated
     filtering/searching functionality. It will ultimately allow
-    editing and deletion of the products in by the admin"""
+    editing and deletion of the products by the admin"""
 
     query = None
     categories = None
@@ -100,13 +100,16 @@ def product_detail(request, product_id):
 def add_product(request):
     """ This view renders the add product template and allows
     submission of the ProductForm when action is POST"""
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             messages.success(
-                request, "You've Successfully added a New Product")
-            return redirect(reverse('products'))
+                request, f"""
+                You've Successfully added the {product.name} Product"""
+                )
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(
                 request, "Failed to add Product. Please check form is valid."
@@ -135,7 +138,7 @@ def edit_product(request, product_id):
             form.save()
             messages.success(
                 request, f"You've Successfully updated {product.name}")
-            return redirect(reverse('product_detail', args=[product_id]))
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(
                 request, "Update Product Failed. Please check form is valid."
@@ -151,3 +154,15 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product(request, product_id):
+    """ This view deletes a product from the database"""
+
+    product = get_object_or_404(Product, pk=product_id)
+    current_product = product.name
+    product.delete()
+    messages.success(request, f"""
+    The {current_product} product has been deleted from the database!"""
+                     )
+    return redirect(reverse('products'))

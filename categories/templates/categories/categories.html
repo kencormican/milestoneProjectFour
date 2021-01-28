@@ -45,7 +45,7 @@
                                 <div class="col-12 col-md-6">
                                     <a class="btn btn-blue text-uppercase rounded w-100 my-1" href="{% url 'edit_subcategory' subcategory.id  %}">Edit</a>
                                 </div>
-                                <!-- Delete Modal trigger -->
+                                <!-- Defensive programming: Delete Modal -->
                                 <!-- Template logic required to uniquely tag each modal id with subcategory id -->
                                 <div class="col-12 col-md-6">
                                     <a class="btn btn-outline-blue text-uppercase rounded w-100 my-1"  data-toggle="modal"  href="#deleteModal{{subcategory.id}}">Delete</a>
@@ -62,7 +62,7 @@
                                                 </div>
                                             <div class="modal-footer">
                                                 <a href="{% url 'categories'  %}" class="btn btn-blue text-uppercase">Cancel</a>
-                                                <a href="{% url 'delete_subcategory' subcategory.id  %}" class="btn btn-outline-blue text-uppercase ">Delete Title</a>
+                                                <a href="{% url 'delete_subcategory' subcategory.id  %}" class="btn btn-outline-blue text-uppercase ">Delete Category</a>
                                             </div>                                         
                                         </div>
                                     </div>

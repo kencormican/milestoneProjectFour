@@ -142,6 +142,31 @@
                                             {% else %}
                                                 <small class="text-blueshark">No Rating</small>
                                             {% endif %}
+                                            <p class="mb-2">
+                                                {% if request.user.is_superuser %}
+                                                    <small class="">
+                                                        <a href="{% url 'edit_product' product.id %}">Edit</a> | 
+                                                        <a class="text-danger"  data-toggle="modal"  href="#deleteModal{{product.id}}">Delete</a>
+                                                    </small>
+                                                {% endif %}
+                                            </p>
+                                            <!-- Defensive modal put in place -->
+                                            <div class="modal fade" id="deleteModal{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">     
+                                                                <h4 class="text-danger">Warning <i class="fas fa-exclamation-circle"></i></h4>
+                                                            </div>
+                                                            <div class="modal-body">  
+                                                                <h6><strong>You are about to delete the {{ product.name }} product from the site database.</strong></h6>
+                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <a href="{% url 'product_detail' product.id %}" class="btn btn-blue text-uppercase">Cancel</a>
+                                                            <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-blue text-uppercase ">Delete Product</a>
+                                                        </div>                                         
+                                                    </div>
+                                                </div>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
