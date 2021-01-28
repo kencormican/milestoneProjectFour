@@ -391,10 +391,89 @@ I also validated insertion of appropriate variable details in conact and confirm
 Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
 - When testing the tabbed views I found it very difficult to develop the logic to approriately render the tabs with assoicated sub menu searches results while also highlighting the appropriate tab.  The plan is to complete the logic for all products and then move onto the Men, Women and Kids tab views.  At this point in time I think teh simplest way to approach it is to generate independent views and templates for the tob level categories.  
 - When testing the search functionality in the products view I found that none of the catergory names were being returned in results. When I initially added the logic to return same it responded with an error.  See Bugs for resolution to problem.
+- Gave whitenoise another crack of the whip last night.  This time went at it with the knowledge & acceptance that whitenoise treats media files differently to other static files, that per these [support notes](assets/support_info/whitenoise_media.jpg) it was not designed to serve user uploaded media, and that a Django project when deployed to Heroku using whitenoise serves media files differently when in DEBUG mode thand with DEBUG disabled.  It worked cleanly using the below setup:
+from bash command line install whitenoise and freeze new dependency to requirements.txt:
+```
+pip3 install whitenoise
+pip3 freeze --local > requirements.txt
+```
+* In settings.py setup HEROKU environment for DEBUG....rememebr to apply settings to hereoku config to facilitate same.  Also remember to disable same if you truely move to deploy a realworld application in production:
 
+```
+if development:
+    DEBUG = True
+elif production:
+    DEBUG = True
+else:
+    DEBUG = False
+```
+* Configure the DATABASE options in settings.py explicitly for the Heroku Postgres setup:
+```
+# if production:
+DATABASES = {'default': dj_database_url.parse(
+    os.environ.get('DATABASE_URL'))}
+
+# else:
+#     print("Development Environment. Using SQLite")
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
+
+```
+* Add whitenoise components to settings.py noting WhiteNoise middleware should be placed directly after the Django SecurityMiddleware and before all other middleware:
+```
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    # whitenoise dependency
+    .....
+]
+.....
+.....
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Extra places for collectstatic to find static files.
+# Whitenoise dependency.
+
+STATICFILES_DIRS = (os.path.join(
+    BASE_DIR, 'static'),)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+```
+* Then push to Heroku perform migration, load any fixtures you may have and create your superuser.
+```
+git add .
+git commit -m ""
+git push heroku master
+python3 manage.py migrate --plan
+python3 manage.py migrate
+python3 manage.py loaddate <fixture_name>
+python3 manage.py createsuperuser
+```
+* Once complete launch the app from Heroku, confirm your seeing all the relavant styling......this confirms static is being loaded correctly.
+Then confirm images nd media files are being loaded correctly. <strong>(NOTE* YOU MUST HAVE DEBUG SET TO TRUE FOR THIS TO WORK).</strong>
+Then verify your fixtures and data base elements are functioning correctly.
+* Finally, restore the database elements in the settings.py file to original setup which allows for development and production operations.
+```
+if production:
+    DATABASES = {'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL'))}
+
+else:
+    print("Development Environment. Using SQLite")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+```
 ***
 
-## Bugs Found
+## Pre Production Bugs Found
 - Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help fo mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
 - Had difficulty getting Travis CI to integrate with repo.  Was a bit of a noob when it came to using Travis but with support from Stephen in Tutor team I found that the issue related settings config for development environment. Resolution to problem was changing the logic around database if else statement.
 - Wanted to use Heroku deployment with staticfiles as part of ongoing testing for solution and as fall back in the event time ran short on submission.  Initially had difficulty getting css static files to load but used whitenoise and modification of settings.py middleware & statict storage to resolve same.  Unfortuantely still having difficulty with allauth components.
@@ -419,8 +498,13 @@ Fix was found on Slack.  Even though the models were imported the foreignkey mod
 - When adding search for subcategory name to products query function it produced following error:
 Related Field got invalid lookup: icontains
 I found through this [stackoverflow URL](https://stackoverflow.com/questions/11754877/troubleshooting-related-field-has-invalid-lookup-icontains) that this was because subcategory is a foreign key in teh products model.
-To resolve this I had to add the foreign key field with a search fields option, ```search_fields = ['subcategory__name']```, in the ProductAdmin model and explicity call out the name in query logic in the products view:
-```queries = Q(name__icontains=query) | Q(summary__icontains=query) | Q(subcategory__name__icontains=query)```
-    
+To resolve this I had to add the foreign key field with a search fields option in the ProductAdmin model 
+```
+search_fields = ['subcategory__name']
+```
+Then explicity call out the name in query logic in the products view:
+```
+queries = Q(name__icontains=query) | Q(summary__icontains=query) | Q(subcategory__name__icontains=query)
+```
 ***
 [Back to Contents](#table-of-contents)

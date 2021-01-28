@@ -128,7 +128,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
-                # required for MEDIA_URL template tag 
+                # required for MEDIA_URL template tag
                 'django.template.context_processors.media',
                 # required for all auth
                 'django.contrib.auth.context_processors.auth',
@@ -208,6 +208,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
+# Whitenoise dependency.
+
 STATICFILES_DIRS = (os.path.join(
     BASE_DIR, 'static'),)
 
