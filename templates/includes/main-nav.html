@@ -110,8 +110,17 @@
                     <h6 class="mx-2 my-0">New Offers</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="newcategories-link">
-                    <a href="" class="dropdown-item text-secondary">Test</a>
-                    <a href="" class="dropdown-item text-secondary">{{ subcategory.name }}</a>
+                    {% for subcategory in subcategories %}
+                        {% if subcategory.new %}
+                            <a href="{% url 'products' %}?subcategory={{subcategory.name}}" class="dropdown-item text-secondary">
+                                {% if subcategory.friendly_name %} 
+                                    {{ subcategory.friendly_name }}
+                                {% else %} 
+                                    {{subcategory.name}}
+                                {% endif %}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </li>
         </ul>

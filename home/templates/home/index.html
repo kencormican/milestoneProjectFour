@@ -29,9 +29,9 @@
         <div class="card card-shopnow text-center text-white bg-transparent mx-auto float-lg-right">
             <div class="card-body text-uppercase">
                 <h4 class="card-title">Shop Now!</h4>
-                <a href="#" class="btn btn-shopnow rounded-0 text-white border-white">MEN</a>
-                <a href="#" class="btn btn-shopnow rounded-0 text-white border-white">WOMEN</a>
-                <a href="#" class="btn btn-shopnow rounded-0 text-white border-white">KIDS</a>       
+                <a href="{% url 'products' %}?category=men" class="btn btn-shopnow rounded-0 text-white border-white">MEN</a>
+                <a href="{% url 'products' %}?category=women" class="btn btn-shopnow rounded-0 text-white border-white">WOMEN</a>
+                <a href="{% url 'products' %}?category=kids" class="btn btn-shopnow rounded-0 text-white border-white">KIDS</a>       
             </div>
         </div>
         </div>

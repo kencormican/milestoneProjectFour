@@ -132,6 +132,8 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 # required for all auth
                 'django.contrib.auth.context_processors.auth',
+                # required to load categories to main_nav context without view
+                'categories.context_processors.add_categories_to_context',
             ],
             # make crispy forms available to all templates
             'builtins': [

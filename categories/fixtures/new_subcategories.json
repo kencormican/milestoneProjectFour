@@ -1,0 +1,29 @@
+[
+ {
+   "pk": 19,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "avalanche_safety_equipment",
+      "friendly_name": "Avalanche Safety Equipment",
+      "new": true
+   }
+},
+ {
+   "pk": 20,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "snowboard_sets",
+      "friendly_name": "Snowboard Sets",
+      "new": true
+   }
+},
+ {
+   "pk": 21,
+   "model": "categories.subcategory",
+   "fields": {
+      "name": "freeski_sets",
+      "friendly_name": "Freeski Sets",
+      "new": true
+   }
+}
+]

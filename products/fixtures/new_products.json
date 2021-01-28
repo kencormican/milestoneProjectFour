@@ -1,0 +1,62 @@
+[
+ {
+   "pk": 16,
+   "model": "products.product",
+   "fields": {
+      "sku": 731136859,
+      "name": "ORTOVOX FREE RIDER 22 AVABAG KIT BACKPACK",
+      "category": 1,
+      "subcategory": 19,
+      "quantity": 5,
+      "price": 490.83,
+      "rating": 5,
+      "summary": "PROTECTION AND COMFORT: THE ORTOVOX FREE RIDER 22L AVABAG KIT!",
+      "details": "The Ortovox Free Rider 22L Avabag Kit offers light and bright colours inside which make it easier to find your avalanche equipment. The fast and safe diagonal ski fastener offers plenty of wearing comfort and the front compartment is perfect for small items.",
+      "has_sizes": false,
+      "image1": "731136859_1.webp",
+      "image1_url": "https://images.blue-tomato.com/is/image/bluetomato/302554381_front.jpg-W9VlXJVGx6N9aiBud0AQw2JyR2k/Free+Rider+22+Avabag+Kit+Backpack.jpg?$b8$",
+      "image2": "731136859_2.jpg",
+      "image2_url": "https://images.blue-tomato.com/is/image/bluetomato/302554381_back.jpg-ESfgzNoS1cLSnt3FZ8hxkJgHjp4/Free+Rider+22+Avabag+Kit+Backpack.jpg?$b8$"
+   }
+},
+ {
+   "pk": 17,
+   "model": "products.product",
+   "fields": {
+      "sku": 581875263,
+      "name": "ROME MECHANIC 161W + UNITED L 2021",
+      "category": 1,
+      "subcategory": 20,
+      "quantity": 2,
+      "price": 274.96,
+      "rating": null,
+      "summary": "ROME'S PERFECT SNOWBOARD SET FOR ALL-MOUNTAIN PROGRESSION - WHETHER YOU FOCUS ON POWDER OR PARK RIDING",
+      "details": "The Rome Mechanic is perfect for freestyle-oriented riding in any terrain. The Contact Rocker profile offers solid performance for all-mountain/backcountry riding and a playful feel in the park. If you are a beginner or advanced rider who wants to have fun all over the mountain, the Rome Mechanic is a great choice.",
+      "has_sizes": false,
+      "image1": "581875263_1.jpg",
+      "image1_url": "https://images.blue-tomato.com/is/image/bluetomato/304367282_front.jpg-II47VPwHCe2x9NcRDnfGOay6GWA/Mechanic+161W+United+L+2021.jpg?$b8$",
+      "image2": "",
+      "image2_url": ""
+   }
+},
+ {
+   "pk": 18,
+   "model": "products.product",
+   "fields": {
+      "sku": 256646393,
+      "name": "ARMADA ARW 86MM 170 + N L10 2021 SKI SET",
+      "category": 2,
+      "subcategory": 21,
+      "quantity": 1,
+      "price": 349.17,
+      "rating": 0,
+      "summary": "FREE SKI SET MOUNTING",
+      "details": "If you buy skis and bindings together we can mount them for you free of charge. For further information check our FAQs. Please note that adult bindings cannot be combined with kids skis (and vice versa).",
+      "has_sizes": false,
+      "image1": "256646393_1.jpg",
+      "image1_url": "https://images.blue-tomato.com/is/image/bluetomato/304356544_front.jpg-sdg8gMMAcC4yf1CdQIsxTOZQBpY/Arw+86mm+170+N+L10+2021+Ski+Set.jpg?$b8$",
+      "image2": "",
+      "image2_url": ""
+   }
+}
+]

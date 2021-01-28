@@ -378,7 +378,7 @@ message                 | models.TextField(null=False, blank=False)             
 
 # Testing
 
-## Development Testing
+## Pre-Production Testing
 - During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
 Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
 - When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
@@ -471,6 +471,59 @@ else:
         }
     }
 ```
+
+* When testing the add category functionality I initially had difficulty loading the newly added categories to teh main-nav template because it was part of the base template infrastructure, needed to be available for all apps and didn't have its own view.  So needed a way to pass data from the backend through to the front end without explicitly being called by an app.  I found a very useful [stack overflow](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi) link explaining that it needed to be created as a user generated context processor and then loaded to the of base infrastructure via settings.py under TEMPLATE options per below.
+```
+context_processors.py
+
+from .models import Subcategory
+
+
+def add_categories_to_context(request):
+
+    subcategories = Subcategory.objects.all()
+
+    return {
+        'subcategories': subcategories,
+    }
+
+settings.py
+
+TEMPLATES = [
+    { ......
+        ],.....
+        'OPTIONS': {
+            'context_processors': [
+                '......
+                'categories.context_processors.add_categories_to_context',
+            ],
+
+main-nav.html
+
+            <li class="nav-item dropdown">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="newcategories-link"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h6 class="mx-2 my-0">New Offers</h6>
+                </a>
+                <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="newcategories-link">
+                    {% for subcategory in subcategories %}
+                        {% if subcategory.new %}
+                            <a href="{% url 'products' %}?subcategory={{subcategory.name}}" class="dropdown-item text-secondary">
+                                {% if subcategory.friendly_name %} 
+                                    {{ subcategory.friendly_name }}
+                                {% else %} 
+                                    {{subcategory.name}}
+                                {% endif %}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+
+```
+
+* Tested clean for loading manually created subcategories to the nav menu and those set with new field to true in fixture.  Associated link items also tested clean.
+
 ***
 
 ## Pre Production Bugs Found
