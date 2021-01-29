@@ -14,23 +14,43 @@
                 <a class="nav-link category-link" href="{% url 'products' %}?category=kids" id="kids-tab" data-toggle="tab" role="tab" aria-controls="kids" aria-selected="false">KIDS</a>
             </li>
         </ul> -->
+        <!-- {% for category in current_categories %}
         <ul class="nav nav-tabs w-auto mx-auto border-0">
             <li class="nav-item ml-2">
-                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
+                <a class="nav-link category-link font-weight-bold " href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=men" id="men-tab">MEN</a>
+                <a class="nav-link category-link {% if catergory.men %} active {% endif %}" href="{% url 'products' %}?category=men" id="men-tab"  >MEN</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=women"id="women-tab">WOMEN</a>
+                <a class="nav-link category-link {% if catergory.women %}active {% endif %}"  href="{% url 'products' %}?category=women"id="women-tab">WOMEN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=kids" id="kids-tab">KIDS</a>
+                <a class="nav-link category-link {% if 'kids' in current_catergories %} active {% endif %}" href="{% url 'products' %}?category=kids" id="kids-tab" data-toggle="tab" role="tab" >KIDS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=generic" id="kids-tab">GENERIC</a>
+                <a class="nav-link category-link {% if 'generic' in current_catergories %} active {% endif %}"href="{% url 'products' %}?category=generic" id="kids-tab" data-toggle="tab" role="tab" >GENERIC</a>
             </li>
         </ul>
+        {% endfor %} -->
+        <ul class="nav nav-tabs w-auto mx-auto border-0">
+            <li class="nav-item ml-2">
+                <a class="nav-link category-link font-weight-bold " href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-link " href="{% url 'products' %}?category=men" id="men-tab"  >MEN</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link category-link "  href="{% url 'products' %}?category=women"id="women-tab">WOMEN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-link " href="{% url 'products' %}?category=kids" id="kids-tab" >KIDS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-link "href="{% url 'products' %}?category=generic" id="kids-tab" >GENERIC</a>
+            </li>
+        </ul>
+
     </div>
     <div class="col-12 mainnav-font bg-white d-lg-flex px-4">
         <ul class="navbar-nav w-auto border border-blue mx-auto tab-content">
