@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+<!-- widget_tweaks loaded to perform additional stying on widgets -->
+{% load widget_tweaks %}
+<!-- {% load crispy_forms_tags %} -->
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -25,7 +32,16 @@
             <div class="col-12 col-md-8 ">
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form | crispy }}
+                    <!-- {{ form | crispy }} -->
+                    {% for field in form %}
+                        {% if field.name == 'image1' or field.name == 'image2' %}
+                            <div class="col-6 m-0 p-0">
+                                {{ field }}
+                            </div>
+                        {% else %}
+                        {{ field|as_crispy_field }}
+                        {% endif %}
+                    {% endfor %}
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <button class="btn btn-blue rounded text-uppercase w-100 my-1" type="submit">Update Product</button>
@@ -38,4 +54,15 @@
             </div>            
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- provide notification to user which file has been select for image widget -->
+    <script type="text/javascript">
+        $('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
 {% endblock %}

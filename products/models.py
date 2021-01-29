@@ -8,11 +8,12 @@ from categories.models import Category, Subcategory
 
 class Product(models.Model):
 
-    category = models.ForeignKey('categories.Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='Category')
-    subcategory = models.ForeignKey('categories.Subcategory', null=True, blank=True, on_delete=models.SET_NULL, related_name='Subcategory')
-    # product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    # category = models.ForeignKey('Category', null=False, blank=False, on_delete=models.CASCADE)
-    # subcategory = models.ForeignKey('Subcategory', null=False, blank=False, on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        'categories.Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='Category'
+        )
+    subcategory = models.ForeignKey(
+        'categories.Subcategory', null=True, blank=True, on_delete=models.SET_NULL, related_name='Subcategory'
+        )
 
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
@@ -28,10 +29,10 @@ class Product(models.Model):
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
 
     image1_url = models.URLField(max_length=1024, null=True, blank=True)
-    image1 = models.ImageField(null=True, blank=True)
     image2_url = models.URLField(max_length=1024, null=True, blank=True)
+    image1 = models.ImageField(null=True, blank=True)
     image2 = models.ImageField(null=True, blank=True)
 
-    
+
     def __str__(self):
         return self.name

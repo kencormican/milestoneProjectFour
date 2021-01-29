@@ -94,7 +94,8 @@ INSTALLED_APPS = [
     'categories',
     'products',
     # other dependencies
-    'crispy_forms'
+    'crispy_forms',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
