@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 
@@ -97,9 +98,17 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+@login_required
 def add_product(request):
     """ This view renders the add product template and allows
     submission of the ProductForm when action is POST"""
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -126,9 +135,17 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_product(request, product_id):
     """ This view renders the edit product template and allows
     the update of the product on POST"""
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
 
@@ -156,8 +173,16 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """ This view deletes a product from the database"""
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
     current_product = product.name

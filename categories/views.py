@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Subcategory
 
 from django.contrib import messages
@@ -21,8 +22,16 @@ def manage_categories(request):
     return render(request, 'categories/categories.html', context)
 
 
+@login_required
 def add_subcategory(request):
     """ Add a subcategory to the database """
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = AddSubcategoryForm(request.POST)
@@ -75,8 +84,16 @@ def add_subcategory(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_subcategory(request, subcategory_id):
     """ Update a pre-exiting subcategory on the database """
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
 
     subcategory = get_object_or_404(Subcategory, pk=subcategory_id)
     if request.method == 'POST':
@@ -124,8 +141,17 @@ def edit_subcategory(request, subcategory_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_subcategory(request, subcategory_id):
     """ Delete a subcategory from the database """
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
+
     subcategory = get_object_or_404(Subcategory, pk=subcategory_id)
     subcategory.delete()
     messages.success(request, 'Category deleted!')
