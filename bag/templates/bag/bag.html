@@ -50,7 +50,9 @@
                             {% for item in bag_items %}
                                 <tr>
                                     <td class="p-3 w-25">
-                                        <img class="img-fluid rounded" src="{{ item.product.image1.url }}">
+                                        <!-- defensive programming -->
+                                        <!-- was resulting in erro if url did not exist -->
+                                        <img class="img-fluid rounded" src="{% if item.product.image1_url %}{{ item.product.image1_url }} {% endif %}">
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
@@ -66,8 +68,7 @@
                                         <form class="form-inline" method="POST" action="{% url 'update_bag' item.item_id %}">
                                             {% csrf_token %}
                                             <div class="input-group w-75 mx-auto">
-                                                <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" 
-                                                placeholder="{{ item.quantity }}" min="0" max="99">
+                                                <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99">
                                                 <input type="submit" class="d-none d-md-block btn-sm btn-blue rounded mt-1 w-100 text-uppercase" value="update">
                                                 <button type="submit" class="d-md-none btn-sm btn-sm btn-blue rounded mt-1 w-100" >
                                                     <i class="fas fa-exchange-alt"></i>
@@ -117,7 +118,7 @@
                                         </span>
                                         <span class="text-uppercase">Back to Shop</span>
                                     </a>
-                                    <a href="" class="btn btn-blue rounded btn-lg mb-2">
+                                    <a href="{% url 'checkout' %}" class="btn btn-blue rounded btn-lg mb-2">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
