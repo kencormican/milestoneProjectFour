@@ -59,13 +59,27 @@
                                         <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">${{ item.product.price }}</p>
+                                        <p class="my-0">€{{ item.product.price }}</p>
                                     </td>
-                                    <td class="py-3 w-25">
-                                        <p class="my-0">{{ item.quantity }}</p>
+                                    <td class="pt-1 w-25 ">
+                                        <form class="form-inline" method="POST" action="">
+                                            {% csrf_token %}
+                                            <div class="input-group w-75 mx-auto">
+                                                <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" 
+                                                placeholder="{{ item.quantity }}" min="0" max="99">
+                                                <input type="submit" class="btn-sm btn-blue rounded mt-1 w-100" value="update">
+                                            </div>
+                                        </form>
+                                        <div class="delete-button w-75 mx-auto">
+                                            <form class="" action="" method="">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn-sm btn-danger rounded mt-1 w-100" >delete</button>
+                                            </form>
+                                        </div>
+                                     
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">${{ item.product.price }}</p>
+                                        <p class="my-0">€{{ item.product.price }}</p>
                                     </td>
                                 </tr>                            
                             {% endfor %}
