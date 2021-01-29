@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
@@ -28,11 +29,11 @@
         </div>
         <div class="row">
             <div class="col mt-4">
-                {% if bag_items %}
+                <!-- {% if bag_items %}
                 {{ bag_items }}
                     <br>
                     <br>
-                    {{ request.session.bag }}
+                    {{ request.session.bag }} -->
 
                     <div class="table-responsive rounded">
                         <table class="table table-sm  ">
@@ -62,24 +63,36 @@
                                         <p class="my-0">€{{ item.product.price }}</p>
                                     </td>
                                     <td class="pt-1 w-25 ">
-                                        <form class="form-inline" method="POST" action="">
+                                        <form class="form-inline" method="POST" action="{% url 'update_bag' item.item_id %}">
                                             {% csrf_token %}
                                             <div class="input-group w-75 mx-auto">
                                                 <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" 
                                                 placeholder="{{ item.quantity }}" min="0" max="99">
-                                                <input type="submit" class="btn-sm btn-blue rounded mt-1 w-100" value="update">
+                                                <input type="submit" class="d-none d-md-block btn-sm btn-blue rounded mt-1 w-100 text-uppercase" value="update">
+                                                <button type="submit" class="d-md-none btn-sm btn-sm btn-blue rounded mt-1 w-100" >
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </button>
                                             </div>
+                                            {% if item.product.has_sizes %}
+                                                <input type="hidden" name="product_size" value="{{ item.size }}">
+                                            {% endif %}
                                         </form>
                                         <div class="delete-button w-75 mx-auto">
-                                            <form class="" action="" method="">
+                                            <form class="" action="{% url 'delete_bag_item' item.item_id %}" method="POST">
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn-sm btn-danger rounded mt-1 w-100" >delete</button>
+                                                <button type="submit" class="d-none d-md-block btn-sm btn-danger rounded mt-1 w-100 text-uppercase" >delete</button>
+                                                <button type="submit" class="d-md-none btn-sm btn-danger rounded mt-1 w-100" >
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </form>
+                                            {% if item.product.has_sizes %}
+                                                <input type="hidden" name="product_size" value="{{ item.size }}">
+                                            {% endif %}
                                         </div>
                                      
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">€{{ item.product.price }}</p>
+                                        <p class="my-0">€{{ item.product.price  | calc_subtotal:item.quantity  }}</p>
                                     </td>
                                 </tr>                            
                             {% endfor %}
@@ -98,13 +111,13 @@
                             
                             <tr class="table-borderless">
                                 <td colspan="5" class="text-right">
-                                    <a href="{% url 'products' %}" class="btn btn-outline-blue rounded btn-lg">
+                                    <a href="{% url 'products' %}" class="btn btn-outline-blue rounded btn-lg mb-2">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase">Back to Shop</span>
                                     </a>
-                                    <a href="" class="btn btn-blue rounded btn-lg">
+                                    <a href="" class="btn btn-blue rounded btn-lg mb-2">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
