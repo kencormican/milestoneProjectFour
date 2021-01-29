@@ -29,6 +29,11 @@
         <div class="row">
             <div class="col mt-4">
                 {% if bag_items %}
+                {{ bag_items }}
+                    <br>
+                    <br>
+                    {{ request.session.bag }}
+
                     <div class="table-responsive rounded">
                         <table class="table table-sm  ">
                             <thead class="text-black thead-light table-borderless"> 
@@ -48,6 +53,9 @@
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                        <p class="my-0"><strong>Size: </strong>{% if item.product.has_sizes %}{{ item.size|upper }}
+                                        {% else %}N/A{% endif %}</p>
+
                                         <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
@@ -80,7 +88,7 @@
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
-                                        <span class="text-uppercase">Keep Shopping</span>
+                                        <span class="text-uppercase">Back to Shop</span>
                                     </a>
                                     <a href="" class="btn btn-blue rounded btn-lg">
                                         <span class="text-uppercase">Secure Checkout</span>
