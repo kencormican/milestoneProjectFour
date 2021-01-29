@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     'categories',
     'products',
     'bag',
+    'checkout',
     # other dependencies
     'crispy_forms',
     'widget_tweaks',
