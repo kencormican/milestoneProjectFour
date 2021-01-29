@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     'contact',
     'categories',
     'products',
+    'bag',
     # other dependencies
     'crispy_forms',
     'widget_tweaks',
