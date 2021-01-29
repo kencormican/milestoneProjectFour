@@ -28,12 +28,19 @@
         </div>
         <div class="row">
             <div class="col mt-4">
-                <a href="{% url 'products' %}" class="btn btn-outline-blue rounded btn-lg">
+                {% if bag_items %}
+                    <div class="table-responsive rounded"></div>
+                {% else %}
+                    <p class="lead mb-5">Your bag is empty.</p>
+                    <a href="{% url 'products' %}" class="btn btn-outline-blue rounded btn-lg">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
                     <span class="text-uppercase">Back to Shop</span>
                 </a>
+                {% endif %}
+
+                
             </div>
         </div>
     </div>

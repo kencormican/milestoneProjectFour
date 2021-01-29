@@ -134,8 +134,10 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 # required for all auth
                 'django.contrib.auth.context_processors.auth',
+                # project context processors
                 # required to load categories to main_nav context without view
                 'categories.context_processors.add_categories_to_context',
+                'bag.context_processors.bag_contents',
             ],
             # make crispy forms available to all templates
             'builtins': [
@@ -237,3 +239,7 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
+FREE_DELIVERY_THRESHOLD = 45
+DAY_RETURNS_THRESHOLD = 40
+STANDARD_DELIVERY_PERCENTAGE = 15
