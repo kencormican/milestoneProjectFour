@@ -98,112 +98,139 @@
                         </p>
                     {% endif %}
                     <p class="mb-2">
-                    {% if product.rating > 0 %}
-                        <small class="text-blueshark">
-                            <i class="fas fa-star mr-1 text-gold "></i> <strong>{{ product.rating }}</strong> / 5
-                        </small>
-                    {% elif product.rating == 0 %}
-                        <small class="text-blueshark">
-                            <i class="fas fa-star mr-1 text-blueshark"></i> <strong>{{ product.rating }}</strong> / 5
-                        </small>                                            
-                    {% else %}
-                        <small class="text-blueshark">No Rating</small>
-                    {% endif %}
+                        {% if product.rating > 0 %}
+                            <small class="text-blueshark">
+                                <i class="fas fa-star mr-1 text-gold "></i> <strong>{{ product.rating }}</strong> / 5
+                            </small>
+                        {% elif product.rating == 0 %}
+                            <small class="text-blueshark">
+                                <i class="fas fa-star mr-1 text-blueshark"></i> <strong>{{ product.rating }}</strong> / 5
+                            </small>
+                        {% else %}
+                            <small class="text-blueshark">No Rating</small>
+                        {% endif %}
                     </p>
                     <div class="row text-blueshark">
                         <div class="col-6 text-uppercase font-weight-bold">
-                            <small> Availability</small>    
+                            <small> Availability</small>
                         </div>
                         <div class="col-6">
                             <p class="text-capitalize">
                                 <small><strong class="">SKU</strong>: {{ product.sku }}<br></small>
                                 {% if product.quantity > 0 %}
-                                   <small><strong class="">{{ product.quantity }}</strong>: Left In Stock<br></small>
-                                {% else %} 
-                                    <small class="text-info">Out of Stock</small>                                    
-                                {% endif %}                        
-                            </p> 
+                                    <small><strong class="">{{ product.quantity }}</strong>: Left In Stock<br></small>
+                                {% else %}
+                                    <small class="text-info">Out of Stock</small>
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
                     <p class="mb-2">
                         {% if request.user.is_superuser %}
                             <small class="">
-                                <a href="{% url 'edit_product' product.id %}">Edit</a> | 
-                                <a class="text-danger"  data-toggle="modal"  href="#deleteModal{{product.id}}">Delete</a>
+                                <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                                <a class="text-danger" data-toggle="modal" href="#deleteModal{{product.id}}">Delete</a>
                             </small>
                         {% endif %}
                     </p>
                     <!-- Defensive modal-->
                     <!-- Template logic required to uniquely tag each modal id with product id -->
-                    <div class="modal fade" id="deleteModal{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal{{product.id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">     
-                                        <h4 class="text-danger">Warning <i class="fas fa-exclamation-circle"></i></h4>
-                                    </div>
-                                    <div class="modal-body">  
-                                        <h6><strong>You are about to delete the {{ product.name }} product from the site database.</strong></h6>
-                                    </div>
+                                <div class="modal-header">
+                                    <h4 class="text-danger">Warning <i class="fas fa-exclamation-circle"></i></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h6><strong>You are about to delete the {{ product.name }} product from the site
+                                            database.</strong></h6>
+                                </div>
                                 <div class="modal-footer">
                                     <a href="{% url 'product_detail' product.id %}" class="btn btn-blue text-uppercase">Cancel</a>
-                                    <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-blue text-uppercase ">Delete Product</a>
-                                </div>                                         
+                                    <a href="{% url 'delete_product' product.id %}"
+                                        class="btn btn-outline-blue text-uppercase ">Delete Product</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <hr>
                     <p class="mt-3">{{ product.summary | capfirst }}</p>
+                    <hr>
+                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Quantity:</strong></p>
+                            </div>
+                            <div class="col-12 form-group">
+                                <div class="input-group">
+                                    <input class="form-control qty_input w-50" type="number" name="quantity" value="1" min="1" max="99"
+                                        data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                    <input type="submit" class="btn btn-blue rounded text-uppercase w-50" value="Add to Bag">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <a href="{% url 'products' %}" class="col-12 w-100 btn btn-outline-blue rounded">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Back to Shop</span>
+                                </a>
+                            </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
         
-        <!-- Product Detail Tabs -->
-        <div class="container mb-5">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="nav nav-tabs align-center" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary-tab"
-                                aria-selected="true">Product Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail-tab"
-                                aria-selected="false">Product Details</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 product-tab-wrapper py-5 px-0 border text-blueshark">
-                    <div class="col-10 product-tab-content offset-1 border border-light rounded bg-light">
-                        <div class="tab-content " id="myTabContent">
-                            {% if product.summary %}
-                                <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                                    {{ product.summary|capfirst }}
-                                </div>                                                                                         
-                            {% else %}
-                                <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                                    No Summary Information available at this time
-                                </div>                                                
-                            {% endif %}
-                            {% if product.details %}
-                                <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
-                                    {{ product.details|capfirst }}
-                                </div>
-                                                                                         
-                            {% else %}
-                                <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
-                                    No Detailed Information available at this time
-                                </div>
-                                                
-                            {% endif %}                           
-                            
-                        </div>
+    <!-- Product Detail Tabs -->
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <div class="col-10 offset-1 ">
+                <ul class="nav nav-tabs align-center" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary-tab"
+                            aria-selected="true">Product Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail-tab"
+                            aria-selected="false">Product Details</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-10 offset-1 product-tab-wrapper py-5 px-0 border text-blueshark">
+                <div class="col-10 product-tab-content offset-1 border border-light rounded bg-light">
+                    <div class="tab-content " id="myTabContent">
+                        {% if product.summary %}
+                            <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                                {{ product.summary|capfirst }}
+                            </div>                                                                                         
+                        {% else %}
+                            <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                                No Summary Information available at this time
+                            </div>                                                
+                        {% endif %}
+                        {% if product.details %}
+                            <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                                {{ product.details|capfirst }}
+                            </div>
+                                                                                        
+                        {% else %}
+                            <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                                No Detailed Information available at this time
+                            </div>
+                                            
+                        {% endif %}                           
+                        
                     </div>
                 </div>
-            </div>  
-        </div>
-
-
+            </div>
+        </div>  
     </div>
+
 {% endblock %}
 
 {% block postloadjs %}
