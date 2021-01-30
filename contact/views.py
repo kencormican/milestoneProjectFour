@@ -25,6 +25,11 @@ def contact(request):
     """ This view returns the contact page and sends two emails
     if method is post. One to the user and the other to the site admin"""
 
+    store_email = settings.CONTACT_STORE_EMAIL
+    store_address = settings.CONTACT_STORE_ADDRESS
+    store_phone = settings.CONTACT_STORE_PHONE
+    store_location = settings.SITE_MAP_LOCATION
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -64,6 +69,10 @@ def contact(request):
 
     context = {
         'form': form,
+        'store_email': store_email,
+        'store_address': store_address,
+        'store_phone': store_phone,
+        'store_location': store_location,
     }
     messages.info(request, """Please use the below
     submission form to raise a query with the team""")
