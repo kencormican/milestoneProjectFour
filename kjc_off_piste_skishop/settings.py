@@ -241,6 +241,13 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
+# stripe vriables
+
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_CURRENCY = os.environ.get('STRIPE_CURRENCY')
+
+# bagtools and headline variables
 FREE_DELIVERY_THRESHOLD = 45
 DAY_RETURNS_THRESHOLD = 40
 STANDARD_DELIVERY_PERCENTAGE = 15

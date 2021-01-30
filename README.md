@@ -414,6 +414,7 @@ os.environ.setdefault("SITE_PHONE", "<enter site phone number here>")
 # stripe variables
 os.environ.setdefault("STRIPE_PUBLIC_KEY", "<enter stripe public key here >")
 os.environ.setdefault("STRIPE_SECRET_KEY", "<enter stripe secret key here >")
+os.environ.setdefault("STRIPE_CURRENCY ", "enter stripe currency here")
 
 # aws variables
 os.environ.setdefault("AWS_ACCESS_ID", "<enter aws key id here>")
@@ -438,6 +439,7 @@ EMAIL_HOST_USER         | enter host email address here                         
 EMAIL_HOST_PASS         | enter host 2 stage password here                                                                                                      |
 STRIPE_PUBLIC_KEY       | enter stripe public key here                                                                                                          |
 STRIPE_SECRET_KEY       | enter stripe secret key here                                                                                                          |
+STRIPE_CURRENCY         | enter stripe currency here                                                                                                            |
 AWS_ACCESS_ID           | enter aws key id here                                                                                                                 |
 AWS_SECRET_KEY          | enter aws secret key here                                                                                                             |
 
