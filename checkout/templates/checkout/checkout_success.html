@@ -21,12 +21,24 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Checkout Success</h2>
+                <h2 class="logo-font mb-4">Thank you for your custom!</h2>
                 <hr>
+                <p class="text-muted">Your order information is listed below for your reference. A confirmation email will be sent to 
+                <strong>{{ order.email }}</strong>.</p>
             </div>
         </div>
         <div class="row">
             <div class="col">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-7 text-right">
+                <a href="{% url 'products' %}" class="btn btn-blue rounded my-2">
+                    <span class="icon mr-2">
+                        <i class="fas fa-gifts"></i>
+                    </span>
+                    <span class="text-uppercase">Now check out the latest deals!</span>
+                </a>
             </div>
         </div>
     </div>
