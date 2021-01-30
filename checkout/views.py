@@ -50,3 +50,15 @@ def checkout(request):
     }
 
     return render(request, template, context)
+
+
+def checkout_success(request):
+    """ This view will render a confirmation of successful
+    checkout operation the about page """
+
+    template = 'checkout/checkout_success.html'
+
+    context = {
+    }
+
+    return render(request, template, context)
