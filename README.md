@@ -605,6 +605,6 @@ def update_bag(request, item_id):
 ```
 <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99" required>
 ```
-
+* long text in the manage categories template was creating oversized card.  Resolved setting text-truncate on field classes. 
 ***
 [Back to Contents](#table-of-contents)
