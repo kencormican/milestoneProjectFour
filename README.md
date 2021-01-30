@@ -363,6 +363,7 @@ order       	        | models.ForeignKey(Order, null=False, blank=False, on_dele
 product  		        | models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)                                                         |
 product_size	        | models.CharField(max_length=2, null=True, blank=True)                                                                                 |
 quantity                | models.IntegerField(null=False, blank=False, default=0)                                                                               |
+lineitem_total          | models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)                                          |
 
 ## Contact Model
 Name			        |  Properties                                                                                                               		    |
@@ -591,6 +592,8 @@ The 'image1' attribute has no file associated with it.
 * The second occurs only if the bag form updated without changing the entry.  It therefore posts the qunatity as an empty string.  The view then fails because it is expecting integer value.
 ```
 invalid literal for int() with base 10: ''
+....
+quantity	''
 ```
 * offending code.
 ```
@@ -598,7 +601,10 @@ def update_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
     size = None
 ```
-* need to get checkout complete so will return to this later.
+* Resolved by making the input field required on this form therefore preventing it being subitted without a value being altered.
+```
+<input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99" required>
+```
 
 ***
 [Back to Contents](#table-of-contents)

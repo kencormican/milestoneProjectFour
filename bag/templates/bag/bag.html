@@ -75,7 +75,7 @@
                                         <form class="form-inline" method="POST" action="{% url 'update_bag' item.item_id %}">
                                             {% csrf_token %}
                                             <div class="input-group w-75 mx-auto">
-                                                <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99">
+                                                <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99" required>
                                                 <input type="submit" class="d-none d-md-block btn-sm btn-blue rounded mt-1 w-100 text-uppercase" value="update">
                                                 <button type="submit" class="d-md-none btn-sm btn-sm btn-blue rounded mt-1 w-100" >
                                                     <i class="fas fa-exchange-alt"></i>
