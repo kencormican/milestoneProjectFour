@@ -561,5 +561,44 @@ queries = Q(name__icontains=query) | Q(summary__icontains=query) | Q(subcategory
 ```
 * When adding the code to render the image widget more cleanly I found it difficult rendering the two crispy-form image widgets as a pair of side-by-side bootstrap col-6 divs.
 Have read several articles and tried several crispy forms helpers and widget tweaker addons but have been unable to resolve completeely.  At present the divs are both col-6 divs but they are stacking as opposes to inline. Will need to come back to this later.
+* Encountered two issues when testing bag app last night. The first, initially appeared to be specific to items that did not have image urls datatabase.  Then discovered template syntax was also a factor.  Added in some defensive code to check for multiple locations, change the template syntax and it resolved problem.
+ Error 1:
+```
+ValueError at /bag/
+The 'image1' attribute has no file associated with it.
+```
+* offending code.
+```
+{% for item in bag_items %}
+    <tr>
+        <td class="p-3 w-25">
+            <img class="img-fluid rounded" src="{{ item.product.image1.url }}">
+        </td>
+```
+* fix
+```
+<td class="p-3 w-25">
+    <img class="img-fluid rounded" src="
+        {% if item.product.image %}
+            {{ item.product.image }}
+        {% elif item.product.image1_url %}
+            {{ item.product.image1_url }}  
+        {% else %}
+            {{ MEDIA_URL }}noimage.png
+        {% endif %}">
+</td>
+```
+* The second occurs only if the bag form updated without changing the entry.  It therefore posts the qunatity as an empty string.  The view then fails because it is expecting integer value.
+```
+invalid literal for int() with base 10: ''
+```
+* offending code.
+```
+def update_bag(request, item_id):
+    quantity = int(request.POST.get('quantity'))
+    size = None
+```
+* need to get checkout complete so will return to this later.
+
 ***
 [Back to Contents](#table-of-contents)
