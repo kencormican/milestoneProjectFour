@@ -49,10 +49,18 @@
 * [Contact Model](#contact-model)
 </details>
 
+**<details><summary>Deployment</summary>**
+* [Deployment](#deployment)
+* [Development Environment](#development-environment)
+* [Production Environment](#production-environment)
+</details>
+
+
 **<details><summary>Testing</summary>**
 
 * [Testing](#testing)
-* [Bugs Found](#bugs-found)
+* [Pre Production Testing](#pre-production-testing)
+* [Bugs Found](#pre-production-bugs-found)
 </details>
 
 ***
@@ -377,9 +385,69 @@ message                 | models.TextField(null=False, blank=False)             
     
 [Back to Contents](#table-of-contents)
 
+# Deployment
+
+## Development Environment
+* env.py
+```
+import os
+
+# development environment specific variables
+os.environ.setdefault('DEVELOPMENT', 'True')
+
+# django key 
+os.environ.setdefault('SECRET_KEY', '<enter django secret key here>')
+
+# heroku  specific variables
+os.environ.setdefault('DATABASE_URL', '<enter heroku postgres url here without protocol prefix>')
+os.environ.setdefault('HEROKU_HOSTNAME', '<enter heroku app url here without protocol prefix>')
+
+# email back-end variables
+os.environ.setdefault("EMAIL_HOST_USER", "<enter host email address here>")
+os.environ.setdefault("EMAIL_HOST_PASS", "<enter host 2 stage password here>")
+
+# site contact detail variables
+os.environ.setdefault("SITE_ADDRESS", "<enter site address here>")
+os.environ.setdefault("SITE_MAP_LOCATION", "<enter site google map location url here here>")
+os.environ.setdefault("SITE_PHONE", "<enter site phone number here>")
+
+# stripe variables
+os.environ.setdefault("STRIPE_PUBLIC_KEY", "<enter stripe public key here >")
+os.environ.setdefault("STRIPE_SECRET_KEY", "<enter stripe secret key here >")
+
+# aws variables
+os.environ.setdefault("AWS_ACCESS_ID", "<enter aws key id here>")
+os.environ.setdefault("AWS_SECRET_KEY", "<enter aws secret key here>")
+
+# env template
+os.environ.setdefault("OBJECT_NAME", "<enter key here>")
+```
+
+## Production Environment
+* Heroku Config variables
+* Heroku application panel -> setting -> reveal config
+
+KEY		    	        |  VALUE                                                                                                                      		    |
+:--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
+DATABASE_URL  	        | enter heroku postgres url here without protocol prefix                                                                                |
+PRODUCTION  	        | TRUE                                                                                                                                  |
+SECRET_KEY  	        | enter django secret key here                                                                                                          |
+HEROKU_HOSTNAME         | enter heroku postgres url here without protocol prefix                                                                                |
+DISABLE_COLLECTSTATIC   | 1                                                                                                                                     |
+EMAIL_HOST_USER         | enter host email address here                                                                                                         |
+EMAIL_HOST_PASS         | enter host 2 stage password here                                                                                                      |
+STRIPE_PUBLIC_KEY       | enter stripe public key here                                                                                                          |
+STRIPE_SECRET_KEY       | enter stripe secret key here                                                                                                          |
+AWS_ACCESS_ID           | enter aws key id here                                                                                                                 |
+AWS_SECRET_KEY          | enter aws secret key here                                                                                                             |
+
+***
+
+[Back to Contents](#table-of-contents)
+
 # Testing
 
-## Pre-Production Testing
+## Pre Production Testing
 - During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
 Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
 - When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
@@ -527,6 +595,8 @@ main-nav.html
 
 ***
 
+[Back to Contents](#table-of-contents)
+
 ## Pre Production Bugs Found
 - Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help fo mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
 - Had difficulty getting Travis CI to integrate with repo.  Was a bit of a noob when it came to using Travis but with support from Stephen in Tutor team I found that the issue related settings config for development environment. Resolution to problem was changing the logic around database if else statement.
@@ -606,5 +676,9 @@ def update_bag(request, item_id):
 <input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99" required>
 ```
 * long text in the manage categories template was creating oversized card.  Resolved setting text-truncate on field classes. 
+
+
 ***
+
 [Back to Contents](#table-of-contents)
+
