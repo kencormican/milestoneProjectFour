@@ -246,6 +246,7 @@ else:
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_CURRENCY = os.environ.get('STRIPE_CURRENCY', 'eur')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
 # bagtools and headline variables
 FREE_DELIVERY_THRESHOLD = 45
