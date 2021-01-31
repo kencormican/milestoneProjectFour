@@ -56,3 +56,11 @@
     margin: 0;
     height: 100%;
 }
+
+/* Country Select Box */
+
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}

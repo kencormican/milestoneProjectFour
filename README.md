@@ -596,7 +596,10 @@ main-nav.html
 ```
 
 * Tested clean for loading manually created subcategories to the nav menu and those set with new field to true in fixture.  Associated link items also tested clean.
-
+* Products CRUD functionality testing clean from both Proucts and Product details views.   Defensive logic introduced in Product and product detailed views for products with or with images, urls etc. Initially encountered some issues with rendering Product image add and select options. Product detail carousel and tabbed views working cleanly for mobile, Tablet and Desktop views. 
+* Securing Views - Products, Categories and Profile views secured on back-end against unauthorised users. Add, Edit and Delete views protected and testing clean.  Risk of URLs based post and delete fabrication requests mitigated by introducing @login_required decorators.  Unless user logged in such requests will be redirected back to home page. Further defensive logic has been introduced by checking if user is superuser in Add, Update & Delete views. If not the users are provided with error message and redirected back to home page.
+* Shopping Bag CRUD functionality testing clean for add, edit and delete operations.  Bag also tested for products with and without sizes, with and without images, with and without image urls.  Initially encountered some minor problems with post on none operations and image template syntax but introduced some defensive logic to mitigate same.
+* Checkout app testing clean and introduced redundancy to ordering process using Webhook Handler.  Order tested for completion using database and webhook datasets.  Form submission failure emulated by commenting out form.submit() method in stripe js code and submitting order. Response was order created using WH.  When form.submit() re-activated in js code response confirmed to be order created using database.
 ***
 
 [Back to Contents](#table-of-contents)
@@ -621,7 +624,7 @@ During this time I also attempted to integrate the media data using suggestions 
 I'm now going to park this and return to developing the site again.......wasted far too much time on these issues.
 - Encountered a problem when trying to migrate Products models with categories models. Receiving following error.
 products.Product.category: (fields.E300) Field defines a relation with model 'Category', which is either not installed, or is abstract.
-Fix was found on Slack.  Even though the models were imported the foreignkey model name still needed to be prefixed with app name i.e. categories.Categort before the system would make the relationship.
+Fix was found on Slack.  Even though the models were imported the foreignkey model name still needed to be prefixed with app name i.e. categories.Category before the system would make the relationship.
 - Had issue rendering no_image using {{ MEDIA_URL }} template prefix.  Resolve was to include "django.template.context_processors.media" in TEMPLATES object of settings.py 
 - When adding search for subcategory name to products query function it produced following error:
 Related Field got invalid lookup: icontains
