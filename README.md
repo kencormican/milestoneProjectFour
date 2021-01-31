@@ -417,13 +417,14 @@ os.environ.setdefault("SITE_PHONE", "<enter site phone number here>")
 os.environ.setdefault("STRIPE_PUBLIC_KEY", "<enter stripe public key here >")
 os.environ.setdefault("STRIPE_SECRET_KEY", "<enter stripe secret key here >")
 os.environ.setdefault("STRIPE_CURRENCY ", "enter stripe currency here")
+os.environ.setdefault("STRIPE_WH_SECRET", "<enter stripe webhook key here >")
 
 # aws variables
-os.environ.setdefault("AWS_ACCESS_ID", "<enter aws key id here>")
-os.environ.setdefault("AWS_SECRET_KEY", "<enter aws secret key here>")
+os.environ.setdefault("AWS_STORAGE_BUCKET_NAME", "<enter aws s3 bucket name here>")
+os.environ.setdefault("AWS_S3_REGION_NAME", "<enter aws region here>")
+os.environ.setdefault("AWS_ACCESS_KEY_ID", "<enter aws key id here>")
+os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "<enter aws secret key here>")
 
-# env template
-os.environ.setdefault("OBJECT_NAME", "<enter key here>")
 ```
 
 ## Production Environment
@@ -436,16 +437,47 @@ DATABASE_URL  	        | enter heroku postgres url here without protocol prefix 
 PRODUCTION  	        | TRUE                                                                                                                                  |
 SECRET_KEY  	        | enter django secret key here                                                                                                          |
 HEROKU_HOSTNAME         | enter heroku postgres url here without protocol prefix                                                                                |
-DISABLE_COLLECTSTATIC   | 1                                                                                                                                     |
 EMAIL_HOST_USER         | enter host email address here                                                                                                         |
 EMAIL_HOST_PASS         | enter host 2 stage password here                                                                                                      |
 STRIPE_PUBLIC_KEY       | enter stripe public key here                                                                                                          |
 STRIPE_SECRET_KEY       | enter stripe secret key here                                                                                                          |
 STRIPE_CURRENCY         | enter stripe currency here                                                                                                            |
-AWS_ACCESS_ID           | enter aws key id here                                                                                                                 |
-AWS_SECRET_KEY          | enter aws secret key here                                                                                                             |
+STRIPE_WH_SECRET        | enter stripe webhook key here                                                                                                         |
+AWS_USE                 | TRUE                                                                                                                                  |
+AWS_ACCESS_KEY_ID       | enter aws key id here                                                                                                                 |
+AWS_SECRET_ACCESS_KEY   | enter aws secret key here                                                                                                             |
+
+## AWS S3 Variables
+Name		    	    |  VALUE                                                                                                                      		    |
+:--    			        | :-----------------------------------------------------------------------------------------------------------------------------------  |
+S3 BUCKET NAME	        | should be tied to heroku app name, allow public access                                                                                |
+BUCKET PROPERTIES       | Static website hosting configured to host website, set index and error documents to index.html and error.html but unused.             |
+BUCKET PERMISSIONS      | Requires CORS configuration. Template proivided below.                                                                                | 
+AWS CORS CONFIG         | Template proivided [here](#aws-cors-config). Required ARN (amazon resource name) from bucket properties                               |
+BUCKET POLICY           | Policy Type is S3, Principal is *, AWS Sevice is S3, Actions is Get Object, ARN, Add statement, then generate policy                  |
+IAM GROUP NAME	        | Identity & Access Management. Create Group. Should be meaningful name eg. manage_'BUCKET NAME'                                        |
+IAM POLICY  	        | Create Policy. Import S3 JSON full access policy. Filtered on ARN ['heroku app domain/', and 'heroku app domain/*'. Attached tp Group.|
+IAM USER	            | Create new User. Give user Programmatic access and attach to Group. Download and store S3 Credentials file with secret key details.   |        
 
 ***
+
+### AWS CORS Config
+```
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+```
 
 [Back to Contents](#table-of-contents)
 
@@ -600,6 +632,8 @@ main-nav.html
 * Securing Views - Products, Categories and Profile views secured on back-end against unauthorised users. Add, Edit and Delete views protected and testing clean.  Risk of URLs based post and delete fabrication requests mitigated by introducing @login_required decorators.  Unless user logged in such requests will be redirected back to home page. Further defensive logic has been introduced by checking if user is superuser in Add, Update & Delete views. If not the users are provided with error message and redirected back to home page.
 * Shopping Bag CRUD functionality testing clean for add, edit and delete operations.  Bag also tested for products with and without sizes, with and without images, with and without image urls.  Initially encountered some minor problems with post on none operations and image template syntax but introduced some defensive logic to mitigate same.
 * Checkout app testing clean and introduced redundancy to ordering process using Webhook Handler.  Order tested for completion using database and webhook datasets.  Form submission failure emulated by commenting out form.submit() method in stripe js code and submitting order. Response was order created using WH.  When form.submit() re-activated in js code response confirmed to be order created using database.
+* Profile order history update testing clean for registered users and working when stripe element form submit is diabled proving out webhook redundancy.  Link between indivual history order  and checkout view also testing clean.
+* Order Email confirmation testing cleanly to both console and email backend.
 ***
 
 [Back to Contents](#table-of-contents)
