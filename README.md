@@ -58,9 +58,8 @@
 
 **<details><summary>Testing</summary>**
 
-* [Testing](#testing)
-* [Pre Production Testing](#pre-production-testing)
-* [Bugs Found](#pre-production-bugs-found)
+* [Testing](TEST.md)
+
 </details>
 
 ***
@@ -410,7 +409,7 @@ os.environ.setdefault("EMAIL_HOST_PASS", "<enter host 2 stage password here>")
 
 # site contact detail variables
 os.environ.setdefault("SITE_ADDRESS", "<enter site address here>")
-os.environ.setdefault("SITE_MAP_LOCATION", "<enter site google map location url here here>")
+os.environ.setdefault("SITE_MAP_LOCATION", "<enter site google map location url here>")
 os.environ.setdefault("SITE_PHONE", "<enter site phone number here>")
 
 # stripe variables
@@ -426,6 +425,9 @@ os.environ.setdefault("AWS_ACCESS_KEY_ID", "<enter aws key id here>")
 os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "<enter aws secret key here>")
 
 ```
+***
+
+[Back to Contents](#table-of-contents)
 
 ## Production Environment
 * Heroku Config variables
@@ -439,13 +441,23 @@ SECRET_KEY  	        | enter django secret key here                             
 HEROKU_HOSTNAME         | enter heroku postgres url here without protocol prefix                                                                                |
 EMAIL_HOST_USER         | enter host email address here                                                                                                         |
 EMAIL_HOST_PASS         | enter host 2 stage password here                                                                                                      |
+HEROKU_HOSTNAME         | enter heroku postgres url here without protocol prefix                                                                                |
+SITE_ADDRESS            | enter site address here                                                                                                               |
+SITE_MAP_LOCATION       | enter site google map location url here                                                                                               |
+SITE_PHONE              | enter site phone number here                                                                                                          |
 STRIPE_PUBLIC_KEY       | enter stripe public key here                                                                                                          |
 STRIPE_SECRET_KEY       | enter stripe secret key here                                                                                                          |
 STRIPE_CURRENCY         | enter stripe currency here                                                                                                            |
-STRIPE_WH_SECRET        | enter stripe webhook key here                                                                                                         |
+STRIPE_WH_SECRET        | enter stripe heroku specific webhook key here                                                                                         |
 AWS_USE                 | TRUE                                                                                                                                  |
 AWS_ACCESS_KEY_ID       | enter aws key id here                                                                                                                 |
 AWS_SECRET_ACCESS_KEY   | enter aws secret key here                                                                                                             |
+AWS_STORAGE_BUCKET_NAME | enter aws s3 bucket name here                                                                                                         |
+AWS_S3_REGION_NAME      | enter aws region here                                                                                                                 |
+
+***
+
+[Back to Contents](#table-of-contents)
 
 ## AWS S3 Variables
 Name		    	    |  VALUE                                                                                                                      		    |
@@ -480,246 +492,3 @@ IAM USER	            | Create new User. Give user Programmatic access and attach
 ```
 
 [Back to Contents](#table-of-contents)
-
-# Testing
-
-## Pre Production Testing
-- During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
-Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
-- When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
-the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
-- When wiring up toasts to the manage category crud functionality I decided to add in additional backend validation to prevent adding of category name if already exists in database. In addition to this I also set name field to readonly and validation against friendly name on edit category view.
-Toasts were tested against form validation for display, add, edit and delete operations.
-- Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  Knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
-- Contact app form submission was tested for both internal external comms to development console level the external email backend.
-I also validated insertion of appropriate variable details in conact and confirm email text templates.
-Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
-- When testing the tabbed views I found it very difficult to develop the logic to approriately render the tabs with assoicated sub menu searches results while also highlighting the appropriate tab.  The plan is to complete the logic for all products and then move onto the Men, Women and Kids tab views.  At this point in time I think teh simplest way to approach it is to generate independent views and templates for the tob level categories.  
-- When testing the search functionality in the products view I found that none of the catergory names were being returned in results. When I initially added the logic to return same it responded with an error.  See Bugs for resolution to problem.
-- Gave whitenoise another crack of the whip last night.  This time went at it with the knowledge & acceptance that whitenoise treats media files differently to other static files, that per these [support notes](assets/support_info/whitenoise_media.jpg) it was not designed to serve user uploaded media, and that a Django project when deployed to Heroku using whitenoise serves media files differently when in DEBUG mode thand with DEBUG disabled.  It worked cleanly using the below setup:
-from bash command line install whitenoise and freeze new dependency to requirements.txt:
-```
-pip3 install whitenoise
-pip3 freeze --local > requirements.txt
-```
-* In settings.py setup HEROKU environment for DEBUG....rememebr to apply settings to hereoku config to facilitate same.  Also remember to disable same if you truely move to deploy a realworld application in production:
-
-```
-if development:
-    DEBUG = True
-elif production:
-    DEBUG = True
-else:
-    DEBUG = False
-```
-* Configure the DATABASE options in settings.py explicitly for the Heroku Postgres setup:
-```
-# if production:
-DATABASES = {'default': dj_database_url.parse(
-    os.environ.get('DATABASE_URL'))}
-
-# else:
-#     print("Development Environment. Using SQLite")
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         }
-#     }
-
-```
-* Add whitenoise components to settings.py noting WhiteNoise middleware should be placed directly after the Django SecurityMiddleware and before all other middleware:
-```
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    # whitenoise dependency
-    .....
-]
-.....
-.....
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Extra places for collectstatic to find static files.
-# Whitenoise dependency.
-
-STATICFILES_DIRS = (os.path.join(
-    BASE_DIR, 'static'),)
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-```
-* Then push to Heroku perform migration, load any fixtures you may have and create your superuser.
-```
-git add .
-git commit -m ""
-git push heroku master
-python3 manage.py migrate --plan
-python3 manage.py migrate
-python3 manage.py loaddate <fixture_name>
-python3 manage.py createsuperuser
-```
-* Once complete launch the app from Heroku, confirm your seeing all the relavant styling......this confirms static is being loaded correctly.
-Then confirm images nd media files are being loaded correctly. <strong>(NOTE* YOU MUST HAVE DEBUG SET TO TRUE FOR THIS TO WORK).</strong>
-Then verify your fixtures and data base elements are functioning correctly.
-* Finally, restore the database elements in the settings.py file to original setup which allows for development and production operations.
-```
-if production:
-    DATABASES = {'default': dj_database_url.parse(
-        os.environ.get('DATABASE_URL'))}
-
-else:
-    print("Development Environment. Using SQLite")
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-```
-
-* When testing the add category functionality I initially had difficulty loading the newly added categories to teh main-nav template because it was part of the base template infrastructure, needed to be available for all apps and didn't have its own view.  So needed a way to pass data from the backend through to the front end without explicitly being called by an app.  I found a very useful [stack overflow](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi) link explaining that it needed to be created as a user generated context processor and then loaded to the of base infrastructure via settings.py under TEMPLATE options per below.
-```
-context_processors.py
-
-from .models import Subcategory
-
-
-def add_categories_to_context(request):
-
-    subcategories = Subcategory.objects.all()
-
-    return {
-        'subcategories': subcategories,
-    }
-
-settings.py
-
-TEMPLATES = [
-    { ......
-        ],.....
-        'OPTIONS': {
-            'context_processors': [
-                '......
-                'categories.context_processors.add_categories_to_context',
-            ],
-
-main-nav.html
-
-            <li class="nav-item dropdown">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="newcategories-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h6 class="mx-2 my-0">New Offers</h6>
-                </a>
-                <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="newcategories-link">
-                    {% for subcategory in subcategories %}
-                        {% if subcategory.new %}
-                            <a href="{% url 'products' %}?subcategory={{subcategory.name}}" class="dropdown-item text-secondary">
-                                {% if subcategory.friendly_name %} 
-                                    {{ subcategory.friendly_name }}
-                                {% else %} 
-                                    {{subcategory.name}}
-                                {% endif %}
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </li>
-
-```
-
-* Tested clean for loading manually created subcategories to the nav menu and those set with new field to true in fixture.  Associated link items also tested clean.
-* Products CRUD functionality testing clean from both Proucts and Product details views.   Defensive logic introduced in Product and product detailed views for products with or with images, urls etc. Initially encountered some issues with rendering Product image add and select options. Product detail carousel and tabbed views working cleanly for mobile, Tablet and Desktop views. 
-* Securing Views - Products, Categories and Profile views secured on back-end against unauthorised users. Add, Edit and Delete views protected and testing clean.  Risk of URLs based post and delete fabrication requests mitigated by introducing @login_required decorators.  Unless user logged in such requests will be redirected back to home page. Further defensive logic has been introduced by checking if user is superuser in Add, Update & Delete views. If not the users are provided with error message and redirected back to home page.
-* Shopping Bag CRUD functionality testing clean for add, edit and delete operations.  Bag also tested for products with and without sizes, with and without images, with and without image urls.  Initially encountered some minor problems with post on none operations and image template syntax but introduced some defensive logic to mitigate same.
-* Checkout app testing clean and introduced redundancy to ordering process using Webhook Handler.  Order tested for completion using database and webhook datasets.  Form submission failure emulated by commenting out form.submit() method in stripe js code and submitting order. Response was order created using WH.  When form.submit() re-activated in js code response confirmed to be order created using database.
-* Profile order history update testing clean for registered users and working when stripe element form submit is diabled proving out webhook redundancy.  Link between indivual history order  and checkout view also testing clean.
-* Order Email confirmation testing cleanly to both console and email backend.
-***
-
-[Back to Contents](#table-of-contents)
-
-## Pre Production Bugs Found
-- Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help fo mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
-- Had difficulty getting Travis CI to integrate with repo.  Was a bit of a noob when it came to using Travis but with support from Stephen in Tutor team I found that the issue related settings config for development environment. Resolution to problem was changing the logic around database if else statement.
-- Wanted to use Heroku deployment with staticfiles as part of ongoing testing for solution and as fall back in the event time ran short on submission.  Initially had difficulty getting css static files to load but used whitenoise and modification of settings.py middleware & statict storage to resolve same.  Unfortuantely still having difficulty with allauth components.
-- On Profile and Contact form templates noted that I cannot apply margin or padding to columns or rows.  Used flexbox css to resolve spacing issue on contact details. Margin and padding problems related to incorrect use of Bootstrap helper classes.
-- After I introduced a modal confirmation window for the category delete opeartion I noted that the delete function was no longer deleting the appropriate category, rather the first category in the database. Problem was due to same modal id being data target and resolved through use of template logic to tag each modal with unique idenifier.
-- When first implementing toast messages I found that the toast was not rendering cleanly and none of the interfactive components worked. Used chrome DevTools to inspect console and found I was receiving error - "TypeError: $.toast is not a function" in jQuery?.  The ultimate resolution to the problem was to update the Bootstrap CDNs to v4.4.  I had previously been using v4.0 and toast are not supported on this release.
-- I have truly been down the rabbit hole and like Alice ..... through the looking glass over the past 24hrs (",). 
-Something that should have taken only half an hour, wiring up email backend to the project, took about a day in the round.  
-I followed the tutorials to the letter but I had to integrate the backend with my development environment because the heroku deployment wasn't functioning outside of the homepage.
-Even though Heroku was correctly displaying static css because of the whitenoise implementation I was receiving server error 500 for every other page I attempted to load.  
-So back in the developement environment, every time I attempted to utilize email backend it failed with an authentication error message, and when I checked the gmail backend itself, it hadn't registered the auth attempt from my django app.
-I went through numerous iterations of testing, each one itself requiring the registered email to be removed for the django admin, before I ultimately discovered the root cause.  Also...by way of FYI, flipping back and forth between the admin and unregistered views presented its own problems.....in that, if I failed to logout of django admin panel the session variables associated with the admin account would result in a CSRF error when attempting to register with the new temp email account.  
-Long and short of it is the failure was not in off-piste code itself but the residual environmental variables I had loaded via the GitPod GUI interface during the Boutique_Ado tutorials.  Once they were removed the local developement environment started to behave more consistently.
-I then moved onto the heroku depoyment itself. Altering the logic around access to the local environment using development and production variables in the django settings files sorted the problem with the 500 server error for the majority of pages but did not for the the about page, which is strange because it is the simplest of the apps to render.
-I tried multiple combinations and permutations of configurations in attempt to resolve the server error, I even went as far as deleting, readding and reinitialising the heroku app but to no avail. 
-During this time I also attempted to integrate the media data using suggestions I picked up from slack but to no avail.
-I'm now going to park this and return to developing the site again.......wasted far too much time on these issues.
-- Encountered a problem when trying to migrate Products models with categories models. Receiving following error.
-products.Product.category: (fields.E300) Field defines a relation with model 'Category', which is either not installed, or is abstract.
-Fix was found on Slack.  Even though the models were imported the foreignkey model name still needed to be prefixed with app name i.e. categories.Category before the system would make the relationship.
-- Had issue rendering no_image using {{ MEDIA_URL }} template prefix.  Resolve was to include "django.template.context_processors.media" in TEMPLATES object of settings.py 
-- When adding search for subcategory name to products query function it produced following error:
-Related Field got invalid lookup: icontains
-I found through this [stackoverflow URL](https://stackoverflow.com/questions/11754877/troubleshooting-related-field-has-invalid-lookup-icontains) that this was because subcategory is a foreign key in teh products model.
-To resolve this I had to add the foreign key field with a search fields option in the ProductAdmin model 
-```
-search_fields = ['subcategory__name']
-```
-Then explicity call out the name in query logic in the products view:
-```
-queries = Q(name__icontains=query) | Q(summary__icontains=query) | Q(subcategory__name__icontains=query)
-```
-* When adding the code to render the image widget more cleanly I found it difficult rendering the two crispy-form image widgets as a pair of side-by-side bootstrap col-6 divs.
-Have read several articles and tried several crispy forms helpers and widget tweaker addons but have been unable to resolve completeely.  At present the divs are both col-6 divs but they are stacking as opposes to inline. Will need to come back to this later.
-* Encountered two issues when testing bag app last night. The first, initially appeared to be specific to items that did not have image urls datatabase.  Then discovered template syntax was also a factor.  Added in some defensive code to check for multiple locations, change the template syntax and it resolved problem.
- Error 1:
-```
-ValueError at /bag/
-The 'image1' attribute has no file associated with it.
-```
-* offending code.
-```
-{% for item in bag_items %}
-    <tr>
-        <td class="p-3 w-25">
-            <img class="img-fluid rounded" src="{{ item.product.image1.url }}">
-        </td>
-```
-* fix
-```
-<td class="p-3 w-25">
-    <img class="img-fluid rounded" src="
-        {% if item.product.image %}
-            {{ item.product.image }}
-        {% elif item.product.image1_url %}
-            {{ item.product.image1_url }}  
-        {% else %}
-            {{ MEDIA_URL }}noimage.png
-        {% endif %}">
-</td>
-```
-* The second occurs only if the bag form updated without changing the entry.  It therefore posts the qunatity as an empty string.  The view then fails because it is expecting integer value.
-```
-invalid literal for int() with base 10: ''
-....
-quantity	''
-```
-* offending code.
-```
-def update_bag(request, item_id):
-    quantity = int(request.POST.get('quantity'))
-    size = None
-```
-* Resolved by making the input field required on this form therefore preventing it being subitted without a value being altered.
-```
-<input class="form-control form-control-sm qty_input w-100 rounded mt-1" type="number" name="quantity" placeholder="{{ item.quantity }}" min="0" max="99" required>
-```
-* long text in the manage categories template was creating oversized card.  Resolved setting text-truncate on field classes. 
-
-
-***
-
-[Back to Contents](#table-of-contents)
-
