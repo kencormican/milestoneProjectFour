@@ -75,6 +75,14 @@
 [![Build Status](https://travis-ci.com/kencormican/milestoneProjectFour.svg?branch=master)](https://travis-ci.com/kencormican/milestoneProjectFour)
 
 --------
+
+<h2 align="center"><img src="assets/images/mockup1.jpg"></h2> 
+
+***
+
+<h2 align="center"><img src="assets/images/mockup2.jpg"></h2> 
+
+--------
 ### Placeholder dummy account details
 --------
 
