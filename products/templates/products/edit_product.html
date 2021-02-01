@@ -32,12 +32,9 @@
             <div class="col-12 col-md-8 ">
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <!-- {{ form | crispy }} -->
                     {% for field in form %}
                         {% if field.name == 'image1' or field.name == 'image2' %}
-                            <div class="col-6 m-0 p-0">
-                                {{ field }}
-                            </div>
+                            {{ field }}
                         {% else %}
                         {{ field|as_crispy_field }}
                         {% endif %}
@@ -59,10 +56,15 @@
 {% block postloadjs %}
     {{ block.super }}
     <!-- provide notification to user which file has been select for image widget -->
+    <!-- widget uses same id for each image so js used to traverse dom and isolate correct element -->
     <script type="text/javascript">
-        $('#new-image').change(function() {
-            var file = $('#new-image')[0].files[0];
-            $('#filename').text(`Image will be set to: ${file.name}`);
+        $("[name='image1']").change(function() {
+            var file = $(this)[0].files[0];
+            $(this).parent().next().children('#filename').text(`Image will be set to: ${file.name}`);
+        });
+        $("[name='image2']").change(function() {
+            var file = $(this)[0].files[0];
+            $(this).parent().next().children('#filename').text(`Image will be set to: ${file.name}`);
         });
     </script>
 {% endblock %}
