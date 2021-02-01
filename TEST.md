@@ -3,32 +3,172 @@
 **<details><summary>Testing</summary>**
 
 * [Testing](#testing)
-* [Stripe Checkout testing](#stripe-checkout-testing)
+* [Testing Stripe Credit Card Transactions](#testing-stripe-credit-card-transactions)
+</details>
+
+**<details><summary>Testing User Stories</summary>**
+* [Testing User Stories from User Experience (UX) Section](#testing-user-stories-from-user-experience-(ux)-section)
+* [First Time Visitor Goals](#first-time-visitor-goals)
+* [Returning Visitor Goals](#returning-visitor-goals)
+* [Admin User Goals](#admin-user-goals)
+* [Developer Goals](#developer-goals)
+</details>
+
+**<details><summary>Post Production Testing</summary>**
 * [Post Production Testing](#post-production-testing)
 * [Post Production Bugs Found](#post-production-bugs-found)
+</details>
+
+**<details><summary>Pre Production Testing</summary>**
 * [Pre Production Testing](#pre-production-testing)
 * [Pre Production Bugs Found](#pre-production-bugs-found)
-
 </details>
+
 
 
 # Testing
 
-## Stripe Checkout testing
-To emulate card transactions please you the following card codes.
+## Testing Stripe Credit Card Transactions
+
+* If testing Stripe Credit Card Checkout Transactions please use the following test codes to emulate card transactions on the Stripe System:
 ```
-Your integration handles payments that don’t require authentication
-0/3 tests completed
-4242424242424242
+If your Your integration handles payments that don’t require authentication:
+Card Number: 4242424242424242
 Your integration handles payments that require authentication
-0/4 tests completed
-4000002500003155
+Card Number: 4000002500003155
 Your integration handles card declines codes like insufficient_funds
-0/4 tests completed
-4000000000009995
+Card Number: 4000000000009995
 ```
+* Note The Webhooks events can be accessed directly from the Stripe dashboard, selecting developers, the events.
+
+***
+[Back to Contents](#table-of-contents)
+
+### Testing User Stories from User Experience (UX) Section
+
+#### First Time Visitor Goals
+Ask Num | Scenario                                                                                                                                              |
+:--     | :---------------------------------------------------------------------------------------------------------------------------------------------------  |
+1       | As a First Time Visitor, I want to easily understand the main purpose of the site?                                                                    |
+2       | As a First Time Visitor, I want to be able to easily navigate the site and search for a product based on Category, Subcategory or my own Criteria     |
+3       | As a First Time Visitor, I would like to be able to select and view detailed product information including price, rating and size where applicable    |
+4       | As a First Time Visitor, I would like the ability to purchase an item or quantity of items, adding them to my shopping basket in a single step. 	    |
+5       | As a First Time Visitor, I would like the ability to view a summary of the contents of my shopping basket.                	       					|
+6       | As a First Time Visitor, I would like the ability to edit or delete the contents of my shopping basket.                                               |
+7       | As a First Time Visitor, I would like the ability to register to the shopping site and store my details                                               |
+8       | As a First Time Visitor, I would like the ability to make a purchase using a secure process   		                                                |
+
+***
+[Back to Contents](#table-of-contents)
+
+#### To facilitate the First Time Visitor Goals:
+* User Goal #1. 
+    - Upon entering the site, users are greeted with clean and easily readable Banner, Navigation and Callout messages highlighting the sites intent. 
+    - The Landing Page Hero image is intended to both, enhance the site's theme, and immediately communicate its purpose.
+    - I felt that a basic light blue theme reflected the outdoor winter sports nature of this ecommerce site.
+    - Functionality is replicated but represented differently on Mobile & Tablet Views.
+    - Finally, per similar winter sports related e-commerce sites there are nav links to the main categories emphasised directly on the Landing Page Hero Image.
+* User Goal #2.
+    - Beneath  that they are presented with one of three high level options via Three discrete Nav areas:
+    - Account and Store Infomation
+    - Search Query, Brand Logo anchor or
+    - Main site nav where they are invited to navigate the stores products.
+* User Goal #2. 
+    - Per Sample production sites that I reviewed as preparation for this site the product nav is divided into Category (All, Men, Women, Kids, Generic) and subcategory(Snowboard, Freeskie etc) views.
+* User Goal #3. 
+    - Users are provided with a large amount of detail on the main products page itself. This includes Name, Category, Price, Rating, & Stock Level.  
+    - However, this is expanded upon further in the product detail view.  By select the image on the products page the user is brought to the individual Product's detailed view.  
+    - Here the customer is provided with additional information such a product summary and product detailed information on the tabbed panel at the base of the page. 
+    - The user is also provided with multiple product images (if available) in the form of a carousel or a placeholder image if no image is available.
+* User Goal #4. 
+    - To the right of the image carousel on desktop views or directly beneath the carousel on mobile views the user is provided with other details such as Stock Keeping Unit number, Sizes if available,  a Back to Shop and an Add to Bag  button.  
+    - If they choose to add one or more items from the Add to Bag select button it is immediately reflected in the Bag icon in the Top Nav area.
+* User Goal #5. 
+    - The user is provided with a summary of their shopping basket contents of by clicking the shopping back icon on the top right of the page.
+    - The Bag Icon is itself interactive changing colour when items are added to it and automatically displaying the basket total amount directly underneath it.
+    - Within the Bag summary item, the user is presented with an empty bag message and a link back to the shop if they select it without having purchased anything.
+    - If they have purchased one or more items, for each lineitem they are presented with an image card representing the purchase, the product name & sku, price, quantity & subtotal.
+    - If the product has sizes each product size grouping is represented by a single line item.
+    - Finally, at the base of the Bag is a Grand total calculating the delivery charges based on the FREE-DELIVERY values in the settings.py file and bag tools functions.
+* User Goal #6. 
+    - The end user is also provided with button to delete or update lineitem quantities.
+    - Any changes are immediately reflected in the lineitem values, subtotal and grand total ammounts.
+    - Toast Notification messages are provided as a further feedback mechanism for the end user.
+* User Goal #7.
+    - Registered users are provided with the ability to update and store there details via form inputs on the My Profile or Checkout pages.
+    - The Checkout and Profile views have been wired up such that an order history summary is provided on the Profile page and can be linked to an invidual cached order using the order_history() and checkout_success() methods.
+ User Goal #8.
+    - A secure checkout with redundant back functionality has been provided via Stripe, the checkout form and associated views.  Backend form validation is present to mitigate against the end user breaking the transaction. Webhooks are also used to complete the transactions in the event a form submission partilally completes for any reason. This can be emulated by setting the commenting out the form.submit() method in the stripe_elements.js code.
+
+***
+[Back to Contents](#table-of-contents)
+
+#### Returning Visitor Goals
+Ask Num | Scenario                                                                                                                                              |
+:--     | :---------------------------------------------------------------------------------------------------------------------------------------------------  |
+1       | As a Returning Visitor, I would like the ability to login or logout using my profile credentials           			                                |
+2       | As a Returning Visitor, I would like the website to provide a facility to display my stored details                   				                |
+3       | As a Returning Visitor, I would like the website to provide a facility to sort products based on category, product price, rating etc          		|
+
+* User Goal #1. 
+    -  As a returning registered user, the functionality provided view the allauth package provides a standardised means (obviously styled to adhere to the sites theme) of registering, sending confimation emails, logging in/out using stored credentials, resetting passwords etc.
+* User Goal #2.   
+    - The profiles view, associated templates and forms provide the user with the ability to not only inspect their stored details but to amend them.  As described above this functionality is also wired up to the checkout/ordering process such that a registered end user can inspect their order history.
+* User Goal #3.   
+    - The products template and the main nav elements provide end users with the ability to filter or sort products based on price, rating, name and category.  The sort select box on the main products page is also wired up an event listener in products.js augmenting the products view itself by dynamically facilitating a change in sort direction on the page.
+
+***
+[Back to Contents](#table-of-contents)
+
+#### Admin User Goals
+Ask Num | Scenario                                                                                                                                              |
+:--     | :---------------------------------------------------------------------------------------------------------------------------------------------------  |
+1       | As an Admin User, I would like to be able to perform the full set of CRUD operations on categories                                    				|
+2       | As an Admin User, I would like to be able to perform the full set of CRUD operations on products                                        				|
+
+* User Goal #1. 
+    - Admin users can now perform the full set of CRUD opearations on the subcategories.
+    - The Categories view and associated template provide a super user with a list of subcategory cards diplayed responsively at diffent breakpoints.
+    - The cards contain both the subcategory name and freindly name and allow the user to edit the friendly name only, or delete the category via one of two buttons on the card itself.
+    - Defensive logic has been introduced firstly on the front end via the delete modal and secondly on the edit view, preventing users from assigning a friendly name already on the database, while also facilitating the empty field.   
+    - On the catergories page directly above the subcategory cards themselves I've provided an add button allowing the user the create brand new subcategories on the database.  
+    - Again, defensive logic has been introduced on the backend preventing the addition of a used subcategory name or friendly name.
+    - Note* When adding new subcategories I've set the default the new so that the tag can be used to auto populate the New Offers Nav in the Main Nav area.
+    - I've chosen not to make this an alterable value in the template itself, assuming any similar store will have a base product set which will have 'new' set to false by default and that the store owner would prefer to have new categories automatically added to the New Offers Nav section.
+    - This could be altered  easily enough if the business logic changed.
+    - Note* if you want to test this logic on your own clone iwthout having to manually create the necessary categories and products I've provided two sets of subcategory and products fixtures with this repo.
+    - python3 manage.py loaddate subcategories and products with load the categories and associated products with the new tag set to false.
+    - python3 manage.py loaddate new_subcategories and new_products with load the categories and associated products with the new tag set to True.
+* User Goal #2. 
+    - I've provided the superuser with the Product CRUD capabilities in a simlar fashion to that of categories views.  
+    - There are a couple of key difference in that the add product url is accessed via the top nav and the edit and delete functions can be accessed via anchor elements in either the all products template or the product detail templete.
+    - Again I've provided defensive front end logic in the form of a modal on delete.
+    - I've chosen to diverge from the tutorials in providing to option to add two images for the detailed view carousel. In doing so I had to create some bespoke js code to capture the change event on both widgets given the tutorial logic uses an id common to both.
+
+
+***
+[Back to Contents](#table-of-contents)
+
+#### Developer Goals
+Ask Num | Scenario                                                                                                                                              |
+:--     | :---------------------------------------------------------------------------------------------------------------------------------------------------  |
+1       | As a developer, I would like to be able to provide the back end redundancy described in Stripe Webhook tutorials	                        			|
+2	    | As a developer and time permitting, I would like to be able to be in a position to present a clean secure, scalable and error free site	            |
+
+* User Goal #1. 
+    - Thankfully I had just enough time to introduce the Webhook defensive logic on the checkout related views. This can be tested by emulating a break in form submission. This can be achieved by commenting out the form_submit() method in the stripe_elements.js static file, submitting a new order and checking the webhook event on the stripe dashboard for the "created using wenhook" as opposed to "created using databse" response text.
+* User Goal #2.
+    - Time was my enemy for this project but I believe I achieved the majority of my origianl goals as a developer. These include securing the Category, Product & Profile views using backend defensive logic.  Making the site a little more scalable with the CRUD and Autopopulate functionality provided by the categories templates and views.  A relatively clean delivery in that where store specific details, such as those in the contact form, or indeed the FREE_DELIVERY & RETURN related material,  can be variabalised or centralised, they were.
+    - If I had more time I would iron out some of the styling limitations, introduce some further js around data toggling on both menus and create some automation functionality on the about app but I beleieve I have achieved all I can in the time alloted.
+
+
+***
+[Back to Contents](#table-of-contents)
+
 
 ## Post Production Testing
+##### Note* I've placed the Post Production tesing section before the Pre Production section for two reasons.  One, it more closely mirrors the end user goals and associated testing. Two it is less verbose. That said please read the pre-production section if you wish to get an understanding of the types of hurdles I encountered during the development process.
+
 |TesT No.|Page           |Test Description                     |Anonymous|Registered          |Superuser|Chrome|Edge|Comments                                                         |Corrected|
 |--------|---------------|-------------------------------------|---------|--------------------|---------|------|----|-----------------------------------------------------------------|---------|
 |1       |Home           |Landing Page Nav links working       |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
@@ -162,13 +302,20 @@ Your integration handles card declines codes like insufficient_funds
 [Back to Contents](#table-of-contents)
 
 ## Post Production Bugs Found
-
-
+* Manage Categories. While the add, edit and delete views were secure the main categories nav template was still accessable for none admin users.  To resolve I assigned the @login_required decorator required' and if superuser statements to the manage_categories() view.
+* Add/Edit Products. The change event js used in pre-production deployment targetted an id common to both widgets and when a second file was uploaded its details were not updated correctly.  Had to traverse the DOM to action the apporiate element.
+* Bag empty template was failing to provide appropriate feedback due to an incorrectly assigned comment.  This was also affecting some of the bag toast messages. Was resolved by reactivating commented out code.
+* Email Confirmation Currency displayed was incorrect.  Resolved by amending the appropriate template. 
 ***
 [Back to Contents](#table-of-contents)
 
+
+
 ## Pre Production Testing
-- During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() methid used to standardise form iputs to dictionary before check.
+
+##### Please note * that this section is written in the present tense and captures issues as and when I encounterd them so please view it n that context.
+
+- During cretaion of Add Category view, validated that category name did not already exist through use of form cleaned_data() method and multiple iterations of add task. cleaned_data() method used to standardise form iputs to dictionary before check.
 Also confirmed Boolean True attribute assigned correctly to new field upon creation through use of django admin.
 - When testing the CRUD functionality for the categories app I found an issue with the delete view after introducing a modal confirmation window.
 the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
@@ -176,9 +323,9 @@ the same category id was being targetted regardless if the catergory selected.  
 Toasts were tested against form validation for display, add, edit and delete operations.
 - Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  Knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
 - Contact app form submission was tested for both internal external comms to development console level the external email backend.
-I also validated insertion of appropriate variable details in conact and confirm email text templates.
+I also validated insertion of appropriate variable details in contact and confirm email text templates.
 Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
-- When testing the tabbed views I found it very difficult to develop the logic to approriately render the tabs with assoicated sub menu searches results while also highlighting the appropriate tab.  The plan is to complete the logic for all products and then move onto the Men, Women and Kids tab views.  At this point in time I think teh simplest way to approach it is to generate independent views and templates for the tob level categories.  
+- When testing the tabbed views I found it very difficult to develop the logic to approriately render the tabs with assoicated sub menu searches results while also highlighting the appropriate tab.  The plan is to complete the logic for all products and then move onto the Men, Women and Kids tab views.  At this point in time I think the simplest way to approach it is to generate independent views and templates for the tob level categories.  
 - When testing the search functionality in the products view I found that none of the catergory names were being returned in results. When I initially added the logic to return same it responded with an error.  See Bugs for resolution to problem.
 - Gave whitenoise another crack of the whip last night.  This time went at it with the knowledge & acceptance that whitenoise treats media files differently to other static files, that per these [support notes](assets/support_info/whitenoise_media.jpg) it was not designed to serve user uploaded media, and that a Django project when deployed to Heroku using whitenoise serves media files differently when in DEBUG mode thand with DEBUG disabled.  It worked cleanly using the below setup:
 from bash command line install whitenoise and freeze new dependency to requirements.txt:
@@ -261,7 +408,7 @@ else:
     }
 ```
 
-* When testing the add category functionality I initially had difficulty loading the newly added categories to teh main-nav template because it was part of the base template infrastructure, needed to be available for all apps and didn't have its own view.  So needed a way to pass data from the backend through to the front end without explicitly being called by an app.  I found a very useful [stack overflow](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi) link explaining that it needed to be created as a user generated context processor and then loaded to the of base infrastructure via settings.py under TEMPLATE options per below.
+* When testing the add category functionality I initially had difficulty loading the newly added categories to the main-nav template because it was part of the base template infrastructure, needed to be available for all apps and didn't have its own view.  So needed a way to pass data from the backend through to the front end without explicitly being called by an app.  I found a very useful [stack overflow](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi) link explaining that it needed to be created as a user generated context processor and then loaded to the of base infrastructure via settings.py under TEMPLATE options per below.
 ```
 context_processors.py
 
@@ -316,7 +463,7 @@ main-nav.html
 * Securing Views - Products, Categories and Profile views secured on back-end against unauthorised users. Add, Edit and Delete views protected and testing clean.  Risk of URLs based post and delete fabrication requests mitigated by introducing @login_required decorators.  Unless user logged in such requests will be redirected back to home page. Further defensive logic has been introduced by checking if user is superuser in Add, Update & Delete views. If not the users are provided with error message and redirected back to home page.
 * Shopping Bag CRUD functionality testing clean for add, edit and delete operations.  Bag also tested for products with and without sizes, with and without images, with and without image urls.  Initially encountered some minor problems with post on none operations and image template syntax but introduced some defensive logic to mitigate same.
 * Checkout app testing clean and introduced redundancy to ordering process using Webhook Handler.  Order tested for completion using database and webhook datasets.  Form submission failure emulated by commenting out form.submit() method in stripe js code and submitting order. Response was order created using WH.  When form.submit() re-activated in js code response confirmed to be order created using database.
-* Profile order history update testing clean for registered users and working when stripe element form submit is diabled proving out webhook redundancy.  Link between indivual history order  and checkout view also testing clean.
+* Profile order history update testing clean for registered users and working when stripe element form submit is disabled proving out webhook redundancy.  Link between individual history order  and checkout view also testing clean.
 * Order Email confirmation testing cleanly to both console and email backend.
 * Production site wired up to AWS S3. Static files and Images uploading and displaying correctly.  
 ***
@@ -324,7 +471,7 @@ main-nav.html
 [Back to Contents](#table-of-contents)
 
 ## Pre Production Bugs Found
-- Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help fo mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
+- Issue with navbar toggler.  When elements added to mobile-header template whitespace introduced on left of row container for main nav.  Issue was resolved with help from mentor. Required zero margin on toggler list-inline-items and zero padding on nav expand in base tenmplate. 
 - Had difficulty getting Travis CI to integrate with repo.  Was a bit of a noob when it came to using Travis but with support from Stephen in Tutor team I found that the issue related settings config for development environment. Resolution to problem was changing the logic around database if else statement.
 - Wanted to use Heroku deployment with staticfiles as part of ongoing testing for solution and as fall back in the event time ran short on submission.  Initially had difficulty getting css static files to load but used whitenoise and modification of settings.py middleware & statict storage to resolve same.  Unfortuantely still having difficulty with allauth components.
 - On Profile and Contact form templates noted that I cannot apply margin or padding to columns or rows.  Used flexbox css to resolve spacing issue on contact details. Margin and padding problems related to incorrect use of Bootstrap helper classes.
@@ -347,7 +494,7 @@ Fix was found on Slack.  Even though the models were imported the foreignkey mod
 - Had issue rendering no_image using {{ MEDIA_URL }} template prefix.  Resolve was to include "django.template.context_processors.media" in TEMPLATES object of settings.py 
 - When adding search for subcategory name to products query function it produced following error:
 Related Field got invalid lookup: icontains
-I found through this [stackoverflow URL](https://stackoverflow.com/questions/11754877/troubleshooting-related-field-has-invalid-lookup-icontains) that this was because subcategory is a foreign key in teh products model.
+I found through this [stackoverflow URL](https://stackoverflow.com/questions/11754877/troubleshooting-related-field-has-invalid-lookup-icontains) that this was because subcategory is a foreign key in the products model.
 To resolve this I had to add the foreign key field with a search fields option in the ProductAdmin model 
 ```
 search_fields = ['subcategory__name']
@@ -357,7 +504,7 @@ Then explicity call out the name in query logic in the products view:
 queries = Q(name__icontains=query) | Q(summary__icontains=query) | Q(subcategory__name__icontains=query)
 ```
 * When adding the code to render the image widget more cleanly I found it difficult rendering the two crispy-form image widgets as a pair of side-by-side bootstrap col-6 divs.
-Have read several articles and tried several crispy forms helpers and widget tweaker addons but have been unable to resolve completeely.  At present the divs are both col-6 divs but they are stacking as opposes to inline. Will need to come back to this later.
+Have read several articles and tried several crispy forms helpers and widget tweaker addons but have been unable to resolve completely.  At present the divs are both col-6 divs but they are stacking as opposes to inline. Will need to come back to this later.
 * Encountered two issues when testing bag app last night. The first, initially appeared to be specific to items that did not have image urls datatabase.  Then discovered template syntax was also a factor.  Added in some defensive code to check for multiple locations, change the template syntax and it resolved problem.
  Error 1:
 ```
@@ -385,7 +532,7 @@ The 'image1' attribute has no file associated with it.
         {% endif %}">
 </td>
 ```
-* The second occurs only if the bag form updated without changing the entry.  It therefore posts the qunatity as an empty string.  The view then fails because it is expecting integer value.
+* The second occurs only if the bag form updated without changing the entry.  It therefore posts the quantity as an empty string.  The view then fails because it is expecting integer value.
 ```
 invalid literal for int() with base 10: ''
 ....

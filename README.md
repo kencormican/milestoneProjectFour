@@ -108,26 +108,12 @@
 </details>
 </details>
 
-<!-- Deployment Prerequisites
-Configure Stripe Dependencies
-Configure AWS S3 Dependencies
-AWS CORS Config
-Deploy To Heroku
-Setup Requirements:
-Setup Procfile:
-Heroku:
-Create a new application:
-Connecting to the GitHub repository:
-Setup the Config Vars.
-Automatic Deployment:
-The Project is now deployed -->
-
-
 
 **<details><summary>Testing</summary>**
 
-* [Testing](TEST.md)
+<p>Note* this READme uses as seperate TEST.md to capture the testing components.</p>
 
+* [Testing](TEST.md)
 </details>
 
 ***
@@ -179,12 +165,12 @@ In creating the site, the developer should expose the learnings from the HTML, C
 
 1. Design, develop and implement a full stack web application, with a relational database, using the Django/Python full stack MVC framework and related contemporary technologies.
 2. Design and implement a relational data model, application features and business logic to manage, query and manipulate relational data to meet given needs in a particular real-world domain.
-3. Identify and apply authorisation, authentication and permission features in a full stack web application solution
-4. Design, develop and integrate an e-commerce payment system in a cloud-hosted full stack web application
+3. Identify and apply authorisation, authentication and permission features in a full stack web application solution.
+4. Design, develop and integrate an e-commerce payment system in a cloud-hosted full stack web application.
 5. Document the development process through a git based version control system and deploy the full application to a cloud hosting platform.
-6. Test the application through the development, implementation and deployment stages
-7. Deploy a final version of the full-stack application code to a cloud-based hosting platform (e.g. Heroku) and test to ensure it matches the development version 
-8. Demonstrate and document the development process through a version control system 
+6. Test the application through the development, implementation and deployment stages.
+7. Deploy a final version of the full-stack application code to a cloud-based hosting platform (e.g. Heroku) and test to ensure it matches the development version .
+8. Demonstrate and document the development process through a version control system. 
 
 ***
 
@@ -243,7 +229,7 @@ Ask Num | Scenario                                                              
 
 ## In scope
 
-- The intent from the outset of the scoping process was to attempt is to meet all user requirements and provide additional functionality where possible within the existing time constraints.
+- The intent from the outset of the scoping process was to attempt to meet all user requirements and provide additional functionality where possible within the existing time constraints.
 - Given the extent of the deliverables and the very tight timelines (submission must be made by end of Jan'21), I thought it prudent to utilise the Tutorial code where possible without making my site derivative. To that end I've decided to create Nine Django Apps - Home, Contact, About, Profile, Categories, Products,  Shopping Bag & Checkout 
 
 ***
@@ -366,7 +352,7 @@ message                 | models.TextField(null=False, blank=False)             
 # Skeleton
 
 ## Navigation
--   Having reviewed several online ski shops it appears to be convention to allow the end user to filter based on gender and age as well as product type. Snow/Skiwear is categorised not only by product type but whether it's targeting Men, Women or Children.  
+-   Having reviewed several online ski shops it appears to be the convention to allow the end user to filter based on gender and age as well as product type. Snow/Skiwear is categorised not only by product type but whether it's targeting Men, Women or Children.  
 There are several approaches to achieving this on the production sites, however, I've decided to use a three layer tabbed nav menu on desktop views and a two layer collapsible sidenav menu on mobile/tablet views.  
 In maintaining this convention, it is hoped that it will make the site more intuitive for end users.
 - In addition to the above I've also used an collapsible search box on mobile/tabled view and a fixed top nav search on desktop views.  
@@ -445,7 +431,7 @@ In maintaining this convention, it is hoped that it will make the site more intu
 ## Colour Scheme
 -   I felt that a basic light blue theme contrasted against a white background was both aesthetically pleasing and reflected the outdoor winter sports nature of this ecommerce site. 
 -   Additional Colour is to be introduced via the poster and images/urls associated with the individual products.
--	Re the Landing Page , I've decided use a Hero image that immediately communicates the nature of the site and enhances the existing colour the,.
+-	Re the Landing Page , I've decided to use a Hero image that immediately communicates the nature of the site and enhances the existing colour theme.
 
 ## Typography
 -   I've decided to use Roboto family of fonts as defaults with Sans Serif acting as the fallback alternatives.
@@ -757,7 +743,7 @@ Heroku looks for this Procfile to find out which file runs the app and how to ru
 [Back to Contents](#table-of-contents)
 
 #### Connecting to the GitHub repository:
-There are several ways to connect this or any app. You can use Heroku CLI to connect as outlined on the Heroku site. However its simpler to deploy the site from Github, 
+There are several ways to connect this or any app. You can use Heroku CLI to connect as outlined on the Heroku site. However, it's simpler to deploy the site from Github, 
 that way you only need to push to GitHub.
 
 1.  Select Github, from the Deployment method section, on the Deploy Tab.
