@@ -100,7 +100,7 @@ body {
 .desktop-searchbar{
     margin-bottom: auto;
     margin-top: auto;
-    background-color: rgba(30, 144, 255, 0.2);
+    background-color: rgba(30, 143, 255, 0.63);
     border-radius: 20px;
     padding: 0;
 }
@@ -130,8 +130,13 @@ body {
 }
 
 
-.desktop-searchbar:hover > .desktop-search-icon{
+.desktop-searchbar:hover .desktop-search-icon{
     background: dodgerblue;
+    color: white !important;
+}
+
+.desktop-search-icon:hover {
+    background-color: rgba(30, 143, 255, 0.63);
     color: white;
 }
 
@@ -147,14 +152,15 @@ body {
 #btn-mob-search {
     margin-top: 4px !important;
     background-color: dodgerblue;
-    color: white;
-    transition: width 1.5s linear;
+    color: white !important;
+    /* transition: width 0s linear; */
 }
+
 
 #btn-mob-search:hover {
     background-color: white;
     color: dodgerblue;
-    transition: width 1.5s linear;
+    /* transition: width 0s linear; */
 }
 
 /* Mobile Searchbox */
@@ -168,21 +174,16 @@ body {
 }
 
 .mob-searchbar:hover {
-    background-color: rgba(243, 247, 250, 0.8);
-    /* transition: width 0.1s linear; */
+    background-color: rgba(243, 247, 250, 0.8); 
+    transition: width 0.1s linear;
 }
 
 .mob-searchbar input::placeholder {
     color: #6c757d;
-    /* margin: 0px !important;
-    padding: 0px !important; */
-    
 }
 
 .mob-searchbar p {
     color: #aab7c4;
-    /* margin: 0px !important
-    padding: 0px !important; */
 }
 
 
@@ -192,11 +193,7 @@ body {
     outline: 0;
     background: none;
     width: 0;
-    height: 100%;
-    transition: width 0.5s linear;
-    /* margin-bottom: 0px !important;
-    margin-top: 0px !important; */
-    /* padding: 1px !important; */
+    transition: width 1.5s linear;
 }
 
 .mob-search-icon{
