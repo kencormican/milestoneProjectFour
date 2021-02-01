@@ -9,9 +9,17 @@ from .forms import AddSubcategoryForm, EditSubcategoryForm
 
 # Create your views here.
 
+@login_required
 def manage_categories(request):
     """ This view renders the manage categories page and allow
     editing and deletion of the subcategories in the database """
+
+    if not request.user.is_superuser:
+        messages.error(
+            request, """Apologies, this functionality is only avialble to
+            store administrators"""
+            )
+        return redirect(reverse('home'))
 
     subcategories = Subcategory.objects.all()
 

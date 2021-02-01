@@ -29,12 +29,7 @@
         </div>
         <div class="row">
             <div class="col mt-4">
-                <!-- {% if bag_items %}
-                {{ bag_items }}
-                    <br>
-                    <br>
-                    {{ request.session.bag }} -->
-
+                {% if bag_items %}
                     <div class="table-responsive rounded">
                         <table class="table table-sm  ">
                             <thead class="text-black thead-light table-borderless"> 
@@ -133,9 +128,7 @@
                                     </a>
                                 </td>
                             </tr>
-                        </table>            
-
-
+                        </table>
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
