@@ -29,124 +29,134 @@ Your integration handles card declines codes like insufficient_funds
 ```
 
 ## Post Production Testing
-|TesT No.|Page           |Test Description                     |Anonymous|Registered|Superuser|Chrome|Edge|Corrected|Comments|
-|--------|---------------|-------------------------------------|---------|----------|---------|------|----|---------|--------|
-|1       |Home           |Top Nav anchors working              |         |          |         |      |    |         |        |
-|2       |Home           |Top Nav responsive                   |         |          |         |      |    |         |        |
-|3       |Home           |Mobile Top Nav anchors working       |         |          |         |      |    |         |        |
-|4       |Home           |Mobile Top Nav responsive            |         |          |         |      |    |         |        |
-|5       |Home           |Nav Filtering Applied Desktop        |         |          |         |      |    |         |        |
-|6       |Home           |Nav Filtering Applied Mobile         |         |          |         |      |    |         |        |
-|7       |Home           |Landing Page Nav links working       |         |          |         |      |    |         |        |
-|8       |Home           |Landing Page Nav links responsive    |         |          |         |      |    |         |        |
-|9       |Home           |Category Nav links working           |         |          |         |      |    |         |        |
-|10      |Home           |Category Nav Links rendering         |         |          |         |      |    |         |        |
-|11      |Home           |Category Nave Links responsive       |         |          |         |      |    |         |        |
-|12      |About          |Rendering correctly at breakpoints   |         |          |         |      |    |         |        |
-|13      |Contact        |Rendering correctly at breakpoints   |         |          |         |      |    |         |        |
-|14      |Contact        |Form responsive                      |         |          |         |      |    |         |        |
-|15      |Contact        |Form validation working              |         |          |         |      |    |         |        |
-|16      |Contact        |Environmental variables displayed    |         |          |         |      |    |         |        |
-|17      |Contact        |Success template rendering correctly |         |          |         |      |    |         |        |
-|18      |Contact        |Email backend working                |         |          |         |      |    |         |        |
-|19      |Contact        |Email templates working              |         |          |         |      |    |         |        |
-|20      |Contact        |Internal & External Mails sent       |         |          |         |      |    |         |        |
-|21      |Contact        |Toasts working                       |         |          |         |      |    |         |        |
-|22      |Categories     |View Secure                          |N/A      |N/A       |         |      |    |         |        |
-|23      |Categories     |Rendering correctly at breakpoints   |N/A      |N/A       |         |      |    |         |        |
-|24      |Categories     |Anchor/Button elements working       |N/A      |N/A       |         |      |    |         |        |
-|25      |Categories     |Categories jinga templates working   |N/A      |N/A       |         |      |    |         |        |
-|26      |Categories     |Add, Edit and Delete links working   |N/A      |N/A       |         |      |    |         |        |
-|27      |Categories     |Delete Modal Working                 |N/A      |N/A       |         |      |    |         |        |
-|28      |Categories     |Delete view working                  |N/A      |N/A       |         |      |    |         |        |
-|29      |Categories     |Delete view secure                   |N/A      |N/A       |         |      |    |         |        |
-|30      |Categories     |Toasts working                       |N/A      |N/A       |         |      |    |         |        |
-|31      |Add Category   |view secure                          |N/A      |N/A       |         |      |    |         |        |
-|32      |Add Category   |view and url working                 |N/A      |N/A       |         |      |    |         |        |
-|33      |Add Category   |Template responsive                  |N/A      |N/A       |         |      |    |         |        |
-|34      |Add Category   |Form validation working              |N/A      |N/A       |         |      |    |         |        |
-|35      |Add Category   |Defensive logic working              |N/A      |N/A       |         |      |    |         |        |
-|36      |Add Category   |Toasts working                       |N/A      |N/A       |         |      |    |         |        |
-|37      |Add Category   |Automatic update of New Offers Nav   |         |          |         |      |    |         |        |
-|38      |Add Category   |New Offer nav filter correct         |         |          |         |      |    |         |        |
-|39      |Edit Category  |view secure                          |N/A      |N/A       |         |      |    |         |        |
-|40      |Edit Category  |view and url working                 |N/A      |N/A       |         |      |    |         |        |
-|41      |Edit Category  |Template responsive                  |N/A      |N/A       |         |      |    |         |        |
-|42      |Edit Category  |Form validation working              |N/A      |N/A       |         |      |    |         |        |
-|43      |Edit Category  |Defensive logic working              |N/A      |N/A       |         |      |    |         |        |
-|44      |Edit Category  |Toasts working                       |N/A      |N/A       |         |      |    |         |        |
-|45      |Products       |Anchor elements working              |         |          |         |      |    |         |        |
-|46      |Products       |Filtering Working                    |         |          |         |      |    |         |        |
-|47      |Products       |Filter counting working              |         |          |         |      |    |         |        |
-|48      |Products       |Filter helper links working          |         |          |         |      |    |         |        |
-|49      |Products       |Sorting  Working                     |         |          |         |      |    |         |        |
-|50      |Products       |Top & Mobile Search inputs working   |         |          |         |      |    |         |        |
-|51      |Products       |Top & Mobile Search responsive       |         |          |         |      |    |         |        |
-|52      |Products       |Product lables & pricing  correct    |         |          |         |      |    |         |        |
-|53      |Products       |Responsive rating working            |         |          |         |      |    |         |        |
-|54      |Products       |Responsive Qty & Out of stock correct|         |          |         |      |    |         |        |
-|55      |Products       |View Secure                          |         |          |         |      |    |         |        |
-|56      |Products       |Edit and Delete links working        |N/A      |N/A       |         |      |    |         |        |
-|57      |Products       |Image working for file or url        |         |          |         |      |    |         |        |
-|58      |Products       |No image file working                |         |          |         |      |    |         |        |
-|59      |Product Details|Select and redirect working          |         |          |         |      |    |         |        |
-|60      |Product Details|Anchor elements working              |         |          |         |      |    |         |        |
-|61      |Product Details|Carousel working                     |         |          |         |      |    |         |        |
-|62      |Product Details|Tab Nav working                      |         |          |         |      |    |         |        |
-|63      |Product Details|Responsive rating working            |         |          |         |      |    |         |        |
-|64      |Product Details|Responsive Qty & Out of stock correct|         |          |         |      |    |         |        |
-|65      |Product Details|Product lables & pricing  correct    |         |          |         |      |    |         |        |
-|66      |Product Details|Quantity & Out of stock correct      |         |          |         |      |    |         |        |
-|67      |Product Details|View Secure                          |         |          |         |      |    |         |        |
-|68      |Product Details|Edit and Delete links working        |N/A      |N/A       |         |      |    |         |        |
-|69      |Product Details|Image working for file or url        |         |          |         |      |    |         |        |
-|70      |Product Details|No image file working                |         |          |         |      |    |         |        |
-|71      |Product Details|Select and redirect working          |         |          |         |      |    |         |        |
-|72      |Product Details|Add Button and qty working           |         |          |         |      |    |         |        |
-|73      |Product Details|Sizes Options working                |         |          |         |      |    |         |        |
-|74      |Product Details|Toasts working                       |         |          |         |      |    |         |        |
-|75      |Add Product    |view secure                          |         |          |         |      |    |         |        |
-|76      |Add Product    |view and url working                 |N/A      |N/A       |         |      |    |         |        |
-|77      |Add Product    |Template responsive                  |N/A      |N/A       |         |      |    |         |        |
-|78      |Add Product    |Form validation working              |N/A      |N/A       |         |      |    |         |        |
-|79      |Add Product    |Defensive logic working              |N/A      |N/A       |         |      |    |         |        |
-|80      |Add Product    |Toasts working                       |N/A      |N/A       |         |      |    |         |        |
-|81      |Edit Product   |view secure                          |         |          |         |      |    |         |        |
-|82      |Edit Product   |view and url working                 |N/A      |N/A       |         |      |    |         |        |
-|83      |Edit Product   |Template responsive                  |N/A      |N/A       |         |      |    |         |        |
-|84      |Edit Product   |Form validation working              |N/A      |N/A       |         |      |    |         |        |
-|85      |Edit Product   |Defensive logic working              |N/A      |N/A       |         |      |    |         |        |
-|86      |Edit Product   |Toasts working                       |N/A      |N/A       |         |      |    |         |        |
-|87      |Shopping Bag   |view and url working                 |         |          |         |      |    |         |        |
-|88      |Shopping Bag   |Template responsive                  |         |          |         |      |    |         |        |
-|89      |Shopping Bag   |Defensive logic working              |         |          |         |      |    |         |        |
-|90      |Shopping Bag   |Update & Delete working              |         |          |         |      |    |         |        |
-|91      |Shopping Bag   |Image working for file or url        |         |          |         |      |    |         |        |
-|92      |Shopping Bag   |No image file working                |         |          |         |      |    |         |        |
-|93      |Shopping Bag   |Sizes Options working                |         |          |         |      |    |         |        |
-|94      |Shopping Bag   |Subtotals and Grand Total working    |         |          |         |      |    |         |        |
-|95      |Shopping Bag   |Link to checkout and return working  |         |          |         |      |    |         |        |
-|96      |Shopping Bag   |Form validation working              |         |          |         |      |    |         |        |
-|97      |Secure Checkout|view and url working                 |         |          |         |      |    |         |        |
-|98      |Secure Checkout|Template responsive                  |         |          |         |      |    |         |        |
-|99      |Secure Checkout|Defensive logic working              |         |          |         |      |    |         |        |
-|100     |Secure Checkout|Form validation working              |         |          |         |      |    |         |        |
-|101     |Secure Checkout|Profile Feedback working             |         |          |         |      |    |         |        |
-|102     |Secure Checkout|Order Summary Working                |         |          |         |      |    |         |        |
-|103     |Secure Checkout|Stripe Working                       |         |          |         |      |    |         |        |
-|104     |Secure Checkout|Webhooks working                     |         |          |         |      |    |         |        |
-|105     |Secure Checkout|Email Confirmation working           |         |          |         |      |    |         |        |
-|106     |Allauth        |Sign In/Out views working            |         |          |         |      |    |         |        |
-|107     |Allauth        |Register, Reset views working        |         |          |         |      |    |         |        |
-|108     |Allauth        |Email Confirmation working           |         |          |         |      |    |         |        |
-|109     |Allauth        |Templates responsive                 |         |          |         |      |    |         |        |
-|110     |Allauth        |Templates per site Theme             |         |          |         |      |    |         |        |
-|111     |My Profile     |View working                         |N/A      |          |         |      |    |         |        |
-|112     |My Profile     |Template responsive                  |N/A      |          |         |      |    |         |        |
-|113     |My Profile     |Order History Working                |N/A      |          |         |      |    |         |        |
-|114     |My Profile     |Feedback with checkout working       |N/A      |          |         |      |    |         |        |
-|115     |My Profile     |Form validation working              |N/A      |          |         |      |    |         |        |
-
+|TesT No.|Page           |Test Description                     |Anonymous|Registered          |Superuser|Chrome|Edge|Comments                                                         |Corrected|
+|--------|---------------|-------------------------------------|---------|--------------------|---------|------|----|-----------------------------------------------------------------|---------|
+|1       |Home           |Landing Page Nav links working       |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|2       |Home           |Landing Page Nav links responsive    |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|3       |Home           |Landing Page Nav links interactive   |Pass     |Pass                |Pass     |Pass  |Pass|Amber on hover.  Nice Contrast.                                  |         |
+|4       |Home           |Landing Page image responsive        |Pass     |Pass                |Pass     |Pass  |Pass|Works well at all breakpoints                                    |         |
+|5       |Nav            |Top Nav anchors working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|6       |Nav            |Top Nav responsive                   |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|7       |Nav            |Top Nav interactive                  |Pass     |Pass                |Pass     |Pass  |Pass|Both Text & Pointer                                              |         |
+|8       |Nav            |Mobile Top Nav anchors working       |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|9       |Nav            |Mobile Top Nav responsive            |Pass     |Pass                |Pass     |Pass  |Pass|Both Text & Pointer                                              |         |
+|10      |Nav            |Mobile Top Nav interactive           |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|11      |Nav            |Nav Filtering Applied Desktop        |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|12      |Nav            |Nav Filtering Applied Mobile         |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|13      |Nav            |Category Nav links working           |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|14      |Nav            |Category Nav Links rendering         |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|15      |Nav            |Category Nav Links responsive        |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|16      |Nav            |Category Nav Links interactive       |Pass     |Pass                |Pass     |Pass  |Pass|Both Text & Pointer.  Need to return to active tab jinga if time.|         |
+|17      |Nav            |Subategory Nav Links responsive      |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|18      |Nav            |Subategory Nav Links interactive     |Pass     |Pass                |Pass     |Pass  |Pass|Pointer Only                                                     |         |
+|19      |Nav            |Top & Mobile Search inputs working   |Pass     |Pass                |Pass     |Pass  |Pass|Bootstrap toggle a bit clunky                                    |         |
+|20      |Nav            |Top & Mobile Search responsive       |Pass     |Pass                |Pass     |Pass  |Pass|Styling could better Mobnav                                      |         |
+|21      |About          |Rendering correctly at breakpoints   |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|22      |Contact        |Rendering correctly at breakpoints   |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|23      |Contact        |Form interactive                     |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|24      |Contact        |Form validation working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|25      |Contact        |Environmental variables displayed    |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|26      |Contact        |Success template rendering correctly |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|27      |Contact        |Email backend working                |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|28      |Contact        |Email templates working              |Pass     |Pass                |Pass     |Pass  |Pass|Good Internal & External mail                                    |         |
+|29      |Contact        |Internal & External Mails sent       |Pass     |Pass                |Pass     |Pass  |Pass|Good Internal & External mail                                    |         |
+|30      |Contact        |Toasts working                       |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|31      |Categories     |View Secure                          |Fail     |Fixed This iteration|Pass     |Pass  |Pass|@login_required decorator required'                              |Yes      |
+|32      |Categories     |Rendering correctly at breakpoints   |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|33      |Categories     |Anchor/Button elements working       |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|34      |Categories     |Categories jinga templates working   |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|35      |Categories     |Add, Edit and Delete links working   |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|36      |Categories     |Delete Modal Working                 |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|37      |Categories     |Delete view working                  |N/A      |N/A                 |Pass     |Pass  |Pass|Modal Provides user with 2 changes to delete.                    |         |
+|38      |Categories     |Delete view secure                   |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|39      |Categories     |Toasts working                       |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|40      |Add Category   |view secure                          |Pass     |Pass                |Pass     |Pass  |Pass|Redirected to signin/ and message if registered                  |         |
+|41      |Add Category   |view and url working                 |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|42      |Add Category   |Template responsive                  |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|43      |Add Category   |Form validation working              |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|44      |Add Category   |Defensive logic working              |N/A      |N/A                 |Pass     |Pass  |Pass|Prevents addition if Category if Name or Friendly/Name exits     |         |
+|45      |Add Category   |Toasts working                       |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|46      |Add Category   |Automatic update of New Offers Nav   |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|47      |Add Category   |New Offer nav filter correct         |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|48      |Edit Category  |view secure                          |Pass     |Pass                |Pass     |Pass  |Pass|Redirected to signin/ and message if registered                  |         |
+|49      |Edit Category  |view and url working                 |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|50      |Edit Category  |Template responsive                  |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|51      |Edit Category  |Form validation working              |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|52      |Edit Category  |Defensive logic working              |N/A      |N/A                 |Pass     |Pass  |Pass|Prevents updating if Category if Name or Friendly/Name exits     |         |
+|53      |Edit Category  |Toasts working                       |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|54      |Products       |Anchor elements working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|55      |Products       |Filtering Working                    |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|56      |Products       |Filter counting working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|57      |Products       |Filter Home links working            |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|58      |Products       |Sorting  Working                     |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|59      |Products       |Product lables & pricing  correct    |Pass     |Pass                |Pass     |Pass  |Pass|Zero, None & other Ratin good                                    |         |
+|60      |Products       |Responsive Product Rating working    |Pass     |Pass                |Pass     |Pass  |Pass|Set ski binding qty to zero and good                             |         |
+|61      |Products       |Responsive Qty & Out of stock correct|Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|62      |Products       |View Secure                          |Pass     |Pass                |Pass     |Pass  |Pass|Redirected to Sign In on /add                                    |         |
+|63      |Products       |Edit and Delete links working        |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|64      |Products       |Image working for file or url        |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|65      |Products       |No image file working                |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|66      |Product Details|Select cat and redirect working      |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|67      |Product Details|Anchor elements working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|68      |Product Details|Carousel working                     |Pass     |Pass                |Pass     |Pass  |Pass|Working for no, single and double image                          |         |
+|69      |Product Details|Tab Nav working                      |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|70      |Product Details|Responsive rating working            |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|71      |Product Details|Responsive Qty & Out of stock correct|Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|72      |Product Details|Product lables & pricing  correct    |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|73      |Product Details|Quantity & Out of stock correct      |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|74      |Product Details|View Secure                          |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|75      |Product Details|Edit and Delete links working        |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|76      |Product Details|Image working for file or url        |Pass     |Pass                |Pass     |Pass  |Pass|Leash has url only                                               |         |
+|77      |Product Details|No image file working                |Pass     |Pass                |Pass     |Pass  |Pass|Test Product1 has no image                                       |         |
+|78      |Product Details|Back to shop button workig           |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|79      |Product Details|Add Button and qty working           |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|80      |Product Details|Sizes Options working                |Pass     |Pass                |Pass     |Pass  |Pass|Kids Jacket has sizes                                            |         |
+|81      |Product Details|Toasts working                       |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|82      |Add Product    |view secure                          |Pass     |Pass                |N/A      |Pass  |Pass|                                                                 |         |
+|83      |Add Product    |view and url working                 |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|84      |Add Product    |Template responsive                  |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|85      |Add Product    |Template working fully               |N/A      |N/A                 |Fail     |Pass  |Pass|Problem with 2nd image select. Filename not showing.             |Yes      |
+|86      |Add Product    |Form validation working              |N/A      |N/A                 |Pass     |Pass  |Pass|No add on rating or name none                                    |         |
+|87      |Add Product    |Toasts working                       |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|88      |Edit Product   |view secure                          |Pass     |Pass                |N/A      |Pass  |Pass|Redirected to Sign In on /edit/1                                 |         |
+|89      |Edit Product   |view and url working                 |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|90      |Edit Product   |Template responsive                  |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|91      |Edit Product   |Template working fully               |N/A      |N/A                 |Fail     |Pass  |Pass|Problem with 2nd image select. Filename not showing.             |Yes      |
+|92      |Edit Product   |Form validation working              |N/A      |N/A                 |Pass     |Pass  |Pass|No edit on rating or name none                                   |         |
+|93      |Edit Product   |Toasts working                       |N/A      |N/A                 |Pass     |Pass  |Pass|                                                                 |         |
+|94      |Shopping Bag   |view and url working                 |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|95      |Shopping Bag   |Template responsive                  |Pass     |Pass                |Pass     |Pass  |Pass|Padding on delete & edit button could be better                  |         |
+|96      |Shopping Bag   |Bag Icon Interactive                 |Pass     |Pass                |Pass     |Pass  |Pass|Updated on change                                                |         |
+|97      |Shopping Bag   |Bag interactive                      |Fail     |Fixed This iteration|Pass     |Pass  |Pass|Fail on Bag empty feedback                                       |Yes      |
+|98      |Shopping Bag   |Defensive logic working              |Pass     |Pass                |Pass     |Pass  |Pass|Image if statements working                                      |         |
+|99      |Shopping Bag   |Update & Delete working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|100     |Shopping Bag   |Image working for file or url        |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|101     |Shopping Bag   |No image file working                |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|102     |Shopping Bag   |Sizes Options working                |Pass     |Pass                |Pass     |Pass  |Pass|Separate line items for different sizes                          |         |
+|103     |Shopping Bag   |Subtotals and Grand Total working    |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|104     |Shopping Bag   |Link to checkout and return working  |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|105     |Shopping Bag   |Form validation working              |Pass     |Pass                |Pass     |Pass  |Pass|Wont update unless new value applied                             |         |
+|106     |Shopping Bag   |Toasts working                       |Fail     |Fixed This iteration|Pass     |Pass  |Pass|Fail on delete only. Resolved with empty bag issue.              |Yes      |
+|107     |Secure Checkout|Form Interactive                     |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|107     |Secure Checkout|view and url working                 |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|108     |Secure Checkout|Template responsive                  |Pass     |Pass                |Pass     |Pass  |Pass|Good at different breakpoints                                    |         |
+|109     |Secure Checkout|Defensive logic working              |Pass     |Pass                |Pass     |Pass  |Pass|Re images                                                        |         |
+|110     |Secure Checkout|Form validation working              |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|111     |Secure Checkout|Profile Feedback working             |Pass     |Pass                |Pass     |Pass  |Pass|Different Checkout succes page                                   |         |
+|112     |Secure Checkout|Order Summary Working                |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|113     |Secure Checkout|Stripe Working                       |Pass     |Pass                |Pass     |Pass  |Pass|Payment succeeded and event stored                               |         |
+|114     |Secure Checkout|Webhooks working                     |Pass     |Pass                |Pass     |Pass  |Pass|Event Capture and WH recorded                                    |         |
+|115     |Secure Checkout|Email Confirmation working           |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|116     |Allauth        |Sign In/Out views working            |N/A      |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|117     |Allauth        |Register, Reset views working        |Pass     |Pass                |Pass     |Pass  |Pass|Received confm mail on password reset                            |         |
+|118     |Allauth        |Email Confirmation working           |Fail     |Fixed this iteration|Pass     |Pass  |Pass|Email sent but incorrect currency                                |Yes      |
+|119     |Allauth        |Templates responsive                 |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|120     |Allauth        |Templates per site Theme             |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|121     |Allauth        |Form interactive                     |Pass     |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|122     |My Profile     |View working                         |N/A      |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|123     |My Profile     |Template responsive                  |N/A      |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|124     |My Profile     |Order History Working                |N/A      |Pass                |Pass     |Pass  |Pass|                                                                 |         |
+|125     |My Profile     |Feedback with checkout working       |N/A      |Pass                |Pass     |Pass  |Pass|                                                                 |         |
 ***
 
 [Back to Contents](#table-of-contents)
