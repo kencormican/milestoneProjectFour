@@ -7,7 +7,7 @@
 </details>
 
 **<details><summary>Testing User Stories</summary>**
-* [Testing User Stories from User Experience (UX) Section](#testing-user-stories-from-user-experience-(ux)-section)
+* [Testing User Stories from User Experience (UX) Section](#testing-user-stories-from-user-experience-section)
 * [First Time Visitor Goals](#first-time-visitor-goals)
 * [Returning Visitor Goals](#returning-visitor-goals)
 * [Admin User Goals](#admin-user-goals)
@@ -25,6 +25,9 @@
 </details>
 
 
+**<details><summary>Further Testing</summary>**
+* [Further Testing](#further-testing)
+</details>
 
 # Testing
 
@@ -44,7 +47,7 @@ Card Number: 4000000000009995
 ***
 [Back to Contents](#table-of-contents)
 
-### Testing User Stories from User Experience (UX) Section
+### Testing User Stories from User Experience Section
 
 #### First Time Visitor Goals
 Ask Num | Scenario                                                                                                                                              |
@@ -98,7 +101,7 @@ Ask Num | Scenario                                                              
     - Registered users are provided with the ability to update and store there details via form inputs on the My Profile or Checkout pages.
     - The Checkout and Profile views have been wired up such that an order history summary is provided on the Profile page and can be linked to an invidual cached order using the order_history() and checkout_success() methods.
  User Goal #8.
-    - A secure checkout with redundant back functionality has been provided via Stripe, the checkout form and associated views.  Backend form validation is present to mitigate against the end user breaking the transaction. Webhooks are also used to complete the transactions in the event a form submission partilally completes for any reason. This can be emulated by setting the commenting out the form.submit() method in the stripe_elements.js code.
+    - A secure checkout with redundant back functionality has been provided via Stripe, the checkout form and associated views.  Backend form validation is present to mitigate against the end user breaking the transaction. Webhooks are also used to complete the transactions in the event a form submission partilally completes for any reason. This can be emulated by commenting out the form.submit() method in the stripe_elements.js code.
 
 ***
 [Back to Contents](#table-of-contents)
@@ -128,7 +131,7 @@ Ask Num | Scenario                                                              
 
 * User Goal #1. 
     - Admin users can now perform the full set of CRUD opearations on the subcategories.
-    - The Categories view and associated template provide a super user with a list of subcategory cards diplayed responsively at diffent breakpoints.
+    - The Categories view and associated template provide a super user with a list of subcategory cards diplayed responsively at different breakpoints.
     - The cards contain both the subcategory name and freindly name and allow the user to edit the friendly name only, or delete the category via one of two buttons on the card itself.
     - Defensive logic has been introduced firstly on the front end via the delete modal and secondly on the edit view, preventing users from assigning a friendly name already on the database, while also facilitating the empty field.   
     - On the catergories page directly above the subcategory cards themselves I've provided an add button allowing the user the create brand new subcategories on the database.  
@@ -158,8 +161,8 @@ Ask Num | Scenario                                                              
 * User Goal #1. 
     - Thankfully I had just enough time to introduce the Webhook defensive logic on the checkout related views. This can be tested by emulating a break in form submission. This can be achieved by commenting out the form_submit() method in the stripe_elements.js static file, submitting a new order and checking the webhook event on the stripe dashboard for the "created using wenhook" as opposed to "created using databse" response text.
 * User Goal #2.
-    - Time was my enemy for this project but I believe I achieved the majority of my origianl goals as a developer. These include securing the Category, Product & Profile views using backend defensive logic.  Making the site a little more scalable with the CRUD and Autopopulate functionality provided by the categories templates and views.  A relatively clean delivery in that where store specific details, such as those in the contact form, or indeed the FREE_DELIVERY & RETURN related material,  can be variabalised or centralised, they were.
-    - If I had more time I would iron out some of the styling limitations, introduce some further js around data toggling on both menus and create some automation functionality on the about app but I beleieve I have achieved all I can in the time alloted.
+    - Time was my enemy for this project but I believe I achieved the majority of my original goals as a developer. These include securing the Category, Product & Profile views using backend defensive logic.  Making the site a little more scalable with the CRUD and Autopopulate functionality provided by the categories templates and views.  A relatively clean delivery in that where store specific details, such as those in the contact form, or indeed the FREE_DELIVERY & RETURN related material,  can be variabalised or centralised, they were.
+    - If I had more time I would iron out some of the styling limitations, introduce some further js around data toggling on both menus and create some automation functionality on the about app but I believe I have achieved all I can in the time alloted.
 
 
 ***
@@ -303,9 +306,11 @@ Ask Num | Scenario                                                              
 
 ## Post Production Bugs Found
 * Manage Categories. While the add, edit and delete views were secure the main categories nav template was still accessable for none admin users.  To resolve I assigned the @login_required decorator required' and if superuser statements to the manage_categories() view.
-* Add/Edit Products. The change event js used in pre-production deployment targetted an id common to both widgets and when a second file was uploaded its details were not updated correctly.  Had to traverse the DOM to action the apporiate element.
+* Add/Edit Products. The change event js used in pre-production deployment targetted an id common to both widgets and when a second file was uploaded its details were not updated correctly.  Had to traverse the DOM to action the appropriate element.
 * Bag empty template was failing to provide appropriate feedback due to an incorrectly assigned comment.  This was also affecting some of the bag toast messages. Was resolved by reactivating commented out code.
 * Email Confirmation Currency displayed was incorrect.  Resolved by amending the appropriate template. 
+* When performing post production html validation I noted the validator was responding with "{% load static %}↩↩<!do" error but I believe from explanation in tutorials that this code is correct and simply a linting tool error.  As I understand it the linting tool's inability to deal with templating language. So no fix required.  Note* This also occurs on any page that extends the base template.
+
 ***
 [Back to Contents](#table-of-contents)
 
@@ -321,7 +326,7 @@ Also confirmed Boolean True attribute assigned correctly to new field upon creat
 the same category id was being targetted regardless if the catergory selected.  This was resolved through use of template logic to uniquely identify each modal id.
 - When wiring up toasts to the manage category crud functionality I decided to add in additional backend validation to prevent adding of category name if already exists in database. In addition to this I also set name field to readonly and validation against friendly name on edit category view.
 Toasts were tested against form validation for display, add, edit and delete operations.
-- Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  Knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
+- Spent a significant amount of time over past two days validating, development and heroku environments to ensure the backend email functionality was wired up correctly before commencing final steps with contact app.  Having cleaned up the os environment in the settings.py file I tied myself up in knots for a couple of hours by accidentally changing one the develepment variables to a string.  I knew where the problem had to lie but couldn't make the wood from the trees when looking at the code. Quotation marks ehh!
 - Contact app form submission was tested for both internal external comms to development console level the external email backend.
 I also validated insertion of appropriate variable details in contact and confirm email text templates.
 Attempted to integtrate the methodology described in the Stripe Webhooks email tutorials with that of this [Online Django Email/Contact Form Tutorial](https://learndjango.com/tutorials/django-email-contact-form).
@@ -408,7 +413,7 @@ else:
     }
 ```
 
-* When testing the add category functionality I initially had difficulty loading the newly added categories to the main-nav template because it was part of the base template infrastructure, needed to be available for all apps and didn't have its own view.  So needed a way to pass data from the backend through to the front end without explicitly being called by an app.  I found a very useful [stack overflow](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi) link explaining that it needed to be created as a user generated context processor and then loaded to the of base infrastructure via settings.py under TEMPLATE options per below.
+* When testing the add category functionality I initially had difficulty loading the newly added categories to the main-nav template because it was part of the base template infrastructure, it needed to be available for all apps and didn't have its own view.  So needed a way to pass data from the backend through to the front end without explicitly being called by an app.  I found a very useful [stack overflow](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi) link explaining that it needed to be created as a user generated context processor and then loaded to the of base infrastructure via settings.py under TEMPLATE options per below.
 ```
 context_processors.py
 
@@ -459,7 +464,7 @@ main-nav.html
 ```
 
 * Tested clean for loading manually created subcategories to the nav menu and those set with new field to true in fixture.  Associated link items also tested clean.
-* Products CRUD functionality testing clean from both Proucts and Product details views.   Defensive logic introduced in Product and product detailed views for products with or with images, urls etc. Initially encountered some issues with rendering Product image add and select options. Product detail carousel and tabbed views working cleanly for mobile, Tablet and Desktop views. 
+* Products CRUD functionality testing clean from both Proucts and Product details views.   Defensive logic introduced in Product and product detailed views for products with or without images, urls etc. Initially encountered some issues with rendering Product image add and select options. Product detail carousel and tabbed views working cleanly for mobile, Tablet and Desktop views. 
 * Securing Views - Products, Categories and Profile views secured on back-end against unauthorised users. Add, Edit and Delete views protected and testing clean.  Risk of URLs based post and delete fabrication requests mitigated by introducing @login_required decorators.  Unless user logged in such requests will be redirected back to home page. Further defensive logic has been introduced by checking if user is superuser in Add, Update & Delete views. If not the users are provided with error message and redirected back to home page.
 * Shopping Bag CRUD functionality testing clean for add, edit and delete operations.  Bag also tested for products with and without sizes, with and without images, with and without image urls.  Initially encountered some minor problems with post on none operations and image template syntax but introduced some defensive logic to mitigate same.
 * Checkout app testing clean and introduced redundancy to ordering process using Webhook Handler.  Order tested for completion using database and webhook datasets.  Form submission failure emulated by commenting out form.submit() method in stripe js code and submitting order. Response was order created using WH.  When form.submit() re-activated in js code response confirmed to be order created using database.
@@ -555,3 +560,18 @@ def update_bag(request, item_id):
 
 [Back to Contents](#table-of-contents)
 
+### Further Testing
+
+*   The Website was tested on Google Chrome & Microsoft Edgebrowsers. No major issues were identified.
+*   Responsive Testing was completed using [Techsini Multi-mockup](https://techsini.com/multi-mockup/index.php)
+*   The ReadMe.md page was tested using the [Markdown Live Preview](https://markdownlivepreview.com/)
+*   HTML code was tested using the [W3C HTML Validator](https://validator.w3.org/#validate_by_input).
+    - Mutiple errors were highlighted however the majority related to the W3C utility being unable to process jinga.
+*   CSS code was tested using the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+*   JavaScript code was validated using [JSHint](https://jshint.com/)
+*   Python code was validated using  [PEP8 Online](http://pep8online.com/)
+
+
+***
+
+[Back to Contents](#table-of-contents)

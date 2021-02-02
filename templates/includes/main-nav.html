@@ -1,39 +1,6 @@
 <div class="collapse navbar-collapse row" id="main-nav">
     <div class="col-12 d-lg-flex ml-2">
-        <!-- <ul class="nav nav-tabs w-auto mx-auto border-0">
-            <li class="nav-item ml-2">
-                <a class="nav-link category-link font-weight-bold active" href="{% url 'products' %}" id="all-tab" data-toggle="tab" role="tab" aria-controls="all" aria-selected="true">ALL</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=men" id="men-tab" data-toggle="tab" role="tab" aria-controls="men" aria-selected="false">MEN</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=women"id="women-tab" data-toggle="tab" role="tab" aria-controls="women" aria-selected="false">WOMEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=kids" id="kids-tab" data-toggle="tab" role="tab" aria-controls="kids" aria-selected="false">KIDS</a>
-            </li>
-        </ul> -->
-        <!-- {% for category in current_categories %}
-        <ul class="nav nav-tabs w-auto mx-auto border-0">
-            <li class="nav-item ml-2">
-                <a class="nav-link category-link font-weight-bold " href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link {% if catergory.men %} active {% endif %}" href="{% url 'products' %}?category=men" id="men-tab"  >MEN</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link category-link {% if catergory.women %}active {% endif %}"  href="{% url 'products' %}?category=women"id="women-tab">WOMEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link {% if 'kids' in current_catergories %} active {% endif %}" href="{% url 'products' %}?category=kids" id="kids-tab" data-toggle="tab" role="tab" >KIDS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link {% if 'generic' in current_catergories %} active {% endif %}"href="{% url 'products' %}?category=generic" id="kids-tab" data-toggle="tab" role="tab" >GENERIC</a>
-            </li>
-        </ul>
-        {% endfor %} -->
-        <ul class="nav nav-tabs w-auto mx-auto border-0">
+          <ul class="nav nav-tabs w-auto mx-auto border-0">
             <li class="nav-item ml-2">
                 <a class="nav-link category-link font-weight-bold " href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
             </li>
@@ -153,9 +120,5 @@
         $('.nav-tabs a').click(function(){
             $(this).tab('show');
         })
-        // $(".category-link").click(function () {
-        //     $(this).addClass("active");
-        //     $(this).siblings().removeClass("active");
-        // });
     </script>
 {% endblock %}

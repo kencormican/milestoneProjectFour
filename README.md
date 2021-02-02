@@ -23,15 +23,6 @@
 **<details><summary>User Experience (UX)</summary>**
 * [UX](#user-experience-(ux))
 
-<!-- **<details><summary>User Experience (UX)</summary>**
-
-* [UX](#user-experience-(ux))
-* [Strategy](#strategy)
-* [Scope](#scope)
-* [Structure](#structure)
-* [Skeleton](#skeleton)
-</details> -->
-
 
 **<details><summary>Strategy</summary>**
 * [Strategy](#strategy)
@@ -76,6 +67,22 @@
 * [Responsive Elements](#responsive-elements)
 * [Interactive Elements](#interactive-elements)
 </details>
+</details>
+
+
+**<details><summary>Testing</summary>**
+
+<p>Note* this READme uses as seperate TEST.md to capture the testing components.</p>
+
+* [Testing](TEST.md)
+</details>
+
+
+**<details><summary>Technologies Used</summary>**
+
+* [Technologies Used](#technologies-used)
+* [Languages Used](#languages-used)
+* [Frameworks, Libraries & Programs Used](#frameworks-libraries-and-programs-used)
 
 </details>
 
@@ -104,17 +111,16 @@
 * [Connecting to the GitHub repository](#connecting-to-the-github-repository)
 * [Setup the Config Vars](#setup-the-config-vars)
 * [Automatic Deployment](#automatic-deployment)
-* [The Project is now deployed](#the-project-is-now-deployment)
+* [The Project is now deployed](#the-project-is-now-deployed)
 </details>
 </details>
 
-
-**<details><summary>Testing</summary>**
-
-<p>Note* this READme uses as seperate TEST.md to capture the testing components.</p>
-
-* [Testing](TEST.md)
+**<details><summary>Credits</summary>**
+* [Credits:](#credits)
+* [Code:](#code)
+* [Acknowledgements:](#acknowledgements)
 </details>
+
 
 ***
 
@@ -364,6 +370,10 @@ In maintaining this convention, it is hoped that it will make the site more intu
 -	Jinga if statements, targeting the user session, were used on Sign In/Out, Account, and Admin menus and determine whether the menus are hidden or displayed depending on whether a user is anonymous, registered, a superuser or logged in.
 -   Finally, back end defensive logic using @login_required and if not request.user.is_superuser:  statements was used to secure the categories, product and profile views. Unauthorised attempts at access should result in the user being returned to teh login page or receiving an error message depending on whether the offending user is registered or not.   
 
+***
+
+[Back to Contents](#table-of-contents)
+
 
 ## Wireframes
 
@@ -479,7 +489,44 @@ In maintaining this convention, it is hoped that it will make the site more intu
 
 [Back to Contents](#table-of-contents)
 
+# Technologies Used
 
+## Languages Used
+
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) 
+-   [JAVACRIPT](https://en.wikipedia.org/wiki/JavaScript) 
+-   [PYTHON](https://en.wikipedia.org/wiki/Python_(programming_language)) 
+
+## Frameworks Libraries and Programs Used
+1. [Google Fonts:](https://fonts.google.com/) - To provide consistent typography aesthetic for UX purposes.
+1. [Font Awesome:](https://fontawesome.com/) - Font Awesome was used for the footer nav icon for aesthetic and UX purposes.
+1. [Bootstrap 4.4.1:](https://getbootstrap.com/docs/4.1/getting-started/introduction/) - Bootstrap framework was used to assist with the responsiveness and styling of the website.
+1. [jQuery 3.4.1.:](https://jquery.com/) - The project uses JQuery to simplify DOM manipulation and to enhance the Bootstrap framework. 
+1. [Django 3.1.5:](https://docs.djangoproject.com/en/3.1/) - Full framework used to enhance Python capabilities
+1. [Django Allauth:](https://django-allauth.readthedocs.io/en/latest/installation.html) - Library used to manage and enhance security and authentication functionality
+1. [DJ Database URL:](https://pypi.org/project/dj-database-url/) - Support to connect to remote database.
+1. [Gunicorn:](https://gunicorn.org/)- Green unicorn web server package
+1. [Psycopg2:](https://pypi.org/project/psycopg2-binary/)- Python library used to support interaction with Postgres.
+1. [pillow:](https://pillow.readthedocs.io/en/stable/) - Used to support image field in products app
+1. [Stripe:](https://stripe.com/ie)- Support for secure payments
+1. [Django Crispy Forms:](https://django-crispy-forms.readthedocs.io/en/latest/)- Support for form structure
+1. [Whitenoise:](http://whitenoise.evans.io/en/stable/django.html)- Supports static files on Heroku (I used for testing only)
+1. [AWS Boto3:](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)- To provide support for aws s3 services
+1. [Django Storages:](https://django-storages.readthedocs.io/en/latest/)- To provide support for storage backends
+1. [Heroku Postgres:](https://elements.heroku.com/addons/heroku-postgresql)- Postrgres heroku remote database
+1. [Heroku](https://devcenter.heroku.com/categories/reference). -  Use to deploy python based apps
+1. [Gmail](https://www.google.com/gmail/about/#). -  Gmail used as email backend.
+1. [Temp-mail.org](https://temp-mail.org/en/). -  used to validate email confirmations and contact queries.
+1. [GitPod:](https://www.gitpod.io/)- Used as the IDE to develop the project
+1. [Git](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+1. [GitHub:](https://github.com/) - GitHub is used to store the projects code after being pushed from Git.
+1. [Microsoft Paint:](https://en.wikipedia.org/wiki/Microsoft_Paint)  - Microsoft Paint was used to create the responsive image for the ReadMe.md and to capture the balsamiq & wireframe images in a generic format.
+1. [Balsamiq:](https://balsamiq.com/) - Balsamiq was used to create the [wireframes](assets/wireframes/lightTheme/desktopOnlyWireframes_lightTheme.JPG) during the design process.
+
+***
+
+[Back to Contents](#table-of-contents)
 
 
 # Deployment
@@ -551,7 +598,7 @@ pip3 install django-countries 			        ## required for stripe country dropdown
 pip3 install psycopg2-binary					## install psycopg2 postgres package
 pip3 install gunicorn							## install gunicorn, green unicorn web server package
 pip3 install dj-database-url					## install dj-database-url package to connect to remote database
-pip3 install whitenoise     					## install whitenoise to work with static files on Heroku (I uses for testing only)
+pip3 install whitenoise     					## install whitenoise to work with static files on Heroku (I used for testing only)
 pip3 install boto3           					## install boto3 to work with aws s3 services
 pip3 install django-storages   					## install django-storages to provide storage backends
 
@@ -700,7 +747,7 @@ python3 manage.py runserver
 
 ### Deploy To Heroku
 
-#### Setup Requirements:
+#### Setup Requirements
 Make sure requirements.txt is up to date.  
 requirements.txt tells Heroku what dependencies need to be installed to run the app.
 
@@ -712,7 +759,7 @@ requirements.txt tells Heroku what dependencies need to be installed to run the 
 ```
 3.  Push all changes to GitHub.
 
-#### Setup Procfile:
+#### Setup Procfile
 Heroku looks for this Procfile to find out which file runs the app and how to run it.
 
 1.  Goto the Bash Terminal.
@@ -725,9 +772,9 @@ Heroku looks for this Procfile to find out which file runs the app and how to ru
 3.  Open the Procfile, and if there is an empty line, delete it as it can cause problems with Heroku.
 4.  Push file to GitHub.
 
-### Heroku:
+### Heroku
 
-#### Create a new application:
+#### Create a new application
 
 1.  Goto the Heroku Dashboard.
 2.  Click New.
@@ -742,7 +789,7 @@ Heroku looks for this Procfile to find out which file runs the app and how to ru
 
 [Back to Contents](#table-of-contents)
 
-#### Connecting to the GitHub repository:
+#### Connecting to the GitHub repository
 There are several ways to connect this or any app. You can use Heroku CLI to connect as outlined on the Heroku site. However, it's simpler to deploy the site from Github, 
 that way you only need to push to GitHub.
 
@@ -750,7 +797,7 @@ that way you only need to push to GitHub.
 2.  Make sure your GitHub id is displayed and then enter the GitHub repository name and click search.
 3.  Once it finds the repository, click connect, to connect to the repository.
 
-#### Setup the Config Vars.
+#### Setup the Config Vars
 Attempting to deploy at this stage would result in some unwanted application errors, 
 this is because we have hidden our environment variables inside the env file, 
 and this is not available to Heroku.
@@ -786,7 +833,7 @@ AWS_S3_REGION_NAME      | enter aws region here                                 
 
 4.  Click on **Hide Config Vars**.
 
-#### Automatic Deployment:
+#### Automatic Deployment
 Once the Config Vars has been entered you are ready for Automatic Deployment.
 
 1.  Click on the Deploy Tab.
@@ -794,7 +841,24 @@ Once the Config Vars has been entered you are ready for Automatic Deployment.
 3.  Select the master branch.
 4.  Click Deploy branch
 
-#### The Project is now deployed.
+#### The Project is now deployed
 
+***
+
+[Back to Contents](#table-of-contents)
+
+# Credits
+
+## Code
+
+-	The code and logic used to create this project was heavily influenced by the CI Full Stack Frameworks with Django! Modules. In particular the "Boutique Ado" AWS Storage, Heroko and Django tutorials provided by Chris Zielinski and the Code Institute team.
+-   [Bootstrap:](https://getbootstrap.com/docs/4.1/getting-started/introduction/) - Bootstrap framework was used throughout the project mainly to make site responsive using the Bootstrap Grid System.
+-   [w3schools.com](https://www.w3schools.com/default.asp) : For Javascript, Python, HTML & CSS Tutorials
+
+## Acknowledgements
+
+- Thanks to my mentor Akshat Garg.  In particular for the support and patience over the past several months.
+
+***
 
 [Back to Contents](#table-of-contents)
