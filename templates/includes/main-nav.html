@@ -1,86 +1,96 @@
 <div class="collapse navbar-collapse row" id="main-nav">
     <div class="col-12 d-lg-flex ml-2">
-          <ul class="nav nav-tabs w-auto mx-auto border-0">
-            <li class="nav-item ml-2">
-                <a class="nav-link category-link font-weight-bold " href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab" >ALL</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link " href="{% url 'products' %}?category=men" id="men-tab"  >MEN</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link category-link "  href="{% url 'products' %}?category=women" id="women-tab">WOMEN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link " href="{% url 'products' %}?category=kids" id="kids-tab" >KIDS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link category-link" href="{% url 'products' %}?category=generic" id="generic-tab">GENERIC</a>
-            </li>
-        </ul>
-
+        <div class="nav nav-tabs w-auto mx-auto border-0" id="nav-tab">
+            <a class="nav-link category-link font-weight-bold ml-2 {% if current_categories|length > 1 %} active {% endif %} "
+                href="{% url 'products' %}?category=men,women,kids,generic" id="all-tab">ALL</a>
+            <a class="nav-link category-link {% if 'men' == current_categories.0.name and current_categories|length == 1 %} active {% endif %}"
+                href="{% url 'products' %}?category=men" id="men-tab">MEN</a>
+            <a class="nav-link category-link {% if 'women' == current_categories.0.name %} active {% endif %}"
+                href="{% url 'products' %}?category=women">WOMEN</a>
+            <a class="nav-link category-link {% if 'kids' in current_categories.0.name %} active {% endif %}"
+                href="{% url 'products' %}?category=kids" id="kids-tab">KIDS</a>
+            <a class="nav-link category-link {% if 'generic' in current_categories.0.name %} active {% endif %}"
+                href="{% url 'products' %}?category=generic" id="generic-tab">GENERIC</a>
+        </div>
     </div>
     <div class="col-12 mainnav-font bg-white d-lg-flex px-4">
         <ul class="navbar-nav w-auto border border-blue mx-auto tab-content">
             <li class="nav-item dropdown  ">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="all-products-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#"
+                    id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h6 class="mx-2 my-0">Filter Products</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="all-products-link">
-                    <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item text-secondary">By Price</a>
-                    <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item text-secondary">By Rating</a>
-                    <a href="{% url 'products' %}?sort=subcategory&direction=asc" class="dropdown-item text-secondary">By Category</a>
-                    <a href="{% url 'products' %}?category=men,women,kids,generic" class="dropdown-item text-secondary">All Products</a>
+                    <a href="{% url 'products' %}?sort=price&direction=asc{% if current_categories %}&category={% for category in current_categories %}{{ category.name }},{% endfor %}{% endif %}"
+                        class="dropdown-item text-secondary">By Price</a>
+                    <a href="{% url 'products' %}?sort=rating&direction=desc{% if current_categories %}&category={% for category in current_categories %}{{ category.name }},{% endfor %}{% endif %}"
+                        class="dropdown-item text-secondary">By Rating</a>
+                    <a href="{% url 'products' %}?sort=subcategory&direction=asc{% if current_categories %}&category={% for category in current_categories %}{{ category.name }},{% endfor %}{% endif %}"
+                        class="dropdown-item text-secondary">By Category</a>
+                    <a href="{% url 'products' %}?category=men,women,kids,generic"
+                        class="dropdown-item text-secondary">All Products</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="snowboard-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#"
+                    id="snowboard-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h6 class="mx-2 my-0">Snowboard</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="snowboard-link">
-                    <a href="{% url 'products' %}?subcategory=snowboards" class="dropdown-item text-secondary">Snowboards</a>
-                    <a href="{% url 'products' %}?subcategory=snowboard_boots" class="dropdown-item text-secondary">Snowboard Boots</a>
-                    <a href="{% url 'products' %}?subcategory=snowboard_bindings" class="dropdown-item text-secondary">Snowboard Bindings</a>
-                    <a href="{% url 'products' %}?subcategory=snowboard_bags" class="dropdown-item text-secondary">Snowboard Bags</a>
-                    <a href="{% url 'products' %}?subcategory=snowboards,snowboard_boots,snowboard_bindings,snowboard_bags" class="dropdown-item text-secondary">All Snowboarding</a>
+                    <a href="{% url 'products' %}?subcategory=snowboards"
+                        class="dropdown-item text-secondary">Snowboards</a>
+                    <a href="{% url 'products' %}?subcategory=snowboard_boots"
+                        class="dropdown-item text-secondary">Snowboard Boots</a>
+                    <a href="{% url 'products' %}?subcategory=snowboard_bindings"
+                        class="dropdown-item text-secondary">Snowboard Bindings</a>
+                    <a href="{% url 'products' %}?subcategory=snowboard_bags"
+                        class="dropdown-item text-secondary">Snowboard Bags</a>
+                    <a href="{% url 'products' %}?subcategory=snowboards,snowboard_boots,snowboard_bindings,snowboard_bags"
+                        class="dropdown-item text-secondary">All Snowboarding</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="freeski-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#"
+                    id="freeski-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h6 class="mx-2 my-0">Freeski</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="freeski-link">
                     <a href="{% url 'products' %}?subcategory=freeskis" class="dropdown-item text-secondary">Freeski</a>
-                    <a href="{% url 'products' %}?subcategory=ski_boots" class="dropdown-item text-secondary">Ski Boots</a>
-                    <a href="{% url 'products' %}?subcategory=ski_bindings" class="dropdown-item text-secondary">Ski Bindings</a>
-                    <a href="{% url 'products' %}?subcategory=ski_poles" class="dropdown-item text-secondary">Ski Poles</a>
-                    <a href="{% url 'products' %}?subcategory=ski_bags" class="dropdown-item text-secondary">Ski Bags</a>
-                    <a href="{% url 'products' %}?subcategory=freeskis,ski_boots,ski_bindings,ski_poles,ski_bags" class="dropdown-item text-secondary">All Freeski</a>
+                    <a href="{% url 'products' %}?subcategory=ski_boots" class="dropdown-item text-secondary">Ski
+                        Boots</a>
+                    <a href="{% url 'products' %}?subcategory=ski_bindings" class="dropdown-item text-secondary">Ski
+                        Bindings</a>
+                    <a href="{% url 'products' %}?subcategory=ski_poles" class="dropdown-item text-secondary">Ski
+                        Poles</a>
+                    <a href="{% url 'products' %}?subcategory=ski_bags" class="dropdown-item text-secondary">Ski
+                        Bags</a>
+                    <a href="{% url 'products' %}?subcategory=freeskis,ski_boots,ski_bindings,ski_poles,ski_bags"
+                        class="dropdown-item text-secondary">All Freeski</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="skiwear-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#"
+                    id="skiwear-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h6 class="mx-2 my-0">Ski Wear</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="skiwear-link">
                     <a href="{% url 'products' %}?subcategory=jackets" class="dropdown-item text-secondary">Jackets</a>
                     <a href="{% url 'products' %}?subcategory=pants" class="dropdown-item text-secondary">Pants</a>
-                    <a href="{% url 'products' %}?subcategory=base_layer" class="dropdown-item text-secondary">Base Layer</a>
+                    <a href="{% url 'products' %}?subcategory=base_layer" class="dropdown-item text-secondary">Base
+                        Layer</a>
                     <a href="{% url 'products' %}?subcategory=hats" class="dropdown-item text-secondary">Hats</a>
                     <a href="{% url 'products' %}?subcategory=gloves" class="dropdown-item text-secondary">Gloves</a>
-                    <a href="{% url 'products' %}?subcategory=jackets,pants,base_layer,hats,gloves" class="dropdown-item text-secondary">All Ski Wear</a>
+                    <a href="{% url 'products' %}?subcategory=jackets,pants,base_layer,hats,gloves"
+                        class="dropdown-item text-secondary">All Ski Wear</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="accessories-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#"
+                    id="accessories-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h6 class="mx-2 my-0">Accessories</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="accessories-link">
@@ -88,25 +98,27 @@
                     <a href="{% url 'products' %}?subcategory=goggles" class="dropdown-item text-secondary">Goggles</a>
                     <a href="{% url 'products' %}?subcategory=bags" class="dropdown-item text-secondary">Bags</a>
                     <a href="{% url 'products' %}?subcategory=tools" class="dropdown-item text-secondary">Tools</a>
-                    <a href="{% url 'products' %}?subcategory=helmets,goggles,bags,tools" class="dropdown-item text-secondary">All Accessories</a>
+                    <a href="{% url 'products' %}?subcategory=helmets,goggles,bags,tools"
+                        class="dropdown-item text-secondary">All Accessories</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#" id="newcategories-link"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="mainnav-font font-weight-bold nav-link text-blue mr-5 text-uppercase" href="#"
+                    id="newcategories-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h6 class="mx-2 my-0">New Offers</h6>
                 </a>
                 <div class="dropdown-menu border-0 text-capitalize" aria-labelledby="newcategories-link">
                     {% for subcategory in subcategories %}
-                        {% if subcategory.new %}
-                            <a href="{% url 'products' %}?subcategory={{subcategory.name}}" class="dropdown-item text-secondary">
-                                {% if subcategory.friendly_name %} 
-                                    {{ subcategory.friendly_name }}
-                                {% else %} 
-                                    {{subcategory.name}}
-                                {% endif %}
-                            </a>
+                    {% if subcategory.new %}
+                    <a href="{% url 'products' %}?subcategory={{subcategory.name}}"
+                        class="dropdown-item text-secondary">
+                        {% if subcategory.friendly_name %}
+                        {{ subcategory.friendly_name }}
+                        {% else %}
+                        {{subcategory.name}}
                         {% endif %}
+                    </a>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </li>
@@ -115,10 +127,4 @@
 </div>
 
 {% block postloadjs %}
-    <script type="text/javascript">
-        // allow tab toggling
-        $('.nav-tabs a').click(function(){
-            $(this).tab('show');
-        })
-    </script>
 {% endblock %}
