@@ -675,7 +675,18 @@ python3 manage.py createsuperuser
 python3 manage.py runserver
 ```
 
-8. Verify app functionality
+8. Load 5x fixtures files containing categories, subcategories, products and new data. Note* new_subcategories and new_products fictures test categories app enhanced functionality for new additions to database. 
+
+```
+python3 manage.py loaddata categories
+python3 manage.py loaddata subcategories
+python3 manage.py loaddata new_subcategories
+python3 manage.py loaddata products
+python3 manage.py loaddata new_products
+```
+
+
+9. Verify app functionality
 
 ***
 

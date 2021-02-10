@@ -16,6 +16,8 @@
 
 **<details><summary>Post Production Testing</summary>**
 * [Post Production Testing](#post-production-testing)
+* [Django Test Driven Development](#django-test-driven-development)
+* [Manual Testing](#manual-testing)
 * [Post Production Bugs Found](#post-production-bugs-found)
 </details>
 
@@ -159,7 +161,7 @@ Ask Num | Scenario                                                              
 2	    | As a developer and time permitting, I would like to be able to be in a position to present a clean secure, scalable and error free site	            |
 
 * User Goal #1. 
-    - Thankfully I had just enough time to introduce the Webhook defensive logic on the checkout related views. This can be tested by emulating a break in form submission. This can be achieved by commenting out the form_submit() method in the stripe_elements.js static file, submitting a new order and checking the webhook event on the stripe dashboard for the "created using wenhook" as opposed to "created using databse" response text.
+    - Thankfully I had just enough time to introduce the Webhook defensive logic on the checkout related views. This can be tested by emulating a break in form submission. This can be achieved by commenting out the form_submit() method in the stripe_elements.js static file, submitting a new order and checking the webhook event on the stripe dashboard for the "created using webhook" as opposed to "created using databse" response text.
 * User Goal #2.
     - Time was my enemy for this project but I believe I achieved the majority of my original goals as a developer. These include securing the Category, Product & Profile views using backend defensive logic.  Making the site a little more scalable with the CRUD and Autopopulate functionality provided by the categories templates and views.  A relatively clean delivery in that where store specific details, such as those in the contact form, or indeed the FREE_DELIVERY & RETURN related material,  can be variabalised or centralised, they were.
     - If I had more time I would iron out some of the styling limitations, introduce some further js around data toggling on both menus and create some automation functionality on the about app but I believe I have achieved all I can in the time alloted.
@@ -170,7 +172,38 @@ Ask Num | Scenario                                                              
 
 
 ## Post Production Testing
-##### Note* I've placed the Post Production tesing section before the Pre Production section for two reasons.  One, it more closely mirrors the end user goals and associated testing. Two it is less verbose. That said please read the pre-production section if you wish to get an understanding of the types of hurdles I encountered during the development process.
+#### Note* I've placed the Post Production testing section before the Pre Production section for two reasons.  One, it more closely mirrors the end user goals and associated testing. Two it is less verbose. That said please read the pre-production section if you wish to get an understanding of the types of hurdles I encountered during the development process.
+
+### Django Test Driven Development  
+#### Post submission I was able to introduce some Django test driven development logic for the categories app.  This included forms, models,views, get and post logic. The below output captures the coverage report for the app which is currently 90%.
+
+```
+$ coverage report
+Name                                               Stmts   Miss  Cover
+----------------------------------------------------------------------
+categories/__init__.py                                 0      0   100%
+categories/admin.py                                   10      0   100%
+categories/apps.py                                     3      3     0%
+categories/context_processors.py                       4      0   100%
+categories/forms.py                                   33      0   100%
+categories/migrations/0001_initial.py                  5      0   100%
+categories/migrations/0002_auto_20210123_1511.py       4      0   100%
+categories/migrations/0003_auto_20210123_2114.py       4      0   100%
+categories/migrations/__init__.py                      0      0   100%
+categories/models.py                                  20      0   100%
+categories/test_forms.py                              15      0   100%
+categories/test_models.py                             27      0   100%
+categories/test_views.py                              45      0   100%
+categories/tests.py                                    1      0   100%
+categories/urls.py                                     3      0   100%
+categories/views.py                                   76     21    72%
+----------------------------------------------------------------------
+TOTAL                                                250     24    90%
+```
+***
+[Back to Contents](#table-of-contents)
+
+### Manual Testing
 
 |TesT No.|Page           |Test Description                     |Anonymous|Registered          |Superuser|Chrome|Edge|Comments                                                         |Corrected|
 |--------|---------------|-------------------------------------|---------|--------------------|---------|------|----|-----------------------------------------------------------------|---------|
@@ -566,8 +599,9 @@ def update_bag(request, item_id):
 *   Responsive Testing was completed using [Techsini Multi-mockup](https://techsini.com/multi-mockup/index.php)
 *   The ReadMe.md page was tested using the [Markdown Live Preview](https://markdownlivepreview.com/)
 *   HTML code was tested using the [W3C HTML Validator](https://validator.w3.org/#validate_by_input).
-    - Mutiple errors were highlighted however the majority related to the W3C utility being unable to process jinga.
+    Zero errors. 1x warning
 *   CSS code was tested using the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+    2x Errors & 754 warnings but specific to bootstrap.min.css not dev css code.  17x warnings for base.css
 *   JavaScript code was validated using [JSHint](https://jshint.com/)
 *   Python code was validated using  [PEP8 Online](http://pep8online.com/)
 
