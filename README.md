@@ -808,6 +808,39 @@ that way you only need to push to GitHub.
 2.  Make sure your GitHub id is displayed and then enter the GitHub repository name and click search.
 3.  Once it finds the repository, click connect, to connect to the repository.
 
+#### Update Postgres Database with Django Migration
+If you've chosen to launch directly from Github without local dev environment you can run the Django DB migrations directly from the Heroku bash console.
+
+1.  Select the More button in teh App Nav bar.
+2.  Select "Run console" from the drop down menu
+3.  Run the bash console
+4.  Enter the below commands
+    ```
+    python3 manage.py showmigrations
+    python3 manage.py migrate
+    ```
+    
+#### Add a Django Superuser to adminster site
+This can be completed using the same heroku bash terminal
+```
+    python3 manage.py createsuperuser
+    enter username:
+    enter email address:
+    enter password:
+    confirm password:
+```
+
+#### Load Fixtures to teh site
+This can also be completed using the heroku bash terminal
+```
+    python3 manage.py loaddata categories
+    python3 manage.py loaddata subcategories
+    python3 manage.py loaddata new_subcategories
+    python3 manage.py loaddata products
+    python3 manage.py loaddata new_products
+```
+    
+    
 #### Setup the Config Vars
 Attempting to deploy at this stage would result in some unwanted application errors, 
 this is because we have hidden our environment variables inside the env file, 
