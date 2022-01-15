@@ -111,7 +111,7 @@
 * [Connecting to the GitHub repository](#connecting-to-the-github-repository)
 * [Update Postgres Database with Django Migrations](#update-postgres-database-with-django-migrations)
 * [Add a Django Superuser to adminster site](#add-a-django-superuser-to-adminster-site)
-* [Load Fixtures to the site(#load-fixtures-to-the-site)
+* [Load Fixtures to the site](#load-fixtures-to-the-site)
 * [Setup the Config Vars](#setup-the-config-vars)
 * [Automatic Deployment](#automatic-deployment)
 * [The Project is now deployed](#the-project-is-now-deployed)
