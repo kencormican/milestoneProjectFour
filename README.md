@@ -127,7 +127,7 @@
 
 ## Demo
 
-[View the live project here.](https://kjc-off-piste-skishop.herokuapp.com/)
+[View the live project here.](https://kjc-skishop-milestone4.herokuapp.com/)
 
 
 --------
