@@ -808,7 +808,7 @@ that way you only need to push to GitHub.
 2.  Make sure your GitHub id is displayed and then enter the GitHub repository name and click search.
 3.  Once it finds the repository, click connect, to connect to the repository.
 
-#### Update Postgres Database with Django Migration
+#### Update Postgres Database with Django Migrations
 If you've chosen to launch directly from Github without local dev environment you can run the Django DB migrations directly from the Heroku bash console.
 
 1.  Select the More button in teh App Nav bar.
@@ -830,7 +830,7 @@ This can be completed using the same heroku bash terminal
     confirm password:
 ```
 
-#### Load Fixtures to teh site
+#### Load Fixtures to the site
 This can also be completed using the heroku bash terminal
 ```
     python3 manage.py loaddata categories
